@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\CreateAccount\Inputs\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\OVB.Core.Services.CrossCutting.Abstractions\OVB.Core.Services.CrossCutting.Abstractions.csproj" />
+    <ProjectReference Include="..\Libraries\OVB.Core.Services.CrossCutting.Abstractions\OVB.Core.Services.CrossCutting.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

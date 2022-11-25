@@ -2,7 +2,7 @@
 
 public interface IHttpResponse
 {
-    public TypeHttpResponseCode TypeHttpResponseCode { get; init; }
-    public int Status { get; init; }
-    public string TypeHttpResponse { get; init; }
+    public TypeHttpResponseCode TypeHttpResponseCode { get; }
+    public int Status { get; }
+    public string TypeHttpResponse { get; }
 }

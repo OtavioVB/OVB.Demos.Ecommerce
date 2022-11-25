@@ -18,9 +18,9 @@ public abstract class HandleBase<Response, Request> : IHandler<Response, Request
         return await HandleWorkflowAsync(request);
     }
 
-    public abstract Task<Response> HandleWorkflowAsync(Request request);
+    protected abstract Task<Response> HandleWorkflowAsync(Request request);
     
-    public virtual Response DefaultResponseForInvalidRequest(IServiceProvider serviceProvider)
+    protected virtual Response DefaultResponseForInvalidRequest(IServiceProvider serviceProvider)
     {
         var getInstance = serviceProvider.GetService(typeof(Response));
         

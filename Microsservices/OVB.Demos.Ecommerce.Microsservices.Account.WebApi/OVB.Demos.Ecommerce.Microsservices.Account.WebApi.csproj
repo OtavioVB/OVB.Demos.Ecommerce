@@ -11,4 +11,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\OVB.Core.Services.CrossCuting\OVB.Core.Services.CrossCuting.csproj" />
+    <ProjectReference Include="..\OVB.Deoms.Ecommerce.Microsservices.Account.Services\OVB.Deoms.Ecommerce.Microsservices.Account.Services.csproj" />
+  </ItemGroup>
+
 </Project>

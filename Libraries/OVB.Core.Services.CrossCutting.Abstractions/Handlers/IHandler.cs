@@ -8,6 +8,4 @@ public interface IHandler<Response, Request>
     where Request : IRequest
 {
     Task<Response> HandleAsync(Request request, IServiceProvider serviceProvider);
-    public abstract Task<Response> HandleWorkflowAsync(Request request);
-    public abstract Response DefaultResponseForInvalidRequest(IServiceProvider serviceProvider);
 }
