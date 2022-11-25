@@ -9,7 +9,7 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return await Task.FromResutlt(StatusCode(500, "Recurso não implementado"));
+            return await Task.FromResult(StatusCode(500, "Recurso não implementado"));
         }
     }
 }
