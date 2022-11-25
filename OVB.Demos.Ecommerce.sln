@@ -3,22 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.WebApi", "OVB.Demos.Ecommerce.Microsservices.Account.WebApi\OVB.Demos.Ecommerce.Microsservices.Account.WebApi.csproj", "{55DA32F8-2B49-407D-B976-B3CC54E061EE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{5A713CAD-524C-47BC-8F0D-920BEBF8F033}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure", "OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.csproj", "{C248A4AF-4931-47F5-86B2-B8B267634C9D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Domain", "OVB.Demos.Ecommerce.Microsservices.Account.Domain\OVB.Demos.Ecommerce.Microsservices.Account.Domain.csproj", "{594D7CB9-5915-46FA-B26F-D2618FD26572}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Deoms.Ecommerce.Microsservices.Account.Services", "OVB.Deoms.Ecommerce.Microsservices.Account.Services\OVB.Deoms.Ecommerce.Microsservices.Account.Services.csproj", "{6EDFACD6-6E43-4159-B055-6869177B09D1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{C6ECE2D8-6014-4C20-85F0-8DFD76671424}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Core.Domain.CrossCutting.Abstractions", "OVB.Core.Domain.CrossCutting.Abstractions\OVB.Core.Domain.CrossCutting.Abstractions.csproj", "{5F9BDC93-A670-43E1-B170-9C11747FB7E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D9A5F62-BEF2-4B4B-890B-BCB9F1682568}"
 EndProject
@@ -26,32 +16,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Core.Domain.CrossCuting.Abstractions", "Libraries\OVB.Core.Domain.CrossCuting.Abstractions\OVB.Core.Domain.CrossCuting.Abstractions.csproj", "{2AA6D46F-A3E8-41BB-AE17-E3591AF86185}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Core.Infrascructure.CrossCutting.Abstractions", "Libraries\OVB.Core.Infrascructure.CrossCutting.Abstractions\OVB.Core.Infrascructure.CrossCutting.Abstractions.csproj", "{28A126CE-3E23-4414-ABAF-C8266E50F082}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{AA681EB8-F956-47F6-B296-C5910F8233D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsservices", "Microsservices", "{EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure", "Microsservices\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.csproj", "{6A212AC3-3D24-44AC-8E35-B61D173C2381}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.Domain", "Microsservices\OVB.Demos.Ecommerce.Microsservices.Account.Domain\OVB.Demos.Ecommerce.Microsservices.Account.Domain.csproj", "{E962284C-73BF-4B88-818C-C39E061FE54D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.WebApi", "Microsservices\OVB.Demos.Ecommerce.Microsservices.Account.WebApi\OVB.Demos.Ecommerce.Microsservices.Account.WebApi.csproj", "{C62F8A1B-055A-4486-82E7-72622BF2418A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Deoms.Ecommerce.Microsservices.Account.Services", "Microsservices\OVB.Deoms.Ecommerce.Microsservices.Account.Services\OVB.Deoms.Ecommerce.Microsservices.Account.Services.csproj", "{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{55DA32F8-2B49-407D-B976-B3CC54E061EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55DA32F8-2B49-407D-B976-B3CC54E061EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55DA32F8-2B49-407D-B976-B3CC54E061EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55DA32F8-2B49-407D-B976-B3CC54E061EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C248A4AF-4931-47F5-86B2-B8B267634C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C248A4AF-4931-47F5-86B2-B8B267634C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C248A4AF-4931-47F5-86B2-B8B267634C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C248A4AF-4931-47F5-86B2-B8B267634C9D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{594D7CB9-5915-46FA-B26F-D2618FD26572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{594D7CB9-5915-46FA-B26F-D2618FD26572}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{594D7CB9-5915-46FA-B26F-D2618FD26572}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{594D7CB9-5915-46FA-B26F-D2618FD26572}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EDFACD6-6E43-4159-B055-6869177B09D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EDFACD6-6E43-4159-B055-6869177B09D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EDFACD6-6E43-4159-B055-6869177B09D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EDFACD6-6E43-4159-B055-6869177B09D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F9BDC93-A670-43E1-B170-9C11747FB7E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F9BDC93-A670-43E1-B170-9C11747FB7E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F9BDC93-A670-43E1-B170-9C11747FB7E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F9BDC93-A670-43E1-B170-9C11747FB7E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BABDEE58-BA7B-4B94-8C7F-A338151F9F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BABDEE58-BA7B-4B94-8C7F-A338151F9F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BABDEE58-BA7B-4B94-8C7F-A338151F9F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -60,14 +44,39 @@ Global
 		{2AA6D46F-A3E8-41BB-AE17-E3591AF86185}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AA6D46F-A3E8-41BB-AE17-E3591AF86185}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AA6D46F-A3E8-41BB-AE17-E3591AF86185}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28A126CE-3E23-4414-ABAF-C8266E50F082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28A126CE-3E23-4414-ABAF-C8266E50F082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28A126CE-3E23-4414-ABAF-C8266E50F082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28A126CE-3E23-4414-ABAF-C8266E50F082}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A212AC3-3D24-44AC-8E35-B61D173C2381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A212AC3-3D24-44AC-8E35-B61D173C2381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A212AC3-3D24-44AC-8E35-B61D173C2381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A212AC3-3D24-44AC-8E35-B61D173C2381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E962284C-73BF-4B88-818C-C39E061FE54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E962284C-73BF-4B88-818C-C39E061FE54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E962284C-73BF-4B88-818C-C39E061FE54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E962284C-73BF-4B88-818C-C39E061FE54D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C62F8A1B-055A-4486-82E7-72622BF2418A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C62F8A1B-055A-4486-82E7-72622BF2418A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C62F8A1B-055A-4486-82E7-72622BF2418A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C62F8A1B-055A-4486-82E7-72622BF2418A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5F9BDC93-A670-43E1-B170-9C11747FB7E7} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
 		{BABDEE58-BA7B-4B94-8C7F-A338151F9F78} = {8D9A5F62-BEF2-4B4B-890B-BCB9F1682568}
 		{2AA6D46F-A3E8-41BB-AE17-E3591AF86185} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
+		{28A126CE-3E23-4414-ABAF-C8266E50F082} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
+		{EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4} = {AA681EB8-F956-47F6-B296-C5910F8233D3}
+		{6A212AC3-3D24-44AC-8E35-B61D173C2381} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
+		{E962284C-73BF-4B88-818C-C39E061FE54D} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
+		{C62F8A1B-055A-4486-82E7-72622BF2418A} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
+		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A71CAF20-D0E3-440B-BC5B-588B4F1DE0C8}
