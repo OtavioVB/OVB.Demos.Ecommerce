@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Libraries\OVB.Core.Services.CrossCutting.Abstractions\OVB.Core.Services.CrossCutting.Abstractions.csproj" />
+    <ProjectReference Include="..\OVB.Core.Domain.DesignPatterns.NotificationPattern.Abstractions\OVB.Core.Domain.DesignPatterns.NotificationPattern.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

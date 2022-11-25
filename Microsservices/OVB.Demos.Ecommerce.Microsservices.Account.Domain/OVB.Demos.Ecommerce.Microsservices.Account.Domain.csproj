@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\OVB.Core.Domain.CrossCuting.Abstractions\OVB.Core.Domain.CrossCuting.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>
