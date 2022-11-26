@@ -10,7 +10,7 @@ public class AccountDataTransfer : DataTransferObjectBase, IAccountProperties
     public string Surname { get; set; }
     public string Password { get; set; }
     public string Email { get; set; }
-    public string Cargo { get; set; }
+    public string Office { get; set; }
     public string CPF { get; set; }
 
     public AccountDataTransfer(Guid identifier, DateTime registeredOn, Guid registeredByIdentifier, DateTime lastModificationOn, Guid lastModificationByIdentifier,
@@ -22,7 +22,7 @@ public class AccountDataTransfer : DataTransferObjectBase, IAccountProperties
         Surname = surname;
         Password = password;
         Email = email;
-        Cargo = cargo;
+        Office = cargo;
         CPF = cpf;
     }
 }

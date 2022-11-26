@@ -7,6 +7,6 @@ public interface IAccountSettersProperties
     public string Surname { set; }
     public string Password { set; }
     public string Email { set; }
-    public string Cargo { set; }
+    public string Office { set; }
     public string CPF { set; }
 }

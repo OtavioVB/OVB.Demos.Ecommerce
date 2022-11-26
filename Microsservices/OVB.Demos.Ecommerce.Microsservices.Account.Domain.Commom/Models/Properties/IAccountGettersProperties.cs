@@ -7,6 +7,6 @@ public interface IAccountGettersProperties
     public string Surname { get; }
     public string Password { get; }
     public string Email { get; }
-    public string Cargo { get; }
+    public string Office { get; }
     public string CPF { get; }
 }

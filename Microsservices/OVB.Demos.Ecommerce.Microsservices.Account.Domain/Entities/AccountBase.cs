@@ -11,7 +11,7 @@ public class AccountBase : EntityBase, IAccountGettersProperties
     public string Surname { get; private set; }
     public string Password { get; private set; }
     public string Email { get; private set; }
-    public string Cargo { get; private set; }
+    public string Office { get; private set; }
     public string CPF { get; private set; }
     public TypeAccount TypeAccount { get; init; }
 
@@ -24,7 +24,7 @@ public class AccountBase : EntityBase, IAccountGettersProperties
         Surname = surname;
         Password = password;
         Email = email;
-        Cargo = cargo;
+        Office = cargo;
         CPF = cpf;
         TypeAccount = typeAccount;
     }
@@ -51,7 +51,7 @@ public class AccountBase : EntityBase, IAccountGettersProperties
 
     public virtual void ChangeCargo(string cargo)
     {
-        Cargo = cargo;
+        Office = cargo;
     }
 
     public virtual void ChangeCPF(string cpf)
