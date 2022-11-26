@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\OVB.Core.Domain.CrossCuting.Abstractions\OVB.Core.Domain.CrossCuting.Abstractions.csproj" />
     <ProjectReference Include="..\..\Libraries\OVB.Core.Domain.DesignPatterns.NotificationPattern.Abstractions\OVB.Core.Domain.DesignPatterns.NotificationPattern.Abstractions.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Commom\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Common.csproj" />
   </ItemGroup>
 
 </Project>
