@@ -1,4 +1,5 @@
 ﻿using OVB.Core.CrossCutting.Validator.Abstractions;
+using OVB.Core.CrossCutting.Validator.GeneralFunctions;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Common.Models.Properties;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Domain.Validators.Account;
@@ -13,5 +14,13 @@ public class AccountValidator : EcommerceOwnValidatorBase<IAccountGettersPropert
     public override void ValidationWorkflow(IAccountGettersProperties property)
     {
         base.ValidationWorkflow(property);
+    }
+
+    protected virtual void ValidateUsername(string username)
+    {
+        if(ValidatorUtilities.VerifyInformationIsNotNull(username) == false)
+        {
+            AddValidationErrorItemMessage(new ValidationErrorItemStandard("O nome de usuário não pode ser nulo."));
+        }
     }
 }
