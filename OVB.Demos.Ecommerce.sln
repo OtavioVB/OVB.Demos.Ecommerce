@@ -28,8 +28,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.WebApi", "Microsservices\OVB.Demos.Ecommerce.Microsservices.Account.WebApi\OVB.Demos.Ecommerce.Microsservices.Account.WebApi.csproj", "{C62F8A1B-055A-4486-82E7-72622BF2418A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Deoms.Ecommerce.Microsservices.Account.Services", "Microsservices\OVB.Deoms.Ecommerce.Microsservices.Account.Services\OVB.Deoms.Ecommerce.Microsservices.Account.Services.csproj", "{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Core.Services.CrossCutting.Abstractions", "Libraries\OVB.Core.Services.CrossCutting.Abstractions\OVB.Core.Services.CrossCutting.Abstractions.csproj", "{2EFE7204-7A54-454A-A783-B885EECC494B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{85B3FEB3-3C78-40C2-9D44-C3F2A3F062CB}"
@@ -40,7 +38,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Core.Services.CrossCuti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Core.Domain.DesignPatterns.NotificationPattern.Abstractions", "Libraries\OVB.Core.Domain.DesignPatterns.NotificationPattern.Abstractions\OVB.Core.Domain.DesignPatterns.NotificationPattern.Abstractions.csproj", "{9B5A280A-B552-49A2-811A-1A3751C494D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Core.Domain.DesignPatterns.NotificationPattern", "Libraries\OVB.Core.Domain.DesignPatterns.NotificationPattern\OVB.Core.Domain.DesignPatterns.NotificationPattern.csproj", "{E5A1D26F-8BFC-4FA3-A7D3-D6BD78F74ADA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Core.Domain.DesignPatterns.NotificationPattern", "Libraries\OVB.Core.Domain.DesignPatterns.NotificationPattern\OVB.Core.Domain.DesignPatterns.NotificationPattern.csproj", "{E5A1D26F-8BFC-4FA3-A7D3-D6BD78F74ADA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Services", "Source\OVB.Demos.Ecommerce.Microsservices.Account.Services\OVB.Demos.Ecommerce.Microsservices.Account.Services.csproj", "{2FC4D8AE-3842-4E21-B336-A1172F652CEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,10 +72,6 @@ Global
 		{C62F8A1B-055A-4486-82E7-72622BF2418A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C62F8A1B-055A-4486-82E7-72622BF2418A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C62F8A1B-055A-4486-82E7-72622BF2418A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2EFE7204-7A54-454A-A783-B885EECC494B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2EFE7204-7A54-454A-A783-B885EECC494B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EFE7204-7A54-454A-A783-B885EECC494B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -96,6 +92,10 @@ Global
 		{E5A1D26F-8BFC-4FA3-A7D3-D6BD78F74ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5A1D26F-8BFC-4FA3-A7D3-D6BD78F74ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5A1D26F-8BFC-4FA3-A7D3-D6BD78F74ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FC4D8AE-3842-4E21-B336-A1172F652CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FC4D8AE-3842-4E21-B336-A1172F652CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FC4D8AE-3842-4E21-B336-A1172F652CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FC4D8AE-3842-4E21-B336-A1172F652CEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,12 +108,12 @@ Global
 		{6A212AC3-3D24-44AC-8E35-B61D173C2381} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
 		{E962284C-73BF-4B88-818C-C39E061FE54D} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
 		{C62F8A1B-055A-4486-82E7-72622BF2418A} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
-		{4F5EA23B-9DE6-4695-B6AA-144AC8C0095A} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
 		{2EFE7204-7A54-454A-A783-B885EECC494B} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
 		{F1D2D1CE-6376-413F-849E-F24E66D358EC} = {85B3FEB3-3C78-40C2-9D44-C3F2A3F062CB}
 		{9718148E-C230-4AC0-8545-0653A3FF7393} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
 		{9B5A280A-B552-49A2-811A-1A3751C494D5} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
 		{E5A1D26F-8BFC-4FA3-A7D3-D6BD78F74ADA} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
+		{2FC4D8AE-3842-4E21-B336-A1172F652CEC} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A71CAF20-D0E3-440B-BC5B-588B4F1DE0C8}

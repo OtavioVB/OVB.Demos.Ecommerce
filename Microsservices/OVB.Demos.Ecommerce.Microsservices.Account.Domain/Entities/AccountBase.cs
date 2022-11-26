@@ -12,7 +12,7 @@ public class AccountBase : EntityBase
     public string Email { get; private set; }
     public string Cargo { get; private set; }
     public string CPF { get; private set; }
-    public TypeAccount TypeAccount { get; private set; }
+    public TypeAccount TypeAccount { get; init; }
 
     protected AccountBase(Guid identifier, DateTime registeredOn, Guid registeredByIdentifier, DateTime lastModificationOn, Guid lastModificationByIdentifier,
         string username, string name, string surname, string password, string email, string cargo, string cpf, TypeAccount typeAccount) 
@@ -31,5 +31,30 @@ public class AccountBase : EntityBase
     public virtual void ChangeUsername(string username)
     {
         Username = username;
+    }
+
+    public virtual void ChangeName(string name)
+    {
+        Name = name;
+    }
+
+    public virtual void ChangeSurname(string password)
+    {
+        Password = password;
+    }
+
+    public virtual void ChangeEmail(string email)
+    {
+        Email = email;
+    }
+
+    public virtual void ChangeCargo(string cargo)
+    {
+        Cargo = cargo;
+    }
+
+    public virtual void ChangeCPF(string cpf)
+    {
+        CPF = cpf;
     }
 }

@@ -13,7 +13,7 @@ public abstract class BaseMapping<T> where T : DataTransferObjectBase
         MappingOverrideExtensions(builder);
     }
 
-    public virtual void MappingOverrideExtensions(EntityTypeBuilder<T> builder)
+    protected virtual void MappingOverrideExtensions(EntityTypeBuilder<T> builder)
     {
         return;
     }

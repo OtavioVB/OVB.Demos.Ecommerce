@@ -2,7 +2,7 @@
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Domain.DataTransferObjects;
 
-public class Account : DataTransferObjectBase
+public class AccountDataTransfer : DataTransferObjectBase
 {
     public string Username { get; set; }
     public string Name { get; set; }
@@ -12,7 +12,7 @@ public class Account : DataTransferObjectBase
     public string Cargo { get; set; }
     public string CPF { get; set; }
 
-    public Account(Guid identifier, DateTime registeredOn, Guid registeredByIdentifier, DateTime lastModificationOn, Guid lastModificationByIdentifier,
+    public AccountDataTransfer(Guid identifier, DateTime registeredOn, Guid registeredByIdentifier, DateTime lastModificationOn, Guid lastModificationByIdentifier,
         string username, string name, string surname, string password, string email, string cargo, string cpf) 
         : base(identifier, registeredOn, registeredByIdentifier, lastModificationOn, lastModificationByIdentifier)
     {

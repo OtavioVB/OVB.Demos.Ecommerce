@@ -3,5 +3,6 @@
 public enum TypeAccount
 {
     Standard = 1,
-    Manager = 2
+    Manager = 2,
+    Developer = 3
 }

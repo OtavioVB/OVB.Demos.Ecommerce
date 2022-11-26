@@ -6,22 +6,32 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        var serviceCollection = new ServiceCollection();
-        serviceCollection.AddTransient<ITeste, Teste>();
-        IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-        serviceProvider.GetService<ITeste>();
+        new OverrideWrite().Escrever();
     }
 
-    public interface ITeste
+    public abstract class BaseWrite
     {
-        public void Escrever(string teste);
-    }
-
-    public class Teste : ITeste
-    {
-        public void Escrever(string teste)
+        public virtual void Escrever()
         {
-            Console.WriteLine(teste);
+            Console.WriteLine("1");
+        }
+    }
+
+    public class Write : BaseWrite
+    {
+        public new virtual void Escrever()
+        {
+            base.Escrever();
+            Console.WriteLine("2");
+        }
+    }
+
+    public class OverrideWrite : Write
+    {
+        public override void Escrever()
+        {
+            base.Escrever();
+            Console.WriteLine("3");
         }
     }
 }
