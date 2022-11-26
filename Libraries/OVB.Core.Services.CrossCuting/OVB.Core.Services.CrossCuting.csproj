@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OVB.Core.Services.CrossCutting.Abstractions\OVB.Core.Services.CrossCutting.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>
