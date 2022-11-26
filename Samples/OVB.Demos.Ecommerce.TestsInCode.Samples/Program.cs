@@ -1,37 +1,33 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace OVB.Demos.Ecommerce.TestsInCode.Samples;
+﻿namespace OVB.Demos.Ecommerce.TestsInCode.Samples;
 
 internal class Program
 {
     static void Main(string[] args)
     {
-        new OverrideWrite().Escrever();
+        Customer customer = new Customer("nome");
+        CustomerVIP customerStandard = (CustomerVIP)customer;
+        Console.WriteLine(customerStandard.Surname);
     }
 
-    public abstract class BaseWrite
+    public class Customer
     {
-        public virtual void Escrever()
-        {
-            Console.WriteLine("1");
+        public string Name { get; set; }
+
+        public Customer(string name) 
+        { 
+            Name = name;
         }
     }
 
-    public class Write : BaseWrite
+    public class CustomerVIP : Customer
     {
-        public new virtual void Escrever()
+        public CustomerVIP(string name, string surname) : base(name)
         {
-            base.Escrever();
-            Console.WriteLine("2");
+            Surname = surname;
         }
-    }
 
-    public class OverrideWrite : Write
-    {
-        public override void Escrever()
-        {
-            base.Escrever();
-            Console.WriteLine("3");
-        }
+        public string Surname { get; set; }
+
+
     }
 }

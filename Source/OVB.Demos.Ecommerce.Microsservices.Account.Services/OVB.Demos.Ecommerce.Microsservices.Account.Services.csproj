@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\" />
+    <Folder Include="Handlers\CreateAccount\Inputs\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\OVB.Core.Services.CrossCutting.Abstractions\OVB.Core.Services.CrossCutting.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

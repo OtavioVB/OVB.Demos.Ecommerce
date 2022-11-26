@@ -40,7 +40,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Core.Domain.DesignPatte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Core.Domain.DesignPatterns.NotificationPattern", "Libraries\OVB.Core.Domain.DesignPatterns.NotificationPattern\OVB.Core.Domain.DesignPatterns.NotificationPattern.csproj", "{E5A1D26F-8BFC-4FA3-A7D3-D6BD78F74ADA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Services", "Source\OVB.Demos.Ecommerce.Microsservices.Account.Services\OVB.Demos.Ecommerce.Microsservices.Account.Services.csproj", "{2FC4D8AE-3842-4E21-B336-A1172F652CEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.Services", "Source\OVB.Demos.Ecommerce.Microsservices.Account.Services\OVB.Demos.Ecommerce.Microsservices.Account.Services.csproj", "{2FC4D8AE-3842-4E21-B336-A1172F652CEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Domain.Common", "OVB.Demos.Ecommerce.Microsservices.Account.Domain.Commom\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Common.csproj", "{20672184-1A08-4793-8C1B-C4464A84DD90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Domain.Validators", "OVB.Demos.Ecommerce.Microsservices.Account.Domain.Validators\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Validators.csproj", "{F3439407-EDEB-480A-A7BC-D31121048FAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +100,14 @@ Global
 		{2FC4D8AE-3842-4E21-B336-A1172F652CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FC4D8AE-3842-4E21-B336-A1172F652CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FC4D8AE-3842-4E21-B336-A1172F652CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20672184-1A08-4793-8C1B-C4464A84DD90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20672184-1A08-4793-8C1B-C4464A84DD90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20672184-1A08-4793-8C1B-C4464A84DD90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20672184-1A08-4793-8C1B-C4464A84DD90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3439407-EDEB-480A-A7BC-D31121048FAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3439407-EDEB-480A-A7BC-D31121048FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3439407-EDEB-480A-A7BC-D31121048FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3439407-EDEB-480A-A7BC-D31121048FAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +126,8 @@ Global
 		{9B5A280A-B552-49A2-811A-1A3751C494D5} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
 		{E5A1D26F-8BFC-4FA3-A7D3-D6BD78F74ADA} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
 		{2FC4D8AE-3842-4E21-B336-A1172F652CEC} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
+		{20672184-1A08-4793-8C1B-C4464A84DD90} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
+		{F3439407-EDEB-480A-A7BC-D31121048FAF} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A71CAF20-D0E3-440B-BC5B-588B4F1DE0C8}

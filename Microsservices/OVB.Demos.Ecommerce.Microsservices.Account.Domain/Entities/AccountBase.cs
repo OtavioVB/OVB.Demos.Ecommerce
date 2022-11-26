@@ -1,9 +1,10 @@
 ﻿using OVB.Core.Domain.CrossCutting.Abstractions.Entities;
+using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Common.Models.Properties;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.ENUMs;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Domain.Entities;
 
-public class AccountBase : EntityBase
+public class AccountBase : EntityBase, IAccountGettersProperties
 {
     public string Username { get; private set; }
     public string Name { get; private set; }

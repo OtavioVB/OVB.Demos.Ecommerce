@@ -1,8 +1,9 @@
 ﻿using OVB.Core.Domain.CrossCuting.Abstractions.DataTransferObjects;
+using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Common.Models.Properties;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Domain.DataTransferObjects;
 
-public class AccountDataTransfer : DataTransferObjectBase
+public class AccountDataTransfer : DataTransferObjectBase, IAccountProperties
 {
     public string Username { get; set; }
     public string Name { get; set; }
