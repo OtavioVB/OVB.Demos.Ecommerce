@@ -8,6 +8,4 @@ public abstract class CreateAuthenticationHandlerBase : HandleBase<CreateAuthent
     {
         throw new NotImplementedException();
     }
-
-    
 }
