@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using OVB.Core.Services.CrossCuting;
+using OVB.Core.Services.CrossCutting.Abstractions.Handlers.Response;
+using OVB.Demos.Ecommerce.Microsservices.Account.Services.Handlers.CreateAccount;
 using System.Text;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.WebApi;
@@ -9,6 +12,11 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddTransient<CreateAuthenticationResponse>(p =>
+        {
+            return new CreateAuthenticationResponse(new HttpStatusResponse(TypeHttpResponseCode.BadRequest));
+        });
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();

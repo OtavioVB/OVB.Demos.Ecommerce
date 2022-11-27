@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\OVB.Core.Services.CrossCutting.Abstractions\OVB.Core.Services.CrossCutting.Abstractions.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Commom\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Common.csproj" />
   </ItemGroup>
 
 </Project>

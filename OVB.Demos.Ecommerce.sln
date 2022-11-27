@@ -49,6 +49,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fluxos de Trabalho", "Fluxo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.Services", "Microsservices\OVB.Demos.Ecommerce.Microsservices.Account.Services\OVB.Demos.Ecommerce.Microsservices.Account.Services.csproj", "{7F595A69-7D40-47FF-B3C7-46F9B1D44030}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Core.CrossCutting.Validator.GeneralFunctions", "Libraries\OVB.Core.CrossCutting.Validator.GeneralFunctions\OVB.Core.CrossCutting.Validator.GeneralFunctions.csproj", "{80ED8C71-3BF9-48D8-8556-F1F360164C7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{7F595A69-7D40-47FF-B3C7-46F9B1D44030}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F595A69-7D40-47FF-B3C7-46F9B1D44030}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F595A69-7D40-47FF-B3C7-46F9B1D44030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80ED8C71-3BF9-48D8-8556-F1F360164C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80ED8C71-3BF9-48D8-8556-F1F360164C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80ED8C71-3BF9-48D8-8556-F1F360164C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80ED8C71-3BF9-48D8-8556-F1F360164C7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +137,7 @@ Global
 		{8C379990-7F84-499A-8004-3FABF262D4C1} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
 		{EC05DD32-1606-4540-9418-57A52D08AD0B} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
 		{7F595A69-7D40-47FF-B3C7-46F9B1D44030} = {EF4BDCD3-FD07-4D45-9E11-E2FC042C37F4}
+		{80ED8C71-3BF9-48D8-8556-F1F360164C7A} = {C6ECE2D8-6014-4C20-85F0-8DFD76671424}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A71CAF20-D0E3-440B-BC5B-588B4F1DE0C8}

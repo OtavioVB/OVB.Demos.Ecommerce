@@ -32,4 +32,9 @@ public abstract class EcommerceOwnValidatorBase<Property, ValidationError>
     {
         ValidationErrorItems.AddRange(validationErrors);
     }
+
+    public List<ValidationError> GetValidationErrors()
+    {
+        return ValidationErrorItems;
+    }
 }
