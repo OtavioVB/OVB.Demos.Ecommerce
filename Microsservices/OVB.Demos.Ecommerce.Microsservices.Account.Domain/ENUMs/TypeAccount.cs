@@ -2,7 +2,9 @@
 
 public enum TypeAccount
 {
-    Standard = 1,
-    Manager = 2,
-    Developer = 3
+    Default = 1,
+    Provider = 2,
+    Delivery = 3,
+    Administrator = 4,
+    Manager = 5
 }
