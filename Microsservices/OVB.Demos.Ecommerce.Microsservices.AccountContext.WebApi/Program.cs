@@ -48,7 +48,9 @@ using OVB.Demos.Ecommerce.Libraries.Serialization.Protobuf;
 using OVB.Demos.Ecommerce.Libraries.Serialization.Protobuf.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.ChannelUsageConfiguration;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.ChannelUsage;
-using OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.UseCases.CreateAccount.Inputs.Protobuf;
+using OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.Inputs.Protobuf;
+using OVB.Demos.Ecommerce.Libraries.Notification.Container.Interfaces;
+using OVB.Demos.Ecommerce.Libraries.Notification.Container;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountContext.WebApi;
 
@@ -123,6 +125,10 @@ public class Program
         builder.Services.AddSingleton<IFactory<ValidationFailure, NotificationItem>, FactoryValidationFailureToNotification>();
         builder.Services.AddSingleton<IFactory<List<ValidationFailure>, List<NotificationItem>>, FactoryRangeValidationFailureToRangeNotification>();
 
+        // Notifications
+        builder.Services.AddScoped<INotificationConsumer, NotificationContainer>();
+        builder.Services.AddScoped<INotificationPublisher, NotificationContainer>();
+
         // Builder
         builder.Services.AddSingleton<IBuilder<AccountBase, TypeAccount>, AccountBuilder>();
 
@@ -146,6 +152,7 @@ public class Program
 
         // Services
         builder.Services.AddScoped<IAccountService, AccountService>();
+        builder.Services.AddScoped<IAccountMessengerService, AccountMessengerService>();
 
         // UseCases
         builder.Services.AddScoped<IUseCase<CreateAccountUseCaseInput>, CreateAccountUseCase>();

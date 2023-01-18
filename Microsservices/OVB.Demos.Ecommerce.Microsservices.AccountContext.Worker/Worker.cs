@@ -1,6 +1,6 @@
 using MySql.Data.MySqlClient;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.Subscriber.Interfaces;
-using OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.UseCases.CreateAccount.Inputs.Protobuf;
+using OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.Inputs.Protobuf;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.Worker.Infrascructure;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.Worker.Infrascructure.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.Worker.Infrascructure.Repositories.Interfaces;
@@ -23,14 +23,19 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await _baseDatabaseConnection.OpenAsync();
         while (!stoppingToken.IsCancellationRequested)
         {
-            _messengerSubscriber.ConsumeMessage<AccountProtobuf>("Main", "Microsservices.Account.Created", async (p) =>
+            try
             {
-                await _accountBaseRepository.AddEntityAsync(p);
-            });
+                _messengerSubscriber.ConsumeMessage<AccountProtobuf>("Main", "Microsservices.Account.Created", async (p) =>
+                {
+                    await _accountBaseRepository.AddEntityAsync(p);
+                });
+            }
+            catch
+            {
+                await Task.Delay(1000, stoppingToken);
+            }
         }
-        await _baseDatabaseConnection.CloseAsync();
     }
 }

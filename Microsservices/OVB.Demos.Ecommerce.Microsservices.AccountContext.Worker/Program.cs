@@ -11,7 +11,7 @@ using OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.Factory;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.Factory.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.Subscriber;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.Subscriber.Interfaces;
-using OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.UseCases.CreateAccount.Inputs.Protobuf;
+using OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.Inputs.Protobuf;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.Worker.Infrascructure;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.Worker.Infrascructure.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.Worker.Infrascructure.Repositories;

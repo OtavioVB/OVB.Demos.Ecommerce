@@ -7,5 +7,6 @@ public class PasswordValidator : AbstractValidator<Password>
 {
     public PasswordValidator()
     {
+        RuleFor(p => p.ToString()).Matches("");
     }
 }

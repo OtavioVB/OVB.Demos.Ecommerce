@@ -1,7 +1,7 @@
 ﻿using OVB.Demos.Ecommerce.Microsservices.AccountContext.Domain.ENUMs;
 using ProtoBuf;
 
-namespace OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.UseCases.CreateAccount.Inputs.Protobuf;
+namespace OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.Inputs.Protobuf;
 
 [ProtoContract]
 public sealed class AccountProtobuf
