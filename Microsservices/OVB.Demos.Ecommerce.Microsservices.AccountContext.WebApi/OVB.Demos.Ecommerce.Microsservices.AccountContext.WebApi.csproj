@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>a0167848-59ee-4d6d-9422-119d99af311d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
+    <PackageReference Include="OpenTelemetry" Version="1.4.0-rc.2" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.4.0-rc.2" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc9.11" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.11" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.0.0-rc9.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="HealthCheck\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Adapter\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Adapter.csproj" />
+    <ProjectReference Include="..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Serialization.Protobuf\OVB.Demos.Ecommerce.Libraries.Serialization.Protobuf.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.UseCases\OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.UseCases.csproj" />
+  </ItemGroup>
+
+</Project>

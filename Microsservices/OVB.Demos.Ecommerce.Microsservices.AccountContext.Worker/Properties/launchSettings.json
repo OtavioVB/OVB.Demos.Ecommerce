@@ -1,0 +1,11 @@
+﻿{
+  "profiles": {
+    "OVB.Demos.Ecommerce.Microsservices.AccountContext.Worker": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

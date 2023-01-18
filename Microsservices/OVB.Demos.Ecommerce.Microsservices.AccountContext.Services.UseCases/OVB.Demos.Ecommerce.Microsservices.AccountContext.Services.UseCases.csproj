@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Adapter\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Adapter.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountContext.Infrascructure\OVB.Demos.Ecommerce.Microsservices.AccountContext.Infrascructure.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountContext.Services\OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.csproj" />
+  </ItemGroup>
+
+</Project>
