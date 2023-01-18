@@ -7,5 +7,5 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.Interfaces;
 
 public interface IAccountService
 {
-    public Task<(bool HasExecuted, List<NotificationItem> Notifications, AccountBase? Account)> CreateAccountAsync(CreateAccountServiceInput input, IDbContextTransaction transaction);
+    public Task<(bool HasExecuted, List<NotificationItem> Notifications, AccountBase? Account)> CreateAccountAsync(CreateAccountServiceInput input, IDbContextTransaction transaction, CancellationToken cancellationToken);
 }

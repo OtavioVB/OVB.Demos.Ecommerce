@@ -7,7 +7,8 @@ public abstract class CustomController : ControllerBase
 {
     protected async Task<IActionResult> RunUseCaseAsync<TInput>(
         IUseCase<TInput> useCase,
-        TInput input)
+        TInput input,
+        CancellationToken cancellationToken)
         where TInput : class
     {
         var useCaseResponse = await useCase.ExecuteUseCaseAsync(input);

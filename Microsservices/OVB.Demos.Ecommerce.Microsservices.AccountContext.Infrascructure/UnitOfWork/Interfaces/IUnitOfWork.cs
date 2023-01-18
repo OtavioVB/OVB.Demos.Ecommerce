@@ -4,5 +4,5 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountContext.Infrascructure.UnitO
 
 public interface IUnitOfWork
 {
-    public Task<bool> ExecuteAsync(Func<IDbContextTransaction, Task<bool>> handler, IDbContextTransaction Transaction);
+    public Task<bool> ExecuteAsync(Func<IDbContextTransaction, Task<bool>> handler, IDbContextTransaction Transaction, CancellationToken cancellationToken);
 }

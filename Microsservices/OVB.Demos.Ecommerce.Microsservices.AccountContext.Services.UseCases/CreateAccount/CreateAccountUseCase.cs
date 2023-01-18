@@ -4,6 +4,7 @@ using OVB.Demos.Ecommerce.Microsservices.AccountContext.Infrascructure.UnitOfWor
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.Inputs;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.UseCases.CreateAccount.Inputs;
+using System.Runtime.CompilerServices;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountContext.Services.UseCases.CreateAccount;
 
@@ -29,12 +30,12 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
         _accountMessengerService = accountMessengerService;
     }
 
-    public async Task<bool> ExecuteUseCaseAsync(CreateAccountUseCaseInput input)
+    public async Task<bool> ExecuteUseCaseAsync(CreateAccountUseCaseInput input, CancellationToken cancellationToken)
     {
         var transaction = await _dataContext.Database.BeginTransactionAsync();
         return await _unitOfWork.ExecuteAsync(async transaction =>
         {
-            var accountCreateAccountResponse = await _accountService.CreateAccountAsync(_adapterInput.Adapt(input), transaction);
+            var accountCreateAccountResponse = await _accountService.CreateAccountAsync(_adapterInput.Adapt(input), transaction, cancellationToken);
             await _dataContext.SaveChangesAsync();
 
             if (accountCreateAccountResponse.HasExecuted == true)
@@ -46,6 +47,6 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
             }
 
             return (accountCreateAccountResponse.HasExecuted);
-        }, transaction);
+        }, transaction, cancellationToken);
     }
 }

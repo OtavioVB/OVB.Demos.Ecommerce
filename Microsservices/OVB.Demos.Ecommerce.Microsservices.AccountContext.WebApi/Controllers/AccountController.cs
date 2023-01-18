@@ -14,9 +14,10 @@ public class AccountController : CustomController
     [Route("Create")]
     public async Task<IActionResult> CreateAsync(
         [FromServices] IUseCase<CreateAccountUseCaseInput> useCase,
-        [FromBody] CreateAccountUseCaseInput input
+        [FromBody] CreateAccountUseCaseInput input,
+        CancellationToken cancellationToken
         )
     {
-        return await RunUseCaseAsync(useCase, new CreateAccountUseCaseInput(input.Email, input.Username, input.Password, input.ConfirmPassword));
+        return await RunUseCaseAsync(useCase, new CreateAccountUseCaseInput(input.Email, input.Username, input.Password, input.ConfirmPassword), cancellationToken);
     }
 }

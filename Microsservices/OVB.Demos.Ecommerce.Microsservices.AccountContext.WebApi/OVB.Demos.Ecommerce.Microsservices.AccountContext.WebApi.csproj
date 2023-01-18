@@ -27,10 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="HealthCheck\Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Libraries\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Adapter\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Adapter.csproj" />
     <ProjectReference Include="..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Serialization.Protobuf\OVB.Demos.Ecommerce.Libraries.Serialization.Protobuf.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.csproj" />

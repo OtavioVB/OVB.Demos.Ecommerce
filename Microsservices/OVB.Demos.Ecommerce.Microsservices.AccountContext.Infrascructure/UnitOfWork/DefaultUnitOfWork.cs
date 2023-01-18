@@ -5,9 +5,9 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountContext.Infrascructure.UnitO
 
 public sealed class DefaultUnitOfWork : IUnitOfWork
 {
-    public async Task<bool> ExecuteAsync(Func<IDbContextTransaction, Task<bool>> handler, IDbContextTransaction Transaction)
+    public async Task<bool> ExecuteAsync(Func<IDbContextTransaction, Task<bool>> handler, IDbContextTransaction Transaction, CancellationToken cancellationToken)
     {
-        if (await handler(Transaction) == false)
+        if (await handler(Transaction) == false || cancellationToken.IsCancellationRequested == true)
         {
             await Transaction.RollbackAsync();
             await Transaction.DisposeAsync();

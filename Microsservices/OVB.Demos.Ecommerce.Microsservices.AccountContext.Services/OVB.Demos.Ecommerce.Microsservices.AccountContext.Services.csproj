@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Adapter\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Adapter.csproj" />
+    <ProjectReference Include="..\..\Libraries\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Builder\OVB.Demos.Ecommerce.Libraries.DesignPatterns.Builder.csproj" />
     <ProjectReference Include="..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Notification\OVB.Demos.Ecommerce.Libraries.Notification.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountContext.Infrascructure.Data\OVB.Demos.Ecommerce.Microsservices.AccountContext.Infrascructure.Data.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.AccountContext.RabbitMQ.csproj" />

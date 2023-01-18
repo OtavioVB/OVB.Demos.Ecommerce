@@ -32,10 +32,16 @@ public sealed class AccountService : IAccountService
         _extensionAccountRepository = extensionAccountRepository;
     }
 
-    public async Task<(bool HasExecuted, List<NotificationItem> Notifications, AccountBase? Account)> CreateAccountAsync(CreateAccountServiceInput input, IDbContextTransaction transaction)
+    public async Task<(bool HasExecuted, List<NotificationItem> Notifications, AccountBase? Account)> CreateAccountAsync(CreateAccountServiceInput input, IDbContextTransaction transaction, CancellationToken cancellationToken)
     {
         var notifications = new List<NotificationItem>();
         var account = _accountBuilder.BuildEntityByType(TypeAccount.Default);
+
+        if (cancellationToken.IsCancellationRequested == true)
+        {
+            notifications.Add(new NotificationItem("A operação de criação da conta de usuário foi cancelada.", TypeNotification.Warning));
+            return (false, notifications, null);
+        }
 
         if (input.Password != input.ConfirmPassword)
         {
