@@ -5,11 +5,21 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.WebApi", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.WebApi\OVB.Demos.Ecommerce.Microsservices.Account.WebApi.csproj", "{3431FFCA-73D6-4BFA-A16D-4A2B986BC1BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.WebApi", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.WebApi\OVB.Demos.Ecommerce.Microsservices.Account.WebApi.csproj", "{3431FFCA-73D6-4BFA-A16D-4A2B986BC1BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{B4F02E80-7CD4-46E2-AB40-04B220A382DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.csproj", "{5521585F-E381-47A3-9F28-DFD1B4DF2FAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.csproj", "{5521585F-E381-47A3-9F28-DFD1B4DF2FAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Domain", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.Domain\OVB.Demos.Ecommerce.Microsservices.Account.Domain.csproj", "{0D5B3E78-9483-43D5-9287-A751AB024E0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.Domain", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Domain\OVB.Demos.Ecommerce.Microsservices.Base.Domain.csproj", "{FD4CF9CC-AD5F-48CE-B1CB-0FD5F752E943}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.csproj", "{F5C996E6-B59F-4E15-86B4-E1B16A504D0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork.csproj", "{1C3A6CDF-7BCA-4996-A694-A8A1E46FCEEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Application.Services", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.Application.Services\OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.csproj", "{A0392A37-E9EE-43D1-9F35-B8F1BB63765B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +35,26 @@ Global
 		{5521585F-E381-47A3-9F28-DFD1B4DF2FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5521585F-E381-47A3-9F28-DFD1B4DF2FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5521585F-E381-47A3-9F28-DFD1B4DF2FAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5B3E78-9483-43D5-9287-A751AB024E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5B3E78-9483-43D5-9287-A751AB024E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5B3E78-9483-43D5-9287-A751AB024E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5B3E78-9483-43D5-9287-A751AB024E0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4CF9CC-AD5F-48CE-B1CB-0FD5F752E943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4CF9CC-AD5F-48CE-B1CB-0FD5F752E943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4CF9CC-AD5F-48CE-B1CB-0FD5F752E943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4CF9CC-AD5F-48CE-B1CB-0FD5F752E943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5C996E6-B59F-4E15-86B4-E1B16A504D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C996E6-B59F-4E15-86B4-E1B16A504D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C996E6-B59F-4E15-86B4-E1B16A504D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C996E6-B59F-4E15-86B4-E1B16A504D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C3A6CDF-7BCA-4996-A694-A8A1E46FCEEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C3A6CDF-7BCA-4996-A694-A8A1E46FCEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C3A6CDF-7BCA-4996-A694-A8A1E46FCEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C3A6CDF-7BCA-4996-A694-A8A1E46FCEEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0392A37-E9EE-43D1-9F35-B8F1BB63765B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0392A37-E9EE-43D1-9F35-B8F1BB63765B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0392A37-E9EE-43D1-9F35-B8F1BB63765B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0392A37-E9EE-43D1-9F35-B8F1BB63765B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -33,6 +63,11 @@ Global
 		{3431FFCA-73D6-4BFA-A16D-4A2B986BC1BF} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
 		{B4F02E80-7CD4-46E2-AB40-04B220A382DE} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
 		{5521585F-E381-47A3-9F28-DFD1B4DF2FAF} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
+		{0D5B3E78-9483-43D5-9287-A751AB024E0C} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
+		{FD4CF9CC-AD5F-48CE-B1CB-0FD5F752E943} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
+		{F5C996E6-B59F-4E15-86B4-E1B16A504D0E} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
+		{1C3A6CDF-7BCA-4996-A694-A8A1E46FCEEA} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
+		{A0392A37-E9EE-43D1-9F35-B8F1BB63765B} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBF79964-7822-4D70-AEB1-D41FE73BABA7}
