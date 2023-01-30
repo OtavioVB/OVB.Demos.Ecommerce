@@ -9,7 +9,7 @@ services:
     ports:
       - 16686:16686
     networks:
-      - ovb-demos-ecommerce-opentelemetry
+      - ovb-demos-ecommerce
 
   otel-collector:
     image: otel/opentelemetry-collector:latest
@@ -25,8 +25,37 @@ services:
     links:
       - jaeger
     networks:
-      - ovb-demos-ecommerce-opentelemetry
+      - ovb-demos-ecommerce
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    restart: always
+    networks: 
+      - ovb-demos-ecommerce
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    user: root
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "otavio@otavio.com"
+      PGADMIN_DEFAULT_PASSWORD: "1234"
+    ports:
+      - "8080:80"
+    restart: always
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    networks:
+      - ovb-demos-ecommerce
 
 networks:
-  ovb-demos-ecommerce-opentelemetry:
+  ovb-demos-ecommerce:
     driver: bridge  
