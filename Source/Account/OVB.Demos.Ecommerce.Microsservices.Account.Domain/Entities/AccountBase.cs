@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using OVB.Demos.Ecommerce.Microsservices.Account.Domain.ENUMs;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.ValueObjects;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item.ENUMs;
@@ -14,6 +15,7 @@ public abstract class AccountBase : DomainEntityBase
     public Username? Username { get; private set; }
     public Email? Email { get; private set; }
     public Password? Password { get; private set; }
+    public TypeAccount TypeAccount { get; init; }
 
     private readonly AbstractValidator<Name> _nameValidator;
     private readonly AbstractValidator<LastName> _lastnameValidator;
@@ -26,13 +28,15 @@ public abstract class AccountBase : DomainEntityBase
         AbstractValidator<LastName> lastnameValidator,
         AbstractValidator<Username> usernameValidator,
         AbstractValidator<Email> emailValidator,
-        AbstractValidator<Password> passwordValidator)
+        AbstractValidator<Password> passwordValidator,
+        TypeAccount typeAccount)
     {
         _nameValidator = nameValidator;
         _lastnameValidator = lastnameValidator;
         _usernameValidator = usernameValidator;
         _emailValidator = emailValidator;
         _passwordValidator = passwordValidator;
+        TypeAccount = typeAccount;
     }
 
     public virtual (bool HasDone, List<NotificationItem> Notifications) CreateAccount(Guid tenantIdentifier, 

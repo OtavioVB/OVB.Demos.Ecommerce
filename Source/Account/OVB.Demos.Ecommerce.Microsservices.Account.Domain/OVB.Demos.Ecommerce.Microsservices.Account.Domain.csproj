@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.csproj" />
     <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Domain\OVB.Demos.Ecommerce.Microsservices.Base.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ENUMs\" />
   </ItemGroup>
 
   <ItemGroup>
