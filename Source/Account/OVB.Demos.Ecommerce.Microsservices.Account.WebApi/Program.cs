@@ -2,6 +2,7 @@ using OpenTelemetry.Exporter;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DependencyInjection;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.WebApi;
 
@@ -11,22 +12,34 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        #region Domain Configuration
+
+        builder.Services.AddOvbDomainConfiguration();
+
+        #endregion
+
         #region Observability Configuration
+
         builder.Services.AddOvbTracingAndMetrics(
             builder.Configuration["ApplicationInformation:ServiceName"]!,
             builder.Configuration["ApplicationInformation:ServiceVersion"]!,
             new Uri(builder.Configuration["Observability:OpenTelemetry:GrpcPort"]!),
             OtlpExportProtocol.Grpc);
+
         #endregion
 
         #region Infrascructure Configuration
+
         builder.Services.AddOvbInfrascructureConfiguration(
             builder.Configuration["Infrascructure:Databases:PostgreeSQL"]!,
             "OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data");
+
         #endregion
 
         #region Application Services Configuration
+
         builder.Services.AddOvbApplicationServicesConfiguration();
+
         #endregion
 
         builder.Services.AddControllers();
