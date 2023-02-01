@@ -21,7 +21,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.Application.Services", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.Application.Services\OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.csproj", "{A0392A37-E9EE-43D1-9F35-B8F1BB63765B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.csproj", "{A868ABC1-511A-4DE5-8BCA-793FA282EA64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.csproj", "{A868ABC1-511A-4DE5-8BCA-793FA282EA64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{3FD6C8F3-2B32-4213-9120-6723979C4CEA}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

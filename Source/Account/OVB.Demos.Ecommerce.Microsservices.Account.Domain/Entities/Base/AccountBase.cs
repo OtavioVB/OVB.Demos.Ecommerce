@@ -6,7 +6,7 @@ using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item.E
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Domain.Entities;
 
-namespace OVB.Demos.Ecommerce.Microsservices.Account.Domain.Entities;
+namespace OVB.Demos.Ecommerce.Microsservices.Account.Domain.Entities.Base;
 
 public abstract class AccountBase : DomainEntityBase
 {
@@ -39,7 +39,7 @@ public abstract class AccountBase : DomainEntityBase
         TypeAccount = typeAccount;
     }
 
-    public virtual (bool HasDone, List<NotificationItem> Notifications) CreateAccount(Guid tenantIdentifier, 
+    public virtual (bool HasDone, List<NotificationItem> Notifications) CreateAccount(Guid tenantIdentifier,
         Guid correlationIdentifier, string sourcePlatform, string executionUser, Name name, LastName lastName, Username username, Email email, Password password)
     {
         var hasAnyInvalid = false;

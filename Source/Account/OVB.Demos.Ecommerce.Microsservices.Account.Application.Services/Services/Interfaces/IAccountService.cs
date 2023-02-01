@@ -1,5 +1,5 @@
 ﻿using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.Services.Inputs;
-using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Entities;
+using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Entities.Base;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.Services.Interfaces;
