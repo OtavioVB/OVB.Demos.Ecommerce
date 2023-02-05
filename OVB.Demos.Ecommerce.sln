@@ -30,7 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter.csproj", "{5287D845-1C56-4593-9EC2-463134B4BB5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker", "Source\Account\OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker\OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.csproj", "{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker", "Source\Account\OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker\OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.csproj", "{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj", "{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +80,10 @@ Global
 		{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{A868ABC1-511A-4DE5-8BCA-793FA282EA64} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 		{5287D845-1C56-4593-9EC2-463134B4BB5B} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 		{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
+		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBF79964-7822-4D70-AEB1-D41FE73BABA7}
