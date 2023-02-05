@@ -10,5 +10,5 @@ public sealed class TracingSource : ITracingSource
         ActivitySource = new ActivitySource(serviceName, serviceVersion);
     }
 
-    public ActivitySource ActivitySource { get; init; } 
+    public ActivitySource ActivitySource { get; init; }
 }
