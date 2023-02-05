@@ -1,22 +1,14 @@
 # OVB.Demos.Ecommerce
 
-Esse repositÛrio È caracterizado por manter o projeto de desenvolvimento de API para Ecommerce Online utilizando a plataforma de desenvolvimento .NET.
+## Projeto em Desenvolvimento 
 
-## Conceitos Aplicados
+Esse projeto √© um c√≥digo fonte de OVB.Demos.Ecommerce destinado ao processo de estudos realizados pelo [Ot√°vio Villas Boas Simoncini Carmanini](https://www.linkedin.com/in/otaviovillasboas/) de modo a colocar em pr√°tica os conhecimentos passados pelas mentorias oferecidas por [Marcelo Castelo Branco](https://www.linkedin.com/in/marcelocastelobranco/).
 
-- CQRS
-- ConsistÍncia Eventual
-- Mensageria
-- SOLID
-- InjeÁ„o de DependÍncia
-- Notification Pattern
-- Adapter Pattern
-- Factory Pattern
-- Builder Pattern
-- Singleton Pattern
-- Command Pattern
-- Unit Of Work Pattern
-- Repository Pattern
+Grande parte dos conceitos aplicados, foram escolhidos de modo atento aos problemas e solu√ß√µes esperados pelo projeto.
+
 
 ## Desenvolvedores
-- Ot·vio Villas Boas Simoncini Carmanini
+- [Ot√°vio Villas Boas Simoncini Carmanini](https://www.linkedin.com/in/otaviovillasboas/)
+
+## Mentores
+- [Marcelo Castelo Branco](https://www.linkedin.com/in/marcelocastelobranco/)
