@@ -56,6 +56,37 @@ services:
     networks:
       - ovb-demos-ecommerce
 
+  postgresquery:
+    image: postgres
+    container_name: postgresquery
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5433:5432"
+    restart: always
+    networks: 
+      - ovb-demos-ecommerce-query-consult
+  
+  pgadminquery:
+    image: dpage/pgadmin4
+    user: root
+    container_name: pgadminquery
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "otavio@otavio.com"
+      PGADMIN_DEFAULT_PASSWORD: "1234"
+    ports:
+      - "8081:80"
+    restart: always
+    links:
+      - postgresquery
+    depends_on:
+      - postgresquery
+    networks:
+      - ovb-demos-ecommerce-query-consult
+
 networks:
   ovb-demos-ecommerce:
     driver: bridge  
+  ovb-demos-ecommerce-query-consult:
+    driver: bridge

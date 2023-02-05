@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases.Inputs;
+using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using System.Diagnostics;
 
@@ -10,14 +12,19 @@ public class AccountController : ControllerBase
 {
     [HttpPost]
     [Route("Create")]
-    public IActionResult CreateAsync([FromServices] ITraceManager traceManager)
+    public async Task<IActionResult> CreateAsync(
+        [FromServices] IUseCase<CreateAccountUseCaseInput> useCaseCreateAccount,
+        [FromServices] ITraceManager traceManager,
+        [FromBody] CreateAccountUseCaseInput useCaseInput,
+        CancellationToken cancellationToken)
     {
+        bool response = false;
         var dictionary = new Dictionary<string, string>();
         dictionary!.Add("CorrelationIdentifier", Guid.NewGuid().ToString());
         traceManager.StartTracing("CreateAccountController", ActivityKind.Internal, async (activity) =>
         {
-            await Task.Delay(1000);
+            response = await useCaseCreateAccount.ExecuteUseCaseAsync(useCaseInput, cancellationToken);
         }, dictionary);
-        return StatusCode(201);
+        return StatusCode(201, response);
     }
 }

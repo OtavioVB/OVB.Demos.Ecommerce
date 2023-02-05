@@ -3,6 +3,7 @@ using OpenTelemetry.Trace;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Configuration.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
 

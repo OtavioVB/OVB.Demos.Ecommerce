@@ -25,7 +25,7 @@ public static class Injection
         serviceCollection.AddSingleton<IAdapter<AccountBase, AccountDataTransfer>, AdapterAccountBaseToAccountDataTransfer>();
 
         // Services
-        serviceCollection.AddSingleton<IMessengerSynchronizerService<AccountProtobuf>, MessengerSynchronizerService>();
+        serviceCollection.AddScoped<IMessengerSynchronizerService<AccountProtobuf>, MessengerSynchronizerService>();
         serviceCollection.AddScoped<IAccountService, AccountService>();
 
         // UseCases

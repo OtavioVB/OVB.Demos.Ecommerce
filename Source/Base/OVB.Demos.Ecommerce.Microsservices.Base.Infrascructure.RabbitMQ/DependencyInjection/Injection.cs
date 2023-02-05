@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.RabbitConnection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.RabbitConnection.Interfaces;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.RabbitConsumer;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.RabbitConsumer.Interfaces;
 using RabbitMQ.Client;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.DependencyInjection;
@@ -21,6 +23,8 @@ public static class Injection
             connectionFactory.Port = port;
             return new RabbitMQConnection(connectionFactory.CreateConnection());
         });
+
+        serviceCollection.AddSingleton<IRabbitMQConsumer, RabbitMQConsumer>();
 
         return serviceCollection;
     }

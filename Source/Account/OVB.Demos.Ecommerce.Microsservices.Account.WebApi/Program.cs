@@ -3,6 +3,7 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.DependencyI
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.DependencyInjection;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.WebApi;
 
@@ -33,6 +34,18 @@ public class Program
         builder.Services.AddOvbInfrascructureConfiguration(
             builder.Configuration["Infrascructure:Databases:PostgreeSQL"]!,
             "OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data");
+
+        #endregion
+
+        #region Messenger Configuration
+
+        builder.Services.AddOvbMessengerConfiguration(
+            hostName: builder.Configuration["Infrascructure:Messenger:RabbitMQ:HostName"]!,
+            virtualHost: builder.Configuration["Infrascructure:Messenger:RabbitMQ:VirtualHost"]!,
+            username: builder.Configuration["Infrascructure:Messenger:RabbitMQ:Username"]!,
+            password: builder.Configuration["Infrascructure:Messenger:RabbitMQ:Password"]!,
+            clientProviderName: builder.Configuration["Infrascructure:Messenger:RabbitMQ:ClientProviderName"]!,
+            port: Convert.ToInt32(builder.Configuration["Infrascructure:Messenger:RabbitMQ:Port"]!));
 
         #endregion
 

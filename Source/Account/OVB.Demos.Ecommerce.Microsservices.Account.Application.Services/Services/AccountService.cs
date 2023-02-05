@@ -11,6 +11,7 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Repositorie
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item.ENUMs;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using System.Diagnostics;
 
@@ -68,6 +69,6 @@ public sealed class AccountService : IAccountService
             await _accountBaseRepository.AddAsync(_adapterDomainAccountToDataTransferAccount.Adapter(account));
 
             return (true, notifications, account);
-        }, traceManagerTags);
+        },  traceManagerTags);
     }
 }
