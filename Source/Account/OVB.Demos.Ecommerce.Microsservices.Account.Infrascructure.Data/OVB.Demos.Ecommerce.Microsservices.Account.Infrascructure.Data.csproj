@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Domain\OVB.Demos.Ecommerce.Microsservices.Account.Domain.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork.csproj" />
   </ItemGroup>
 
 </Project>

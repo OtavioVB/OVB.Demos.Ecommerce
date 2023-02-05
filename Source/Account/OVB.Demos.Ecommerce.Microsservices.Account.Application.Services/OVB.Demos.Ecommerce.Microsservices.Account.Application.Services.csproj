@@ -11,7 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Domain\OVB.Demos.Ecommerce.Microsservices.Account.Domain.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork.csproj" />
   </ItemGroup>
 
 </Project>
