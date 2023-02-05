@@ -10,4 +10,5 @@ public interface IDataConnection<TTypeCommand>
     public Task OpenConnection();
     public Task CloseConnection();
     public Task<TTypeCommand> CreateCommand();
+    public NpgsqlConnection GetConnection();
 }

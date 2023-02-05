@@ -14,41 +14,34 @@ public class Worker : BackgroundService
     private readonly IRabbitMQConsumer _rabbitMQConsumer;
     private readonly IBaseRepository<AccountDataTransfer> _baseRepositoryAccountBase;
     private readonly IAdapter<AccountProtobuf, AccountDataTransfer> _adapterAccountProtobufToAccountBase;
-    private readonly ITraceManager _traceManager;
 
     public Worker(
         IRabbitMQConsumer rabbitMQConsumer, 
         IBaseRepository<AccountDataTransfer> baseRepositoryAccountBase, 
-        IAdapter<AccountProtobuf, AccountDataTransfer> adapterAccountProtobufToAccountBase,
-        ITraceManager traceManager)
+        IAdapter<AccountProtobuf, AccountDataTransfer> adapterAccountProtobufToAccountBase)
     {
         _rabbitMQConsumer = rabbitMQConsumer;
         _baseRepositoryAccountBase = baseRepositoryAccountBase;
         _adapterAccountProtobufToAccountBase = adapterAccountProtobufToAccountBase;
-        _traceManager = traceManager;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            var deliveryTags = new Dictionary<string, string>();
-            _traceManager.StartTracing("Worker Create Account Service", ActivityKind.Consumer, async (activity) =>
+            _rabbitMQConsumer.ConsumeMessage(async (information) =>
             {
-                await _rabbitMQConsumer.ConsumeMessage(async (information) =>
+                try
                 {
-                    try
-                    {
-                        var accountProtobuf = Serializator.DeserializeProtobuf<AccountProtobuf>(information);
-                        await _baseRepositoryAccountBase.AddEntityAsync(_adapterAccountProtobufToAccountBase.Adapter(accountProtobuf));
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-                });
-            }, deliveryTags);
+                    var accountProtobuf = Serializator.DeserializeProtobuf<AccountProtobuf>(information);
+                    await _baseRepositoryAccountBase.AddEntityAsync(_adapterAccountProtobufToAccountBase.Adapter(accountProtobuf));
+                    return true;
+                }
+                catch
+                {
+                    throw;
+                }
+            });
         }
     }
 }

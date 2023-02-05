@@ -28,9 +28,14 @@ public sealed class DataConnection : IDataConnection<NpgsqlCommand>
 
     public Task<NpgsqlCommand> CreateCommand()
     {
-        if (ConnectionHasOpenned == false)
+        if (ConnectionHasOpenned is false)
             OpenConnection();
 
         return Task.FromResult(_connection.CreateCommand());
+    }
+
+    public NpgsqlConnection GetConnection()
+    {
+        return _connection;
     }
 }

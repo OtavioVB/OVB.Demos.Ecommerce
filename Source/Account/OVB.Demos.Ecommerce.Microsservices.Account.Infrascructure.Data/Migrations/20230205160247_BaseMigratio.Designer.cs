@@ -12,8 +12,8 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data;
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230205141441_BaseMigration")]
-    partial class BaseMigration
+    [Migration("20230205160247_BaseMigratio")]
+    partial class BaseMigratio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,9 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Migrati
 
                     b.Property<Guid>("TenantIdentifier")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("TypeAccount")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Username")
                         .IsRequired()

@@ -9,6 +9,6 @@ public sealed class AdapterAccountProtobufToAccountBase : IAdapter<AccountProtob
     public AccountDataTransfer Adapter(AccountProtobuf input)
     {
         return new AccountDataTransfer(input.Name!, input.LastName!, input.Username!, input.Email!, input.Password!,
-            input.Identifier, input.TenantIdentifier, input.CorrelationIdentifier, input.SourcePlatform!, input.ExecutionUser!);
+            input.Identifier, input.TenantIdentifier, input.CorrelationIdentifier, input.SourcePlatform!, input.ExecutionUser!, input.TypeAccount);
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class BaseMigration : Migration
+    public partial class BaseMigratio : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,6 +21,7 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Migrati
                     Username = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: false),
                     Email = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: false),
                     Password = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: false),
+                    TypeAccount = table.Column<int>(type: "integer", nullable: false),
                     TenantIdentifier = table.Column<Guid>(type: "uuid", nullable: false),
                     CorrelationIdentifier = table.Column<Guid>(type: "uuid", nullable: false),
                     SourcePlatform = table.Column<string>(type: "text", nullable: false),

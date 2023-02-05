@@ -62,6 +62,9 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Migrati
                     b.Property<Guid>("TenantIdentifier")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("TypeAccount")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(256)

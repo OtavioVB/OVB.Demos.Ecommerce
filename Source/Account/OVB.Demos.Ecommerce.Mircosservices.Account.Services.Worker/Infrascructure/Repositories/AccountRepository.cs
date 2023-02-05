@@ -16,15 +16,16 @@ public sealed class AccountRepository : IBaseRepository<AccountDataTransfer>
 
     public async Task AddEntityAsync(AccountDataTransfer entity)
     {
-        using var command = await _dataConnection.CreateCommand();
-        command.CommandText = "INSERT INTO Accounts (Identifier, TenantIdentifier, CorrelationIdentifier, SourcePlatform, ExecutionUser, " +
+        var command = await _dataConnection.CreateCommand();
+        var transaction = await _dataConnection.GetConnection().BeginTransactionAsync();
+        command.CommandText = "INSERT INTO accounts (Identifier, TenantIdentifier, CorrelationIdentifier, SourcePlatform, ExecutionUser, " +
             "Name, Username, LastName, Email, Password, TypeAccount) VALUES (@Identifier, @TenantIdentifier, @CorrelationIdentifier, @Sou" +
             "rcePlatform, @ExecutionUser, @Name, @Username, @LastName, @Email, @Password, @TypeAccount);";
         command.Parameters.AddWithValue("@Identifier", entity.Identifier.ToString());
         command.Parameters.AddWithValue("@TenantIdentifier", entity.TenantIdentifier.ToString());
         command.Parameters.AddWithValue("@CorrelationIdentifier", entity.CorrelationIdentifier.ToString());
-        command.Parameters.AddWithValue("@SourcePlatform", entity.SourcePlatform!);
-        command.Parameters.AddWithValue("@ExecutionUser", entity.ExecutionUser!);
+        command.Parameters.AddWithValue("@SourcePlatform", entity.SourcePlatform.ToString()!);
+        command.Parameters.AddWithValue("@ExecutionUser", entity.ExecutionUser.ToString()   );
         command.Parameters.AddWithValue("@Name", entity.Name.ToString()!);
         command.Parameters.AddWithValue("@Username", entity.Username.ToString()!);
         command.Parameters.AddWithValue("@LastName", entity.LastName.ToString()!);
@@ -32,7 +33,8 @@ public sealed class AccountRepository : IBaseRepository<AccountDataTransfer>
         command.Parameters.AddWithValue("@Password", entity.Password.ToString()!);
         command.Parameters.AddWithValue("@TypeAccount", (int)entity.TypeAccount);
         await command.ExecuteNonQueryAsync();
-        await _dataConnection.CloseConnection();
+        await transaction.CommitAsync();
+        await transaction.DisposeAsync();
     }
 }
 

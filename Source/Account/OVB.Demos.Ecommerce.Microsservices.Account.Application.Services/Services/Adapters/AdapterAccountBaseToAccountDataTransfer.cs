@@ -11,6 +11,6 @@ public sealed class AdapterAccountBaseToAccountDataTransfer : IAdapter<AccountBa
     public AccountDataTransfer Adapter(AccountBase input)
     {
         return new AccountDataTransfer(input.Name.ToString()!, input.LastName.ToString()!, input.Username.ToString()!, input.Email.ToString()!, input.Password.ToString()!,
-            input.Identifier, input.TenantIdentifier, input.CorrelationIdentifier, input.SourcePlatform!, input.ExecutionUser!);
+            input.Identifier, input.TenantIdentifier, input.CorrelationIdentifier, input.SourcePlatform!, input.ExecutionUser!, (int)input.TypeAccount);
     }
 }
