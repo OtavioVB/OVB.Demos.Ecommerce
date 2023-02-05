@@ -1,11 +1,11 @@
 ﻿using Npgsql;
-using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Entities.Base;
+using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DataTransferObject;
 using OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.Infrascructure.Interfaces;
 using OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.Infrascructure.Repositories.Interfaces;
 
 namespace OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.Infrascructure.Repositories;
 
-public sealed class AccountRepository : IBaseRepository<AccountBase>
+public sealed class AccountRepository : IBaseRepository<AccountDataTransfer>
 {
     private readonly IDataConnection<NpgsqlCommand> _dataConnection;
 
@@ -14,7 +14,7 @@ public sealed class AccountRepository : IBaseRepository<AccountBase>
         _dataConnection = dataConnection;
     }
 
-    public async Task AddEntityAsync(AccountBase entity)
+    public async Task AddEntityAsync(AccountDataTransfer entity)
     {
         using var command = await _dataConnection.CreateCommand();
         command.CommandText = "INSERT INTO Accounts (Identifier, TenantIdentifier, CorrelationIdentifier, SourcePlatform, ExecutionUser, " +

@@ -2,5 +2,5 @@
 
 public interface IRabbitMQConsumer
 {
-    public void ConsumeMessage(Func<byte[], Task<bool>> handler);
+    public Task ConsumeMessage(Func<byte[], Task<bool>> handler);
 }
