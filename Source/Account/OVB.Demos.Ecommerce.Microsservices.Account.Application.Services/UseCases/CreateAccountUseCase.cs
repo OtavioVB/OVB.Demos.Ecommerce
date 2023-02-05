@@ -7,11 +7,14 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
+using System.Diagnostics;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases;
 
 public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
 {
+    private readonly ITraceManager _traceManager;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IAccountService _accountService;
     private readonly DataContext _dataContext;
@@ -20,6 +23,7 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
     private readonly IMessengerSynchronizerService<AccountProtobuf> _messengerSynchronizerService;
 
     public CreateAccountUseCase(
+        ITraceManager traceManager,
         IUnitOfWork unitOfWork, 
         IAccountService accountService, 
         DataContext dataContext, 
@@ -27,6 +31,7 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
         IMessengerSynchronizerService<AccountProtobuf> messengerSynchronizerService,
         IAdapter<AccountBase, AccountProtobuf> adapterAccountBaseToAccountProtobuf)
     {
+        _traceManager = traceManager;
         _unitOfWork = unitOfWork;
         _accountService = accountService;
         _dataContext = dataContext;
