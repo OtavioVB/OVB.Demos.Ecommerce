@@ -47,7 +47,7 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
         traceManagerTags.Add("TenantIdentifier", input.TenantIdentifier.ToString());
         traceManagerTags.Add("CorrelationIdentifier", input.CorrelationIdentifier.ToString());
         traceManagerTags.Add("SourcePlatform", input.SourcePlatform);
-        return await _traceManager.StartTracing("OVB.Demos.Ecommerce.Microsservices.Account.CreateAccountUseCase", ActivityKind.Internal, input, async (input, activity) =>
+        return await _traceManager.StartTracing("CreateAccountUseCaseAsync", ActivityKind.Internal, input, async (input, activity) =>
         {
             var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
             return await _unitOfWork.ExecuteUnitOfWorkAsync(async (transaction, cancellationToken) =>
