@@ -42,18 +42,29 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
 
     public async Task<bool> ExecuteUseCaseAsync(CreateAccountUseCaseInput input, CancellationToken cancellationToken)
     {
-        var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
-        return await _unitOfWork.ExecuteUnitOfWorkAsync(async (transaction, cancellationToken) =>
+        // need refactor - tags
+        var traceManagerTags = new Dictionary<string, string>();
+        traceManagerTags.Add("TenantIdentifier", input.TenantIdentifier.ToString());
+        traceManagerTags.Add("CorrelationIdentifier", input.CorrelationIdentifier.ToString());
+        traceManagerTags.Add("SourcePlatform", input.SourcePlatform);
+        return await _traceManager.StartTracing("OVB.Demos.Ecommerce.Microsservices.Account.CreateAccountUseCase", ActivityKind.Internal, input, async (input, activity) =>
         {
-            var accountCreateResponse = await _accountService.CreateAccountAsync(_adapterUseCaseInputToAccountServiceInput.Adapter(input), cancellationToken);
-
-            if (accountCreateResponse.HasDone)
+            var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
+            return await _unitOfWork.ExecuteUnitOfWorkAsync(async (transaction, cancellationToken) =>
             {
-                _messengerSynchronizerService.PublishMessengerToSynchronizeDatabase(_adapterAccountBaseToAccountProtobuf.Adapter(accountCreateResponse.Account));
-                return true;
-            }
-            else
-                return false;
-        }, transaction, cancellationToken);
+                var accountCreateResponse = await _accountService.CreateAccountAsync(_adapterUseCaseInputToAccountServiceInput.Adapter(input), cancellationToken);
+
+                if (accountCreateResponse.HasDone)
+                {
+                    if (accountCreateResponse.Account is null)
+                        throw new Exception("Account Service return null Account, this return is not expected.");
+
+                    _messengerSynchronizerService.PublishMessengerToSynchronizeDatabase(_adapterAccountBaseToAccountProtobuf.Adapter(accountCreateResponse.Account));
+                    return true;
+                }
+                else
+                    return false;
+            }, transaction, cancellationToken);
+        }, traceManagerTags);
     }
 }

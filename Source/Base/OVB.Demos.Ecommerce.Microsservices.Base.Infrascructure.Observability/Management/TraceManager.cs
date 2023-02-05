@@ -8,16 +8,16 @@ namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.M
 
 public sealed class TraceManager : ITraceManager
 {
-    private readonly ITracingSource _tracingSource;
+    public ITracingSource TracingSource { get; }
 
     public TraceManager(ITracingSource tracingSource)
     {
-        _tracingSource = tracingSource;
+        TracingSource = tracingSource;
     }
 
     public void StartTracing(string name, ActivityKind activityKind, Action<Activity> handler, IDictionary<string, string> dictionaryTags)        
     {
-        using var activity = _tracingSource.ActivitySource.StartActivity(name, activityKind);
+        using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
 
         if (activity is null)
             return;
@@ -39,7 +39,7 @@ public sealed class TraceManager : ITraceManager
 
     public void StartTracing<TInput>(string name, ActivityKind activityKind, TInput input, Action<TInput, Activity> handler, IDictionary<string, string> dictionaryTags)
     {
-        using var activity = _tracingSource.ActivitySource.StartActivity(name, activityKind);
+        using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
 
         if (activity is null)
             return;
@@ -63,7 +63,7 @@ public sealed class TraceManager : ITraceManager
 
     public async Task<bool> StartTracing<TInput>(string name, ActivityKind activityKind, TInput input, Func<TInput, Activity, Task<bool>> handler, IDictionary<string, string> dictionaryTags)
     {
-        using var activity = _tracingSource.ActivitySource.StartActivity(name, activityKind);
+        using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
 
         if (activity is null)
             return false;
