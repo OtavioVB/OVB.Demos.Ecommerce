@@ -21,7 +21,7 @@ public class Program
                 username: hostContext.Configuration["Messenger:RabbitMQ:Username"]!,
                 password: hostContext.Configuration["Messenger:RabbitMQ:Password"]!,
                 clientProviderName: hostContext.Configuration["Messenger:RabbitMQ:ClientProviderName"]!,
-                port: (int)hostContext.Configuration["Messenger:RabbitMQ:Port"]!);
+                port: Convert.ToInt32(hostContext.Configuration["Messenger:RabbitMQ:Port"])!);
 
             services.AddOvbTracingAndMetrics(
                 serviceName: hostContext.Configuration["Observability:OpenTelemetry:ServiceName"]!,

@@ -34,6 +34,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Mircoss
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj", "{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization.csproj", "{EF75144F-C150-4E97-80ED-5D569C4E2284}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer.csproj", "{EC465555-49CF-400C-89A5-CD0BA65A7301}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +88,14 @@ Global
 		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF75144F-C150-4E97-80ED-5D569C4E2284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF75144F-C150-4E97-80ED-5D569C4E2284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF75144F-C150-4E97-80ED-5D569C4E2284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF75144F-C150-4E97-80ED-5D569C4E2284}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC465555-49CF-400C-89A5-CD0BA65A7301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC465555-49CF-400C-89A5-CD0BA65A7301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC465555-49CF-400C-89A5-CD0BA65A7301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC465555-49CF-400C-89A5-CD0BA65A7301}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +113,7 @@ Global
 		{5287D845-1C56-4593-9EC2-463134B4BB5B} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 		{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
 		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
+		{EF75144F-C150-4E97-80ED-5D569C4E2284} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBF79964-7822-4D70-AEB1-D41FE73BABA7}

@@ -12,6 +12,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter.csproj" />
+    <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization.csproj" />
+    <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Domain\OVB.Demos.Ecommerce.Microsservices.Account.Domain.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork\OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork.csproj" />
