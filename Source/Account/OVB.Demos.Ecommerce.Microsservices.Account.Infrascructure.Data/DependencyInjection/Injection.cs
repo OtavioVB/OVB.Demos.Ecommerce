@@ -4,6 +4,7 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DataTransferObject;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Repositories;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Repositories.Base;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Repositories.Base.Interfaces;
+using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Repositories.Extensions;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork.Interfaces;
 
@@ -17,6 +18,7 @@ public static class Injection
         serviceCollection.AddDbContextPool<DataContext>(p => p.UseNpgsql(postgreeSqlConnection, 
             p => p.MigrationsAssembly(migrationsAssembly)), 20);
 
+        serviceCollection.AddScoped<IExtensionAccountRepository, AccountRepository>();
         serviceCollection.AddScoped<IBaseRepository<AccountDataTransfer>, AccountRepository>();
         serviceCollection.AddScoped<BaseRepository<AccountDataTransfer>, AccountRepository>();
 
