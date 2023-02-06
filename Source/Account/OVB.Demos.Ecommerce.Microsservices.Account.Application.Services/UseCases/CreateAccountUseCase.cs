@@ -59,7 +59,7 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
                     if (accountCreateResponse.Account is null)
                         throw new Exception("Account Service return null Account, this return is not expected.");
 
-                    _messengerSynchronizerService.PublishMessengerToSynchronizeDatabase(_adapterAccountBaseToAccountProtobuf.Adapter(accountCreateResponse.Account));
+                    await _messengerSynchronizerService.PublishMessengerToSynchronizeDatabase(_adapterAccountBaseToAccountProtobuf.Adapter(accountCreateResponse.Account));
                     return true;
                 }
                 else

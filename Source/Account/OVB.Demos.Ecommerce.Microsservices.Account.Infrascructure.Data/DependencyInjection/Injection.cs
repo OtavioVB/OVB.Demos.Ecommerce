@@ -19,8 +19,8 @@ public static class Injection
             p => p.MigrationsAssembly(migrationsAssembly)), 20);
 
         serviceCollection.AddScoped<IExtensionAccountRepository, AccountRepository>();
-        serviceCollection.AddScoped<IBaseRepository<AccountDataTransfer>, AccountRepository>();
         serviceCollection.AddScoped<BaseRepository<AccountDataTransfer>, AccountRepository>();
+        serviceCollection.AddScoped<IBaseRepository<AccountDataTransfer>, AccountRepository>();
 
         serviceCollection.AddScoped<IUnitOfWork, DefaultUnitOfWork>();
 

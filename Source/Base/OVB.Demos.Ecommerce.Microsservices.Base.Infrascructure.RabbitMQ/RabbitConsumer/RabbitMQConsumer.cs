@@ -14,25 +14,29 @@ public sealed class RabbitMQConsumer : IRabbitMQConsumer
         _rabbitMqConnection = rabbitMqConnection;
     }
 
-    public void ConsumeMessage(Func<byte[], Task<bool>> handler)
+    public Task ConsumeMessage(Func<byte[], Task<bool>> handler)
     {
-        _rabbitMqConnection.Model.QueueDeclare("Synchronizer.Microsservices.Account.Subscriber", true, false, false, null);
-
-        var consumer = new EventingBasicConsumer(_rabbitMqConnection.Model);
-        consumer.Received += async (model, ea) =>
+        return Task.Run(() =>
         {
-            var handlerResult = await handler(ea.Body.ToArray());
 
-            if (handlerResult == true)
-            {
-                _rabbitMqConnection.Model.BasicAck(ea.DeliveryTag, multiple: false);
-            }
-            else
-            {
-                _rabbitMqConnection.Model.BasicNack(ea.DeliveryTag, multiple: false, requeue: true);
-            }
-        };
+            _rabbitMqConnection.Model.QueueDeclare("Synchronizer.Microsservices.Account.Subscriber", true, false, false, null);
 
-        _rabbitMqConnection.Model.BasicConsume("Synchronizer.Microsservices.Account.Subscriber", false, consumer);
+            var consumer = new EventingBasicConsumer(_rabbitMqConnection.Model);
+            consumer.Received += async (model, ea) =>
+            {
+                var handlerResult = await handler(ea.Body.ToArray());
+
+                if (handlerResult == true)
+                {
+                    _rabbitMqConnection.Model.BasicAck(ea.DeliveryTag, multiple: false);
+                }
+                else
+                {
+                    _rabbitMqConnection.Model.BasicNack(ea.DeliveryTag, multiple: false, requeue: true);
+                }
+            };
+
+            _rabbitMqConnection.Model.BasicConsume("Synchronizer.Microsservices.Account.Subscriber", false, consumer);
+        });
     }
 }

@@ -16,27 +16,6 @@ public sealed class TraceManager : ITraceManager
         TracingSource = tracingSource;
     }
 
-    public void StartTracing(string name, ActivityKind activityKind, Action<Activity> handler, IDictionary<string, string> dictionaryTags)        
-    {
-        using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
-
-        if (activity is null)
-            throw new Exception("Observability Activity is not expected status. It is null.");
-
-        SetTags(activity, dictionaryTags);
-
-        try
-        {
-            activity.SetStatus(ActivityStatusCode.Ok);
-            handler(activity);
-        }
-        catch (Exception ex)
-        {
-            activity.RecordException(ex);
-            activity.SetStatus(ActivityStatusCode.Error);
-            throw;
-        }
-    }
 
     public void StartTracing<TInput>(string name, ActivityKind activityKind, TInput input, Action<TInput, Activity> handler, IDictionary<string, string> dictionaryTags)
     {
@@ -82,6 +61,28 @@ public sealed class TraceManager : ITraceManager
         }
     }
 
+    public async Task<bool> StartTracing(string name, ActivityKind activityKind, Func<Activity, Task<bool>> handler, IDictionary<string, string> dictionaryTags)
+    {
+        using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
+
+        if (activity is null)
+            throw new Exception("Observability Activity is not expected status. It is null.");
+
+        SetTags(activity, dictionaryTags);
+
+        try
+        {
+            activity.SetStatus(ActivityStatusCode.Ok);
+            return await handler(activity);
+        }
+        catch (Exception ex)
+        {
+            activity.RecordException(ex);
+            activity.SetStatus(ActivityStatusCode.Error);
+            throw;
+        }
+    }
+
     public async Task<bool> StartTracing<TInput>(string name, ActivityKind activityKind, TInput input, Func<TInput, Activity, Task<bool>> handler, IDictionary<string, string> dictionaryTags)
     {
         using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
@@ -109,6 +110,50 @@ public sealed class TraceManager : ITraceManager
         foreach (var keyValuePair in dictionaryTags)
         {
             activity.AddTag(keyValuePair.Key, keyValuePair.Value);
+        }
+    }
+
+    public Task StartTracing(string name, ActivityKind activityKind, Func<Activity, Task> handler, IDictionary<string, string> dictionaryTags)
+    {
+        using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
+
+        if (activity is null)
+            throw new Exception("Observability Activity is not expected status. It is null.");
+
+        SetTags(activity, dictionaryTags);
+
+        try
+        {
+            activity.SetStatus(ActivityStatusCode.Ok);
+            return handler(activity);
+        }
+        catch (Exception ex)
+        {
+            activity.RecordException(ex);
+            activity.SetStatus(ActivityStatusCode.Error);
+            throw;
+        }
+    }
+
+    public Task StartTracing<TInput>(string name, ActivityKind activityKind, TInput input, Func<TInput, Activity, Task> handler, IDictionary<string, string> dictionaryTags)
+    {
+        using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
+
+        if (activity is null)
+            throw new Exception("Observability Activity is not expected status. It is null.");
+
+        SetTags(activity, dictionaryTags);
+
+        try
+        {
+            activity.SetStatus(ActivityStatusCode.Ok);
+            return handler(input, activity);
+        }
+        catch (Exception ex)
+        {
+            activity.RecordException(ex);
+            activity.SetStatus(ActivityStatusCode.Error);
+            throw;
         }
     }
 }

@@ -6,12 +6,11 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data;
 
 public sealed class DataContext : DbContext
 {
-    public DbSet<AccountDataTransfer> Accounts { get; protected set; }
-
-    public DataContext(DbContextOptions options) 
-        : base(options)
+    public DataContext(DbContextOptions options) : base(options)
     {
     }
+
+    public DbSet<AccountDataTransfer> Accounts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

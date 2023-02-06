@@ -17,7 +17,7 @@ public sealed class AccountRepository : IBaseRepository<AccountDataTransfer>
     public async Task AddEntityAsync(AccountDataTransfer entity)
     {
         var command = await _dataConnection.CreateCommand();
-        var transaction = await _dataConnection.GetConnection().BeginTransactionAsync();
+        var transaction = _dataConnection.GetConnection().BeginTransaction();
         command.CommandText = "INSERT INTO accounts (Identifier, TenantIdentifier, CorrelationIdentifier, SourcePlatform, ExecutionUser, " +
             "Name, Username, LastName, Email, Password, TypeAccount) VALUES (@Identifier, @TenantIdentifier, @CorrelationIdentifier, @Sou" +
             "rcePlatform, @ExecutionUser, @Name, @Username, @LastName, @Email, @Password, @TypeAccount);";
@@ -35,6 +35,7 @@ public sealed class AccountRepository : IBaseRepository<AccountDataTransfer>
         await command.ExecuteNonQueryAsync();
         await transaction.CommitAsync();
         await transaction.DisposeAsync();
+        await _dataConnection.CloseConnection();
     }
 }
 

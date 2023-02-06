@@ -20,21 +20,24 @@ public sealed class MessengerSynchronizerService : IMessengerSynchronizerService
         _traceManager = traceManager;
     }
 
-    public void PublishMessengerToSynchronizeDatabase(AccountProtobuf account)
+    public Task PublishMessengerToSynchronizeDatabase(AccountProtobuf account)
     {
         var traceManagerTags = new Dictionary<string, string>();
         traceManagerTags.Add("TenantIdentifier", account.ToString()!);
         traceManagerTags.Add("CorrelationIdentifier", account.ToString()!);
         traceManagerTags.Add("SourcePlatform", account.SourcePlatform!);
-        _traceManager.StartTracing("Publish Account To Messenger Synchronizer", System.Diagnostics.ActivityKind.Producer, (activity) =>
+        return Task.FromResult(_traceManager.StartTracing("Publish Account To Messenger Synchronizer", System.Diagnostics.ActivityKind.Producer, (activity) =>
         {
-            var exchangeName = "ExchangeSynchronizeAccount";
-            var queueName = "Synchronizer.Microsservices.Account.Subscriber";
-            var routingKey = "Synchronizer.Microsservices.Account.*";
-            _rabbitMQConnection.Model.ExchangeDeclare(exchangeName, ExchangeType.Topic, true, false);
-            _rabbitMQConnection.Model.QueueDeclare(queueName, true, false, false);
-            _rabbitMQConnection.Model.QueueBind(queueName, exchangeName, routingKey);
-            _rabbitMQConnection.Model.BasicPublish(exchangeName, routingKey, null, Serializator.SerializeProtobuf(account));
-        }, traceManagerTags);
+            return Task.Run(() =>
+            {
+                var exchangeName = "ExchangeSynchronizeAccount";
+                var queueName = "Synchronizer.Microsservices.Account.Subscriber";
+                var routingKey = "Synchronizer.Microsservices.Account.*";
+                _rabbitMQConnection.Model.ExchangeDeclare(exchangeName, ExchangeType.Topic, true, false);
+                _rabbitMQConnection.Model.QueueDeclare(queueName, true, false, false);
+                _rabbitMQConnection.Model.QueueBind(queueName, exchangeName, routingKey);
+                _rabbitMQConnection.Model.BasicPublish(exchangeName, routingKey, null, Serializator.SerializeProtobuf(account));
+            });
+        }, traceManagerTags));
     }
 }

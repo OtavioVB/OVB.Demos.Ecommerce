@@ -4,7 +4,7 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DataTransferObject;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Mapping;
 
-public sealed class AccountConfiguration : IEntityTypeConfiguration<AccountDataTransfer>
+public sealed class AccountConfiguration 
 {
     public void Configure(EntityTypeBuilder<AccountDataTransfer> builder)
     {

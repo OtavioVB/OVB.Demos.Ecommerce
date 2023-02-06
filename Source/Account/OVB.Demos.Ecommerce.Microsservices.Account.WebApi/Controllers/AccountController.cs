@@ -18,13 +18,10 @@ public class AccountController : ControllerBase
         [FromBody] CreateAccountUseCaseInput useCaseInput,
         CancellationToken cancellationToken)
     {
-        bool response = false;
-        var dictionary = new Dictionary<string, string>();
-        dictionary!.Add("CorrelationIdentifier", Guid.NewGuid().ToString());
-        traceManager.StartTracing("CreateAccountController", ActivityKind.Internal, async (activity) =>
+        var useCaseResponse = await traceManager.StartTracing("CreateAccountController", ActivityKind.Internal, useCaseInput, async (input, activity) =>
         {
-            response = await useCaseCreateAccount.ExecuteUseCaseAsync(useCaseInput, cancellationToken);
-        }, dictionary);
-        return StatusCode(201, response);
+            return await useCaseCreateAccount.ExecuteUseCaseAsync(input, cancellationToken);
+        }, new Dictionary<string, string>());
+        return StatusCode(201, useCaseResponse);
     }
 }

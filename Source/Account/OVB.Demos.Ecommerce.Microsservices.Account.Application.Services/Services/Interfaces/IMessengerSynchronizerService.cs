@@ -3,5 +3,5 @@
 public interface IMessengerSynchronizerService<TEntity>
     where TEntity : class
 {
-    public void PublishMessengerToSynchronizeDatabase(TEntity account);
+    public Task PublishMessengerToSynchronizeDatabase(TEntity account);
 }

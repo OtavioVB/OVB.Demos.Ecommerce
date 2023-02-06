@@ -32,11 +32,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker", "Source\Account\OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker\OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.csproj", "{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj", "{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj", "{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization.csproj", "{EF75144F-C150-4E97-80ED-5D569C4E2284}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization.csproj", "{EF75144F-C150-4E97-80ED-5D569C4E2284}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer.csproj", "{EC465555-49CF-400C-89A5-CD0BA65A7301}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer.csproj", "{EC465555-49CF-400C-89A5-CD0BA65A7301}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
