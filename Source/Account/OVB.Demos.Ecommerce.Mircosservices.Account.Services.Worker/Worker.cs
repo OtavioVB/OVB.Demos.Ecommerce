@@ -2,10 +2,8 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DataTransferObject;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter;
 using OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization;
-using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.RabbitConsumer.Interfaces;
 using OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.Infrascructure.Repositories.Interfaces;
-using System.Diagnostics;
 
 namespace OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker;
 
@@ -29,7 +27,7 @@ public class Worker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            _rabbitMQConsumer.ConsumeMessage(async (information) =>
+            await _rabbitMQConsumer.ConsumeMessage(async (information) =>
             {
                 try
                 {
