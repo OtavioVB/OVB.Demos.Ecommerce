@@ -14,6 +14,7 @@ using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item.E
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using System.Diagnostics;
+using System.Security.Principal;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.Services;
 
@@ -41,10 +42,6 @@ public sealed class AccountService : IAccountService
 
     public async Task<(bool HasDone, List<NotificationItem> Notifications, AccountBase? Account)> CreateAccountAsync(CreateAccountServiceInput input, CancellationToken cancellationToken)
     {
-        var traceManagerTags = new Dictionary<string, string>();
-        traceManagerTags.Add("TenantIdentifier", input.TenantIdentifier.ToString());
-        traceManagerTags.Add("CorrelationIdentifier", input.CorrelationIdentifier.ToString());
-        traceManagerTags.Add("SourcePlatform", input.SourcePlatform);
         return await _traceManager.StartTracing<CreateAccountServiceInput, (bool HasDone, List<NotificationItem> Notifications, AccountBase? Account)>(
             "CreateAccountServiceAsync", ActivityKind.Internal, input, async (input, activity) =>
         {
@@ -69,6 +66,9 @@ public sealed class AccountService : IAccountService
             await _accountBaseRepository.AddAsync(_adapterDomainAccountToDataTransferAccount.Adapter(account));
 
             return (true, notifications, account);
-        },  traceManagerTags);
+        }, new Dictionary<string, string>()
+            .AddKeyValue("TenantIdentifier", input.TenantIdentifier.ToString()!)
+            .AddKeyValue("CorrelationIdentifier", input.CorrelationIdentifier.ToString()!)
+            .AddKeyValue("SourcePlatform", input.SourcePlatform!));
     }
 }

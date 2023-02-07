@@ -7,6 +7,7 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using System.Diagnostics;
 
@@ -42,11 +43,6 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
 
     public async Task<bool> ExecuteUseCaseAsync(CreateAccountUseCaseInput input, CancellationToken cancellationToken)
     {
-        // need refactor - tags
-        var traceManagerTags = new Dictionary<string, string>();
-        traceManagerTags.Add("TenantIdentifier", input.TenantIdentifier.ToString());
-        traceManagerTags.Add("CorrelationIdentifier", input.CorrelationIdentifier.ToString());
-        traceManagerTags.Add("SourcePlatform", input.SourcePlatform);
         return await _traceManager.StartTracing("CreateAccountUseCaseAsync", ActivityKind.Internal, input, async (input, activity) =>
         {
             var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
@@ -65,6 +61,9 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
                 else
                     return false;
             }, transaction, cancellationToken);
-        }, traceManagerTags);
+        }, new Dictionary<string, string>()
+        .AddKeyValue("TenantIdentifier", input.TenantIdentifier.ToString())
+        .AddKeyValue("CorrelationIdentifier", input.CorrelationIdentifier.ToString())
+        .AddKeyValue("SourcePlatform", input.SourcePlatform));
     }
 }

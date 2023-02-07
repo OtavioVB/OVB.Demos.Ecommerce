@@ -17,9 +17,9 @@ public sealed class DefaultUnitOfWork : IUnitOfWork
         _dataContext = dataContext;
     }
 
-    public async Task<bool> ExecuteUnitOfWorkAsync(Func<IDbContextTransaction, CancellationToken, Task<bool>> handler, IDbContextTransaction transaction, CancellationToken cancellationToken)
+    public async Task<bool> ExecuteUnitOfWorkAsync(Func<IDbContextTransaction, CancellationToken, Task<bool>> handler, IDbContextTransaction transactionOne, CancellationToken cancellationToken)
     {
-        return await _traceManager.StartTracing<IDbContextTransaction>("Execute Unit Of Work Transaction", ActivityKind.Internal, transaction, async (transactionOne, activity) =>
+        return await _traceManager.StartTracing("Execute Unit Of Work Transaction", ActivityKind.Internal, async (activity) =>
         {
             var handlerResponse = await handler(transactionOne, cancellationToken);
 
@@ -27,7 +27,7 @@ public sealed class DefaultUnitOfWork : IUnitOfWork
             {
                 await _dataContext.SaveChangesAsync(cancellationToken);
                 await transactionOne.CommitAsync(cancellationToken);
-                await transaction.DisposeAsync();
+                await transactionOne.DisposeAsync();
                 return true;
             }
             else

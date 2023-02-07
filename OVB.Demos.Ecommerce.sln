@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer.csproj", "{EC465555-49CF-400C-89A5-CD0BA65A7301}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.csproj", "{C7E1B7D1-732E-4142-92D7-26A4FEB01910}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +98,10 @@ Global
 		{EC465555-49CF-400C-89A5-CD0BA65A7301}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC465555-49CF-400C-89A5-CD0BA65A7301}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC465555-49CF-400C-89A5-CD0BA65A7301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7E1B7D1-732E-4142-92D7-26A4FEB01910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7E1B7D1-732E-4142-92D7-26A4FEB01910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7E1B7D1-732E-4142-92D7-26A4FEB01910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7E1B7D1-732E-4142-92D7-26A4FEB01910}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +121,7 @@ Global
 		{A0E43AC2-0C54-41BD-A29E-B350EF9B116E} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 		{EF75144F-C150-4E97-80ED-5D569C4E2284} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 		{EC465555-49CF-400C-89A5-CD0BA65A7301} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
+		{C7E1B7D1-732E-4142-92D7-26A4FEB01910} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBF79964-7822-4D70-AEB1-D41FE73BABA7}
