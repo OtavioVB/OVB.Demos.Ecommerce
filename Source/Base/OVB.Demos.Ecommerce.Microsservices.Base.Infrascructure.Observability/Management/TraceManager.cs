@@ -156,4 +156,26 @@ public sealed class TraceManager : ITraceManager
             throw;
         }
     }
+
+    public async Task<TOutput> StartTracing<TOutput>(string name, ActivityKind activityKind, Func<Activity, Task<TOutput>> handler, IDictionary<string, string> dictionaryTags)
+    {
+        using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
+
+        if (activity is null)
+            throw new Exception("Observability Activity is not expected status. It is null.");
+
+        SetTags(activity, dictionaryTags);
+
+        try
+        {
+            activity.SetStatus(ActivityStatusCode.Ok);
+            return await handler(activity);
+        }
+        catch (Exception ex)
+        {
+            activity.RecordException(ex);
+            activity.SetStatus(ActivityStatusCode.Error);
+            throw;
+        }
+    }
 }

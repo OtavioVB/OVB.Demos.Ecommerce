@@ -16,7 +16,6 @@ public sealed class Retry : IRetry
     }
 
     public async Task<(bool RetryResult, TOutput? Output)> TryRetry<TOutput, TException>(Func<Task<TOutput>> handler)
-        where TOutput : class
         where TException : Exception
     {
         return await _traceManager.StartTracing<(bool RetryResult, TOutput? Output)>("Retry Results", ActivityKind.Internal, async (activity) =>
@@ -41,7 +40,7 @@ public sealed class Retry : IRetry
                 }
             }
 
-            return (false, null);
+            return (false, default(TOutput));
 
         }, new Dictionary<string, string>().AddKeyValue("RetryCount", "5"));
     }

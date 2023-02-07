@@ -4,7 +4,9 @@ using OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.RabbitConnection.Interfaces;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Exceptions;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.Services;
 
@@ -12,20 +14,23 @@ public sealed class MessengerSynchronizerService : IMessengerSynchronizerService
 {
     private readonly IRabbitMQConnection _rabbitMQConnection;
     private readonly ITraceManager _traceManager;
+    private readonly IRetry _retry;
 
     public MessengerSynchronizerService(
         IRabbitMQConnection rabbitMQConnection,
-        ITraceManager traceManager)
+        ITraceManager traceManager,
+        IRetry retry)
     {
         _rabbitMQConnection = rabbitMQConnection;
         _traceManager = traceManager;
+        _retry = retry;
     }
 
     public Task PublishMessengerToSynchronizeDatabase(AccountProtobuf account)
     {
-        return Task.FromResult(_traceManager.StartTracing("Publish Account To Messenger Synchronizer", System.Diagnostics.ActivityKind.Producer, (activity) =>
+        return _traceManager.StartTracing("Publish Account To Messenger Synchronizer", System.Diagnostics.ActivityKind.Producer, async (activity) =>
         {
-            return Task.Run(() =>
+            return await _retry.TryRetry<bool, RabbitMQClientException>(() =>
             {
                 var exchangeName = "ExchangeSynchronizeAccount";
                 var queueName = "Synchronizer.Microsservices.Account.Subscriber";
@@ -34,10 +39,11 @@ public sealed class MessengerSynchronizerService : IMessengerSynchronizerService
                 _rabbitMQConnection.Model.QueueDeclare(queueName, true, false, false);
                 _rabbitMQConnection.Model.QueueBind(queueName, exchangeName, routingKey);
                 _rabbitMQConnection.Model.BasicPublish(exchangeName, routingKey, null, Serializator.SerializeProtobuf(account));
+                return Task.FromResult(true);
             });
         }, new Dictionary<string, string>()
             .AddKeyValue("TenantIdentifier", account.TenantIdentifier.ToString()!)
             .AddKeyValue("CorrelationIdentifier", account.CorrelationIdentifier.ToString()!)
-            .AddKeyValue("SourcePlatform", account.SourcePlatform!)));
+            .AddKeyValue("SourcePlatform", account.SourcePlatform!));
     }
 }

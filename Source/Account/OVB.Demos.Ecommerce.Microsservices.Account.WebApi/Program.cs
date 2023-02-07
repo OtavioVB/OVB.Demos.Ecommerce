@@ -4,6 +4,8 @@ using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Depen
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.WebApi;
 
@@ -26,6 +28,12 @@ public class Program
             builder.Configuration["ApplicationInformation:ServiceVersion"]!,
             new Uri(builder.Configuration["Observability:OpenTelemetry:GrpcPort"]!),
             OtlpExportProtocol.Grpc);
+
+        #endregion
+
+        #region Policy Resilience Configuration
+
+        builder.Services.AddScoped<IRetry, Retry>();
 
         #endregion
 
