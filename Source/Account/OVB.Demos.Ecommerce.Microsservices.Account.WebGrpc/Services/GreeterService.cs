@@ -1,22 +1,15 @@
 using Grpc.Core;
 using OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc;
 
-namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.Services
-{
-    public class GreeterService : Greeter.GreeterBase
-    {
-        private readonly ILogger<GreeterService> _logger;
-        public GreeterService(ILogger<GreeterService> logger)
-        {
-            _logger = logger;
-        }
+namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.Services;
 
-        public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
+public class GreeterService : Greeter.GreeterBase
+{
+    public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
+    {
+        return Task.FromResult(new HelloReply
         {
-            return Task.FromResult(new HelloReply
-            {
-                Message = "Hello " + request.Name
-            });
-        }
+            Message = "Hello " + request.Name
+        });
     }
 }

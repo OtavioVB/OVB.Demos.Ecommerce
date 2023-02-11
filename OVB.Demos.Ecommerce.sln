@@ -30,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter.csproj", "{5287D845-1C56-4593-9EC2-463134B4BB5B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker", "Source\Account\OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker\OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.csproj", "{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.Services.Worker", "Source\Account\OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker\OVB.Demos.Ecommerce.Microsservices.Account.Services.Worker.csproj", "{D356B06D-CA82-4A0E-9D7D-ED859E0D5B22}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj", "{A0E43AC2-0C54-41BD-A29E-B350EF9B116E}"
 EndProject
@@ -40,7 +40,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.csproj", "{C7E1B7D1-732E-4142-92D7-26A4FEB01910}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.CircuitBreaker", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.CircuitBreaker\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.CircuitBreaker.csproj", "{72AD4FAD-17A1-46DB-A5B0-2B3006023238}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.CircuitBreaker", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.CircuitBreaker\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.CircuitBreaker.csproj", "{72AD4FAD-17A1-46DB-A5B0-2B3006023238}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc\OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.csproj", "{6A55A055-CE19-467F-838D-74C1AB6EAA39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,6 +110,10 @@ Global
 		{72AD4FAD-17A1-46DB-A5B0-2B3006023238}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72AD4FAD-17A1-46DB-A5B0-2B3006023238}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72AD4FAD-17A1-46DB-A5B0-2B3006023238}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A55A055-CE19-467F-838D-74C1AB6EAA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A55A055-CE19-467F-838D-74C1AB6EAA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A55A055-CE19-467F-838D-74C1AB6EAA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A55A055-CE19-467F-838D-74C1AB6EAA39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -129,6 +135,7 @@ Global
 		{EC465555-49CF-400C-89A5-CD0BA65A7301} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
 		{C7E1B7D1-732E-4142-92D7-26A4FEB01910} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 		{72AD4FAD-17A1-46DB-A5B0-2B3006023238} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
+		{6A55A055-CE19-467F-838D-74C1AB6EAA39} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBF79964-7822-4D70-AEB1-D41FE73BABA7}
