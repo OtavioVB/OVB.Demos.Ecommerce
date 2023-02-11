@@ -73,7 +73,7 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
             if (retryResult.RetryResult == true)
                 return retryResult.Output;
             else
-                return false;
+                return false; // Implement Circuit Breaker
 
         }, new Dictionary<string, string>()
         .AddKeyValue("TenantIdentifier", input.TenantIdentifier.ToString())
