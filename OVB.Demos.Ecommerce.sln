@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.WebApi", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.WebApi\OVB.Demos.Ecommerce.Microsservices.Account.WebApi.csproj", "{3431FFCA-73D6-4BFA-A16D-4A2B986BC1BF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{B4F02E80-7CD4-46E2-AB40-04B220A382DE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.csproj", "{5521585F-E381-47A3-9F28-DFD1B4DF2FAF}"
@@ -50,16 +48,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization.csproj", "{B7C389E3-475C-4563-AB01-6A697CA35249}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Account.WebApi", "Source\Account\OVB.Demos.Ecommerce.Microsservices.Account.WebApi\OVB.Demos.Ecommerce.Microsservices.Account.WebApi.csproj", "{7F87573C-DCB7-4A35-8944-94DF44C5EE0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3431FFCA-73D6-4BFA-A16D-4A2B986BC1BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3431FFCA-73D6-4BFA-A16D-4A2B986BC1BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3431FFCA-73D6-4BFA-A16D-4A2B986BC1BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3431FFCA-73D6-4BFA-A16D-4A2B986BC1BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5521585F-E381-47A3-9F28-DFD1B4DF2FAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5521585F-E381-47A3-9F28-DFD1B4DF2FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5521585F-E381-47A3-9F28-DFD1B4DF2FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -124,12 +120,15 @@ Global
 		{B7C389E3-475C-4563-AB01-6A697CA35249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7C389E3-475C-4563-AB01-6A697CA35249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7C389E3-475C-4563-AB01-6A697CA35249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F87573C-DCB7-4A35-8944-94DF44C5EE0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F87573C-DCB7-4A35-8944-94DF44C5EE0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F87573C-DCB7-4A35-8944-94DF44C5EE0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F87573C-DCB7-4A35-8944-94DF44C5EE0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3431FFCA-73D6-4BFA-A16D-4A2B986BC1BF} = {0721EA75-27F5-456B-A2E6-3E60352CF879}
 		{B4F02E80-7CD4-46E2-AB40-04B220A382DE} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
 		{5521585F-E381-47A3-9F28-DFD1B4DF2FAF} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
 		{0D5B3E78-9483-43D5-9287-A751AB024E0C} = {0721EA75-27F5-456B-A2E6-3E60352CF879}
@@ -149,6 +148,7 @@ Global
 		{A0590E6B-53E3-4C1D-8865-E15D709E000D} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
 		{501CAC75-AB8F-4EB5-8B9A-48AAACF58ACF} = {A0590E6B-53E3-4C1D-8865-E15D709E000D}
 		{B7C389E3-475C-4563-AB01-6A697CA35249} = {B4F02E80-7CD4-46E2-AB40-04B220A382DE}
+		{7F87573C-DCB7-4A35-8944-94DF44C5EE0A} = {0721EA75-27F5-456B-A2E6-3E60352CF879}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBF79964-7822-4D70-AEB1-D41FE73BABA7}

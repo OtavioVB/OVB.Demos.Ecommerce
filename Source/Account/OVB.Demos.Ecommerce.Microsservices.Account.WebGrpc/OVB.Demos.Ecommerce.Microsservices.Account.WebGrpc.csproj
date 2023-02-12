@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>31ec1667-6500-4dbc-b0c4-ba71d76858cc</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +13,13 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.49.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.csproj" />
+    <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj" />
+    <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Application.Services\OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.csproj" />
   </ItemGroup>
 
 </Project>

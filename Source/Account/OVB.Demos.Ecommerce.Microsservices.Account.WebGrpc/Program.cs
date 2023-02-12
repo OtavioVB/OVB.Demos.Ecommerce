@@ -1,4 +1,12 @@
+using OpenTelemetry.Exporter;
+using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.Services;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc
 {
@@ -8,16 +16,57 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Additional configuration is required to successfully run gRPC on macOS.
-            // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
+            #region Domain Configuration
 
-            // Add services to the container.
+            builder.Services.AddOvbDomainConfiguration();
+
+            #endregion
+
+            #region Observability Configuration
+
+            builder.Services.AddOvbTracingAndMetrics(
+                builder.Configuration["ApplicationInformation:ServiceName"]!,
+                builder.Configuration["ApplicationInformation:ServiceVersion"]!,
+                new Uri(builder.Configuration["Observability:OpenTelemetry:GrpcPort"]!),
+                OtlpExportProtocol.Grpc);
+
+            #endregion
+
+            #region Policy Resilience Configuration
+
+            builder.Services.AddScoped<IRetry, Retry>();
+
+            #endregion
+
+            #region Infrascructure Configuration
+
+            builder.Services.AddOvbInfrascructureConfiguration(
+                builder.Configuration["Infrascructure:Databases:PostgreeSQL"]!,
+                "OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data");
+
+            #endregion
+
+            #region Messenger Configuration
+
+            builder.Services.AddOvbMessengerConfiguration(
+                hostName: builder.Configuration["Infrascructure:Messenger:RabbitMQ:HostName"]!,
+                virtualHost: builder.Configuration["Infrascructure:Messenger:RabbitMQ:VirtualHost"]!,
+                username: builder.Configuration["Infrascructure:Messenger:RabbitMQ:Username"]!,
+                password: builder.Configuration["Infrascructure:Messenger:RabbitMQ:Password"]!,
+                clientProviderName: builder.Configuration["Infrascructure:Messenger:RabbitMQ:ClientProviderName"]!,
+                port: Convert.ToInt32(builder.Configuration["Infrascructure:Messenger:RabbitMQ:Port"]!));
+
+            #endregion
+
+            #region Application Services Configuration
+
+            builder.Services.AddOvbApplicationServicesConfiguration();
+
+            #endregion
+
             builder.Services.AddGrpc();
-
             var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            app.MapGrpcService<GreeterService>();
+            app.MapGrpcService<AccountService>();
             app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
             app.Run();
