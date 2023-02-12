@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50508;http://localhost:50509"
+    }
+  }
+}

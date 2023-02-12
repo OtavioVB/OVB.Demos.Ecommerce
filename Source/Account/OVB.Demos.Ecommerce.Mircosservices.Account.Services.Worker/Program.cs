@@ -1,7 +1,9 @@
+using OpenTelemetry.Exporter;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DataTransferObject;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.DependencyInjection;
 using OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.Adapters;
 using OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker.Infrascructure.DependencyInjection;
@@ -16,6 +18,12 @@ public class Program
         .ConfigureServices((hostContext, services) =>
         {
             services.AddSingleton<IAdapter<AccountProtobuf, AccountDataTransfer>, AdapterAccountProtobufToAccountBase>();
+
+            services.AddOvbTracingAndMetrics(
+                hostContext.Configuration["Observability:OpenTelemetry:ServiceName"]!,
+                hostContext.Configuration["Observability:OpenTelemetry:ServiceVersion"]!,
+                new Uri(hostContext.Configuration["Observability:OpenTelemetry:GrpcPort"]!),
+                OtlpExportProtocol.Grpc);
 
             services.AddOvbDomainConfiguration();
 
