@@ -2,6 +2,9 @@
 
 namespace OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization;
 
+/// <summary>
+/// This class serialize objects that using protobuf-net.
+/// </summary>
 public static class Serializator
 {
     public static byte[] SerializeProtobuf<TEntity>(TEntity entity) where TEntity : class

@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter\OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter.csproj" />
-    <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization.csproj" />
     <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.csproj" />
     <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj" />
     <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.csproj" />
