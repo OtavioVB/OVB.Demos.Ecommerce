@@ -6,7 +6,16 @@ public sealed class AccountService : Account.AccountBase
 {
     public override Task<CreateAccountUseCaseOutput> CreateAccount(CreateAccountUseCaseInput request, ServerCallContext context)
     {
-        return base.CreateAccount(request, context);
+        var output = new CreateAccountUseCaseOutput()
+        {
+            Created = true,
+        };
+
+        output.Messages.Add(new CreateAccountUseCaseOutput()
+        {
+            Created = true,
+        });
+        return Task.FromResult(output);
     }
 
     public override Task<HealthCheckOutput> HealthCheck(HealthCheckInput request, ServerCallContext context)

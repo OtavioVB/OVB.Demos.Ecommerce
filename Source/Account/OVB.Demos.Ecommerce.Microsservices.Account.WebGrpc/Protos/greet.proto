@@ -10,7 +10,15 @@ service Account {
 }
 
 message CreateAccountUseCaseInput {
-	string name = 1;
+	string tenantIdentifier = 8;
+    string correlationIdentifier = 9;
+	string sourcePlatform = 1;
+    string executionSource = 2;
+    string name = 3;
+    string lastName = 4;
+    string username = 5;
+    string password = 6;
+    string email = 7;
 }
 
 message HealthCheckInput {
@@ -22,5 +30,11 @@ message HealthCheckOutput {
 }
 
 message CreateAccountUseCaseOutput {
+	bool created = 1;
+	repeated Notification messages = 2;
+}	
+
+message Notification {
 	string message = 1;
+	string typeNotification = 2;
 }
