@@ -44,7 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{0721
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{A0590E6B-53E3-4C1D-8865-E15D709E000D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.ApiGateway", "Source\ApiGateway\OVB.Demos.Ecommerce.Microsservices.ApiGateway\OVB.Demos.Ecommerce.Microsservices.ApiGateway.csproj", "{501CAC75-AB8F-4EB5-8B9A-48AAACF58ACF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.ApiGateway", "Source\ApiGateway\OVB.Demos.Ecommerce.Microsservices.ApiGateway\OVB.Demos.Ecommerce.Microsservices.ApiGateway.csproj", "{501CAC75-AB8F-4EB5-8B9A-48AAACF58ACF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization", "Source\Base\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization\OVB.Demos.Ecommerce.Microsservices.Base.Domain.Serialization.csproj", "{B7C389E3-475C-4563-AB01-6A697CA35249}"
 EndProject
