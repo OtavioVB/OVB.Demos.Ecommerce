@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.Services.Inputs;
+﻿using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.Services.Inputs;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.Services.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases.Inputs;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases.Interfaces;
@@ -12,7 +11,6 @@ using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item.I
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Publisher.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
-using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
 using System.Diagnostics;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases;
@@ -22,7 +20,6 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
     private readonly ITraceManager _traceManager;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IAccountService _accountService;
-    private readonly IRetry _retry;
     private readonly IAdapter<CreateAccountUseCaseInput, CreateAccountServiceInput> _adapterUseCaseInputToAccountServiceInput;
     private readonly IAdapter<AccountBase, AccountProtobuf> _adapterAccountBaseToAccountProtobuf;
     private readonly IMessengerSynchronizerService<AccountProtobuf> _messengerSynchronizerService;
@@ -37,7 +34,6 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
         IAdapter<CreateAccountUseCaseInput, CreateAccountServiceInput> adapterUseCaseInputToAccountServiceInput, 
         IMessengerSynchronizerService<AccountProtobuf> messengerSynchronizerService,
         IAdapter<AccountBase, AccountProtobuf> adapterAccountBaseToAccountProtobuf,
-        IRetry retry,
         INotificationPublisher notificationPublisher)
     {
         _traceManager = traceManager;
@@ -47,7 +43,6 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
         _adapterUseCaseInputToAccountServiceInput = adapterUseCaseInputToAccountServiceInput;
         _messengerSynchronizerService = messengerSynchronizerService;
         _adapterAccountBaseToAccountProtobuf = adapterAccountBaseToAccountProtobuf;
-        _retry = retry;
         _notificationPublisher = notificationPublisher;
     }
 
