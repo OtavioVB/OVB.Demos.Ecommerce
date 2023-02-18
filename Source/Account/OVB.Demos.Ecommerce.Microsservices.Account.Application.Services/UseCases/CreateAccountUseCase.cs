@@ -8,6 +8,8 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter;
+using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item.Interfaces;
+using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Publisher.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
@@ -25,6 +27,7 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
     private readonly IAdapter<AccountBase, AccountProtobuf> _adapterAccountBaseToAccountProtobuf;
     private readonly IMessengerSynchronizerService<AccountProtobuf> _messengerSynchronizerService;
     private readonly DataContext _dataContext;
+    private readonly INotificationPublisher _notificationPublisher;
 
     public CreateAccountUseCase(
         ITraceManager traceManager,
@@ -34,7 +37,8 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
         IAdapter<CreateAccountUseCaseInput, CreateAccountServiceInput> adapterUseCaseInputToAccountServiceInput, 
         IMessengerSynchronizerService<AccountProtobuf> messengerSynchronizerService,
         IAdapter<AccountBase, AccountProtobuf> adapterAccountBaseToAccountProtobuf,
-        IRetry retry)
+        IRetry retry,
+        INotificationPublisher notificationPublisher)
     {
         _traceManager = traceManager;
         _unitOfWork = unitOfWork;
@@ -44,6 +48,7 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
         _messengerSynchronizerService = messengerSynchronizerService;
         _adapterAccountBaseToAccountProtobuf = adapterAccountBaseToAccountProtobuf;
         _retry = retry;
+        _notificationPublisher = notificationPublisher;
     }
 
     public async Task<bool> ExecuteUseCaseAsync(CreateAccountUseCaseInput input, CancellationToken cancellationToken)
@@ -63,10 +68,14 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
                             throw new Exception("Account Service return null Account, this return is not expected.");
 
                         await _messengerSynchronizerService.PublishMessengerToSynchronizeDatabase(_adapterAccountBaseToAccountProtobuf.Adapter(accountCreateResponse.Account));
+                        await _notificationPublisher.AddNotifications((IEnumerable<INotificationItem>)accountCreateResponse.Notifications);
                         return true;
                     }
                     else
+                    {
+                        await _notificationPublisher.AddNotifications((IEnumerable<INotificationItem>)accountCreateResponse.Notifications);
                         return false;
+                    }
                 }, transaction, cancellationToken);
             });
 
