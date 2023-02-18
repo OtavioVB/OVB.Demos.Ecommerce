@@ -3,6 +3,7 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.Dependency
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.Services;
+using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry;
@@ -15,6 +16,12 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            #region Domain Notification Configuration
+
+            builder.Services.AddOvbNotificationConfigurationDependencies();
+
+            #endregion
 
             #region Domain Configuration
 

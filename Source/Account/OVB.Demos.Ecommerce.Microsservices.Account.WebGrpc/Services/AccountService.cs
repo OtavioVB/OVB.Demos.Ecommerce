@@ -1,4 +1,5 @@
 using Grpc.Core;
+using Microsoft.AspNetCore.Mvc;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases.Inputs;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter;
@@ -12,8 +13,8 @@ public sealed class AccountService : Account.AccountBase
     private readonly CancellationToken _cancellationToken;
 
     public AccountService(
-        IUseCase<CreateAccountUseCaseInput> useCaseCreateAccount, 
-        IAdapter<CreateAccountUseCaseGrpcInput, CreateAccountUseCaseInput> adapterInput, 
+        [FromServices] IUseCase<CreateAccountUseCaseInput> useCaseCreateAccount, 
+        [FromServices] IAdapter<CreateAccountUseCaseGrpcInput, CreateAccountUseCaseInput> adapterInput, 
         CancellationToken cancellationToken)
     {
         _useCaseCreateAccount = useCaseCreateAccount;
