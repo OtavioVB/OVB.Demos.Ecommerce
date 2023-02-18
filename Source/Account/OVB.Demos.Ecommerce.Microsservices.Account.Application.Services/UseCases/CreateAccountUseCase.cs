@@ -55,34 +55,26 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
     {
         return await _traceManager.StartTracing("CreateAccountUseCaseAsync", ActivityKind.Internal, input, async (input, activity) =>
         {
-            var retryResult = await _retry.TryRetry<bool, NpgsqlException>(async () =>
+            var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
+            return await _unitOfWork.ExecuteUnitOfWorkAsync(async (transaction, cancellationToken) =>
             {
-                var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
-                return await _unitOfWork.ExecuteUnitOfWorkAsync(async (transaction, cancellationToken) =>
+                var accountCreateResponse = await _accountService.CreateAccountAsync(_adapterUseCaseInputToAccountServiceInput.Adapter(input), cancellationToken);
+
+                if (accountCreateResponse.HasDone)
                 {
-                    var accountCreateResponse = await _accountService.CreateAccountAsync(_adapterUseCaseInputToAccountServiceInput.Adapter(input), cancellationToken);
+                    if (accountCreateResponse.Account is null)
+                        throw new Exception("Account Service return null Account, this return is not expected.");
 
-                    if (accountCreateResponse.HasDone)
-                    {
-                        if (accountCreateResponse.Account is null)
-                            throw new Exception("Account Service return null Account, this return is not expected.");
-
-                        await _messengerSynchronizerService.PublishMessengerToSynchronizeDatabase(_adapterAccountBaseToAccountProtobuf.Adapter(accountCreateResponse.Account));
-                        await _notificationPublisher.AddNotifications((IEnumerable<INotificationItem>)accountCreateResponse.Notifications);
-                        return true;
-                    }
-                    else
-                    {
-                        await _notificationPublisher.AddNotifications((IEnumerable<INotificationItem>)accountCreateResponse.Notifications);
-                        return false;
-                    }
-                }, transaction, cancellationToken);
-            });
-
-            if (retryResult.RetryResult == true)
-                return retryResult.Output;
-            else
-                return false; // Implement Circuit Breaker
+                    await _messengerSynchronizerService.PublishMessengerToSynchronizeDatabase(_adapterAccountBaseToAccountProtobuf.Adapter(accountCreateResponse.Account));
+                    await _notificationPublisher.AddNotifications((IEnumerable<INotificationItem>)accountCreateResponse.Notifications);
+                    return true;
+                }
+                else
+                {
+                    await _notificationPublisher.AddNotifications((IEnumerable<INotificationItem>)accountCreateResponse.Notifications);
+                    return false;
+                }
+            }, transaction, cancellationToken);
 
         }, new Dictionary<string, string>()
         .AddKeyValue("TenantIdentifier", input.TenantIdentifier.ToString())
