@@ -9,23 +9,23 @@ using System.Diagnostics;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry;
 
-public sealed class Retry<TException> : IRetry<TException>
-    where TException : Exception
+public sealed class Retry : IRetry
 {
-    private readonly RetryPolicy _retryPolicy;
+    private readonly IRetryConfiguration _retryConfiguration;
     private readonly ITraceManager _traceManager;
 
     public Retry(IRetryConfiguration retryConfiguration, ITraceManager traceManager)
     {
-        _retryPolicy = retryConfiguration.GetPolicy<TException>();
+        _retryConfiguration = retryConfiguration;
         _traceManager = traceManager;
     }
 
-    public async Task<(bool RetryResult, TOutput? Output)> TryRetry<TOutput>(Func<Task<TOutput>> handler)
+    public async Task<(bool RetryResult, TOutput? Output)> TryRetry<TOutput, TException>(Func<Task<TOutput>> handler)
+        where TException : Exception
     {
         return await _traceManager.StartTracing<(bool RetryResult, TOutput? Output)>("Retry Results", ActivityKind.Internal, async (activity) =>
         {
-            var retryResponse = await _retryPolicy.Execute(async () => 
+            var retryResponse = await _retryConfiguration.GetPolicy<TException>().Execute(async () => 
             {
                 return await handler();
             });

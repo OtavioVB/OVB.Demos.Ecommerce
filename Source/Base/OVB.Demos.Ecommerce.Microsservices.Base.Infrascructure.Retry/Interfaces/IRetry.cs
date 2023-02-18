@@ -1,7 +1,7 @@
 ﻿namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
 
-public interface IRetry<TException>
-    where TException : Exception
+public interface IRetry
 {
-    public Task<(bool RetryResult, TOutput? Output)> TryRetry<TOutput>(Func<Task<TOutput>> handler);
+    public Task<(bool RetryResult, TOutput? Output)> TryRetry<TOutput, TException>(Func<Task<TOutput>> handler)
+        where TException : Exception;
 }
