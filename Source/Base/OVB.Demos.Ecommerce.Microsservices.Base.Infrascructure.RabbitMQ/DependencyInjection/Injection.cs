@@ -9,8 +9,8 @@ namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.Depend
 
 public static class Injection
 {
-    public static IServiceCollection AddOvbMessengerConfiguration(this IServiceCollection serviceCollection, string hostName, string virtualHost, string username, string password,
-        string clientProviderName, int port)
+    public static IServiceCollection AddOvbMessengerConfiguration(this IServiceCollection serviceCollection, 
+        string hostName, string virtualHost, string username, string password, string clientProviderName, int port)
     {
         serviceCollection.AddSingleton<IRabbitMQConnection, RabbitMQConnection>(p =>
         {

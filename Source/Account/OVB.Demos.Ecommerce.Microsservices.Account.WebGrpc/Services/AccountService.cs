@@ -11,9 +11,10 @@ public sealed class AccountService : Account.AccountBase
             Created = true,
         };
 
-        output.Messages.Add(new CreateAccountUseCaseOutput()
+        output.Messages.Add(new Notification()
         {
-            Created = true,
+            Message = "Teste",
+            TypeNotification = "Teste",
         });
         return Task.FromResult(output);
     }

@@ -2,6 +2,8 @@
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
+using Polly;
+using Polly.Retry;
 using System.Diagnostics;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry;
@@ -20,27 +22,21 @@ public sealed class Retry : IRetry
     {
         return await _traceManager.StartTracing<(bool RetryResult, TOutput? Output)>("Retry Results", ActivityKind.Internal, async (activity) =>
         {
-            for (int retriesCount = 0; retriesCount < 5; retriesCount++)
-            {
-                try
-                {
-                    // An = Ai + (n - 1).r
-                    // A1 = 50 ms
-                    // A2 = 125 ms
-                    // A3 = 200 ms
-                    // A4 = 275 ms
-                    // A5 = 350 ms
-                    await Task.Delay(50 + (retriesCount)*75);
-                    return (true, await handler());
-                }
-                catch (TException exception)
-                {
-                    activity.RecordException(exception);
-                    continue;
-                }
-            }
 
-            return (false, default(TOutput));
+            RetryPolicy retry = Policy
+            .Handle<TException>()
+            .WaitAndRetry(new[]
+            {
+                TimeSpan.FromMicroseconds(50),
+                TimeSpan.FromMicroseconds(125),
+                TimeSpan.FromMicroseconds(200),
+                TimeSpan.FromMicroseconds(275),
+                TimeSpan.FromMicroseconds(350),
+            });
+            return retry.Execute(async () =>
+            {
+                return await handler();
+            });
 
         }, new Dictionary<string, string>().AddKeyValue("RetryCount", "5"));
     }
