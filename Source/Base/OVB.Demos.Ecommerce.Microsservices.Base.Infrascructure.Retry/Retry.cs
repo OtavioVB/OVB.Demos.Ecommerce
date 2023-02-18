@@ -33,10 +33,9 @@ public sealed class Retry : IRetry
                 TimeSpan.FromMicroseconds(275),
                 TimeSpan.FromMicroseconds(350),
             });
-            return retry.Execute(async () =>
-            {
-                return await handler();
-            });
+
+            var retryResponse = await retry.Execute(async () => await handler());
+            return (true, retryResponse);
 
         }, new Dictionary<string, string>().AddKeyValue("RetryCount", "5"));
     }
