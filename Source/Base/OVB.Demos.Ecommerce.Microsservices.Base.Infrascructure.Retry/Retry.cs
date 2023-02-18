@@ -14,23 +14,38 @@ public sealed class Retry : IRetry
     private readonly IRetryConfiguration _retryConfiguration;
     private readonly ITraceManager _traceManager;
 
-    public Retry(IRetryConfiguration retryConfiguration, ITraceManager traceManager)
+    public Retry(
+        IRetryConfiguration retryConfiguration, 
+        ITraceManager traceManager)
     {
         _retryConfiguration = retryConfiguration;
         _traceManager = traceManager;
     }
 
-    public async Task<(bool RetryResult, TOutput? Output)> TryRetry<TOutput, TException>(Func<Task<TOutput>> handler)
+    public Task<TOutput?> TryRetry<TOutput, TException>(Func<Task<TOutput>> handler)
         where TException : Exception
     {
-        return await _traceManager.StartTracing<(bool RetryResult, TOutput? Output)>("Retry Results", ActivityKind.Internal, async (activity) =>
+        return _traceManager.StartTracing<TOutput?>("Polly Retries", ActivityKind.Internal, async (activity) =>
         {
-            var retryResponse = await _retryConfiguration.GetPolicy<TException>().Execute(async () => 
+            return await _retryConfiguration.GetPolicy<TException>().Execute(async () => 
             {
                 return await handler();
             });
-            return (true, retryResponse);
+        }, 
+        new Dictionary<string, string>());
+    }
 
-        }, new Dictionary<string, string>()));
+    public Task TryRetry<TException>(Func<Task> handler)
+        where TException : Exception
+    {
+        return _traceManager.StartTracing("Polly Retries", ActivityKind.Internal, async (activity) =>
+        {
+            await _retryConfiguration.GetPolicy<TException>().Execute(() =>
+            {
+                return handler();
+            });
+
+        },
+        new Dictionary<string, string>());
     }
 }
