@@ -25,11 +25,11 @@ public sealed class Retry : IRetry
     public Task<TOutput?> TryRetry<TOutput, TException>(Func<Task<TOutput>> handler)
         where TException : Exception
     {
-        return _traceManager.StartTracing<TOutput?>("Polly Retries", ActivityKind.Internal, async (activity) =>
+        return _traceManager.StartTracing<TOutput?>("Polly Retries", ActivityKind.Internal, (activity) =>
         {
-            return await _retryConfiguration.GetPolicy<TException>().Execute(async () => 
+            return _retryConfiguration.GetPolicy<TException>().Execute(() => 
             {
-                return await handler();
+                return handler();
             });
         }, 
         new Dictionary<string, string>());
@@ -38,9 +38,9 @@ public sealed class Retry : IRetry
     public Task TryRetry<TException>(Func<Task> handler)
         where TException : Exception
     {
-        return _traceManager.StartTracing("Polly Retries", ActivityKind.Internal, async (activity) =>
+        return _traceManager.StartTracing("Polly Retries", ActivityKind.Internal, (activity) =>
         {
-            await _retryConfiguration.GetPolicy<TException>().Execute(() =>
+            return _retryConfiguration.GetPolicy<TException>().Execute(() =>
             {
                 return handler();
             });
