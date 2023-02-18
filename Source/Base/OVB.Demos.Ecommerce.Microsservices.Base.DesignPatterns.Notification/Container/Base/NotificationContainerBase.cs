@@ -3,7 +3,7 @@ using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Item.I
 
 namespace OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Container.Base;
 
-public abstract class NotificationContainerBase : INotificationContainerBase<INotificationItem>
+public abstract class NotificationContainerBase : INotificationContainer<INotificationItem>
 {
     private List<INotificationItem> _notifications;
 

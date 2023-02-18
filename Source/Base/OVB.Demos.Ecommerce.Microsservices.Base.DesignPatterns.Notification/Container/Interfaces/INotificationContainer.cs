@@ -2,7 +2,7 @@
 
 namespace OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Container.Interfaces;
 
-public interface INotificationContainerBase<TNotification>
+public interface INotificationContainer<TNotification>
     where TNotification : INotificationItem
 {
     public Task AddNotification(TNotification notification);
