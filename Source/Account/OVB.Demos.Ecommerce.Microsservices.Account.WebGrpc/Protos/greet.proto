@@ -5,11 +5,11 @@ option csharp_namespace = "OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc";
 package greet;
 
 service Account {
-	rpc CreateAccount (CreateAccountUseCaseInput) returns (CreateAccountUseCaseOutput);
+	rpc CreateAccount (CreateAccountUseCaseGrpcInput) returns (CreateAccountUseCaseGrpcOutput);
 	rpc HealthCheck (HealthCheckInput) returns (HealthCheckOutput);
 }
 
-message CreateAccountUseCaseInput {
+message CreateAccountUseCaseGrpcInput {
 	string tenantIdentifier = 8;
     string correlationIdentifier = 9;
 	string sourcePlatform = 1;
@@ -29,7 +29,7 @@ message HealthCheckOutput {
 	string name = 1;
 }
 
-message CreateAccountUseCaseOutput {
+message CreateAccountUseCaseGrpcOutput {
 	bool created = 1;
 	repeated Notification messages = 2;
 }	
