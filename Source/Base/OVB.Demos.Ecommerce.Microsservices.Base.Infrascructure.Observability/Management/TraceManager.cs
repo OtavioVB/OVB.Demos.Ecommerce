@@ -157,7 +157,7 @@ public sealed class TraceManager : ITraceManager
         }
     }
 
-    public async Task<TOutput> StartTracing<TOutput>(string name, ActivityKind activityKind, Func<Activity, Task<TOutput>> handler, IDictionary<string, string> dictionaryTags)
+    public async Task<TOutput?> StartTracing<TOutput>(string name, ActivityKind activityKind, Func<Activity, Task<TOutput?>> handler, IDictionary<string, string> dictionaryTags)
     {
         using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
 

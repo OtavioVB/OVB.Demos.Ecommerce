@@ -1,10 +1,6 @@
-﻿using OpenTelemetry.Trace;
-using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
-using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
+﻿using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Configuration.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
-using Polly;
-using Polly.Retry;
 using System.Diagnostics;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry;
@@ -22,10 +18,10 @@ public sealed class Retry : IRetry
         _traceManager = traceManager;
     }
 
-    public Task<TOutput?> TryRetry<TOutput, TException>(Func<Task<TOutput>> handler)
+    public Task<TOutput?> TryRetry<TOutput, TException>(Func<Task<TOutput?>> handler)
         where TException : Exception
     {
-        return _traceManager.StartTracing<TOutput?>("Polly Retries", ActivityKind.Internal, (activity) =>
+        return _traceManager.StartTracing("Polly Retries", ActivityKind.Internal, (activity) =>
         {
             return _retryConfiguration.GetPolicy<TException>().Execute(() => 
             {
