@@ -1,4 +1,5 @@
-﻿using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
+﻿using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
+using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Configuration.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
 using System.Diagnostics;
