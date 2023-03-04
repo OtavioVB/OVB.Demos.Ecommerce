@@ -1,19 +1,9 @@
 ﻿{
   "profiles": {
-    "http": {
+    "OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": false,
-      "applicationUrl": "http://localhost:5047",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "https": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": false,
-      "applicationUrl": "https://localhost:7197;http://localhost:5047",
+      "applicationUrl": "https://localhost:5048;http://localhost:5047",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

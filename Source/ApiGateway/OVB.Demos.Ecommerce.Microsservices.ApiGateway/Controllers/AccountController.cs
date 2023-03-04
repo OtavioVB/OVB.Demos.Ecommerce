@@ -1,14 +1,36 @@
+using Grpc.Net.Client;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OVB.Demos.Ecommerce.Microsservices.ApiGateway.Controllers.Paylods;
 
 namespace OVB.Demos.Ecommerce.Microsservices.ApiGateway.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[ApiVersion("1")]
+[Route("api/v{apiVersion:version}/[controller]")]
 public class AccountController : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> CreateAccount()
+    [Route("CreateAccount")]
+    [AllowAnonymous]
+    public async Task<IActionResult> CreateAccountAsync(
+        [FromBody] CreateAccountPayloadInput input,
+        CancellationToken cancellationToken)  
     {
-        return await Task.FromResult(StatusCode(503));
+        using var channel = GrpcChannel.ForAddress("https://localhost:5048");
+        var client = new GrpcGreeterClient.Account.AccountClient(channel);
+        var response = await client.CreateAccountAsync(new GrpcGreeterClient.CreateAccountUseCaseGrpcInput()
+        {
+            CorrelationIdentifier = input.CorrelationIdentifier.ToString(),
+            Email= input.Email,
+            ExecutionSource= input.ExecutionSource,
+            LastName= input.LastName,
+            Name= input.Name,
+            Password= input.Password,
+            SourcePlatform=input.SourcePlatform,
+            TenantIdentifier = input.TenantIdentifier.ToString(),
+            Username= input.Username,
+        });
+        return StatusCode(201, response.Messages);
     }
 }
