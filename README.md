@@ -52,6 +52,9 @@ Grande parte dos conceitos aplicados, foram escolhidos de modo atento aos proble
 - Observability: Metrics
 - Open Telemetry Collector Agent
 - Api Gateway
+- Domain Driven Design
+- Unit Tests
+- Integration Test
 
 ## Desenvolvedores
 - [Otávio Villas Boas Simoncini Carmanini](https://www.linkedin.com/in/otaviovillasboas/)
