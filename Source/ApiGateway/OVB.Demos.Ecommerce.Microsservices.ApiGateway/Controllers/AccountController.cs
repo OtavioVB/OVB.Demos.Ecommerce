@@ -18,7 +18,13 @@ public class AccountController : ControllerBase
         [FromBody] CreateAccountPayloadInput input,
         CancellationToken cancellationToken)  
     {
-        using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+        var httpHandler = new HttpClientHandler();
+        httpHandler.ServerCertificateCustomValidationCallback =
+            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+        using var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions()
+        {
+            HttpHandler = httpHandler
+        });
         var client = new GrpcGreeterClient.Account.AccountClient(channel);
         var response = await client.CreateAccountAsync(new GrpcGreeterClient.CreateAccountUseCaseGrpcInput()
         {
