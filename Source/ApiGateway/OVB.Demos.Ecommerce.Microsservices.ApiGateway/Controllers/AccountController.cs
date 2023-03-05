@@ -2,12 +2,13 @@ using Grpc.Net.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OVB.Demos.Ecommerce.Microsservices.ApiGateway.Controllers.Paylods;
+using Google.Protobuf;
 
 namespace OVB.Demos.Ecommerce.Microsservices.ApiGateway.Controllers;
 
 [ApiController]
 [ApiVersion("1")]
-[Route("api/v{apiVersion:version}/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class AccountController : ControllerBase
 {
     [HttpPost]

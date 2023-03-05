@@ -12,24 +12,21 @@ public sealed class AccountService : Account.AccountBase
     private readonly IUseCase<CreateAccountUseCaseInput> _useCaseCreateAccount;
     private readonly IAdapter<CreateAccountUseCaseGrpcInput, CreateAccountUseCaseInput> _adapterInput;
     private readonly INotificationConsumer _notificationConsumer;
-    private readonly CancellationToken _cancellationToken;
 
     public AccountService(
         [FromServices] IUseCase<CreateAccountUseCaseInput> useCaseCreateAccount, 
         [FromServices] IAdapter<CreateAccountUseCaseGrpcInput, CreateAccountUseCaseInput> adapterInput,
-        [FromServices] INotificationConsumer notificationConsumer,
-        CancellationToken cancellationToken)
+        [FromServices] INotificationConsumer notificationConsumer)
     {
         _notificationConsumer = notificationConsumer;
         _useCaseCreateAccount = useCaseCreateAccount;
         _adapterInput = adapterInput;
-        _cancellationToken = cancellationToken;
     }
 
     public override async Task<CreateAccountUseCaseGrpcOutput> CreateAccount(
         CreateAccountUseCaseGrpcInput request, ServerCallContext context)
     {
-        var useCaseResponse = await _useCaseCreateAccount.ExecuteUseCaseAsync(_adapterInput.Adapter(request), _cancellationToken);
+        var useCaseResponse = await _useCaseCreateAccount.ExecuteUseCaseAsync(_adapterInput.Adapter(request), new CancellationToken());
         var notifications = await _notificationConsumer.GetNotifications();
         var response = new CreateAccountUseCaseGrpcOutput() { Created = useCaseResponse };
         response.Messages.AddRange(notifications.Select(p => new Notification() { Message = p.Message, TypeNotification = p.TypeNotification.ToString() }));

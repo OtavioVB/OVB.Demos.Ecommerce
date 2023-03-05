@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Consumer;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Consumer.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Container;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.Container.Base;
@@ -17,7 +18,7 @@ public static class Injection
         serviceCollection.AddScoped<NotificationContainerBase, NotificationContainer>();
 
         serviceCollection.AddTransient<INotificationPublisher, NotificationPublisher>();
-        serviceCollection.AddTransient<INotificationConsumer, INotificationConsumer>();
+        serviceCollection.AddTransient<INotificationConsumer, NotificationConsumer>();
 
         return serviceCollection;
     }

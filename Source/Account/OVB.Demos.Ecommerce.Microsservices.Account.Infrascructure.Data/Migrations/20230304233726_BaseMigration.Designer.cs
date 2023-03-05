@@ -12,15 +12,15 @@ using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data;
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230205160247_BaseMigratio")]
-    partial class BaseMigratio
+    [Migration("20230304233726_BaseMigration")]
+    partial class BaseMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);

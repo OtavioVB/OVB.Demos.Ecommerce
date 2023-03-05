@@ -1,8 +1,11 @@
 using OpenTelemetry.Exporter;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases.Inputs;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.Adapters;
 using OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.Services;
+using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Adapter;
 using OVB.Demos.Ecommerce.Microsservices.Base.DesignPatterns.Notification.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.DependencyInjection;
@@ -16,6 +19,8 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddSingleton<IAdapter<CreateAccountUseCaseGrpcInput, CreateAccountUseCaseInput>, AdapterCreateAccountUseCaseGrpcInputToCreateAccountUseCaseInput>();
 
             #region Domain Notification Configuration
 

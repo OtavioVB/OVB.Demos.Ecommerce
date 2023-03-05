@@ -61,12 +61,12 @@ public sealed class CreateAccountUseCase : IUseCase<CreateAccountUseCaseInput>
                         throw new Exception("Account Service return null Account, this return is not expected.");
 
                     await _messengerSynchronizerService.PublishMessengerToSynchronizeDatabase(_adapterAccountBaseToAccountProtobuf.Adapter(accountCreateResponse.Account));
-                    await _notificationPublisher.AddNotifications((IEnumerable<INotificationItem>)accountCreateResponse.Notifications);
+                    await _notificationPublisher.AddNotifications(accountCreateResponse.Notifications.Select(p => (INotificationItem)p));
                     return true;
                 }
                 else
                 {
-                    await _notificationPublisher.AddNotifications((IEnumerable<INotificationItem>)accountCreateResponse.Notifications);
+                    await _notificationPublisher.AddNotifications(accountCreateResponse.Notifications.Select(p => (INotificationItem)p));
                     return false;
                 }
             }, transaction, cancellationToken);

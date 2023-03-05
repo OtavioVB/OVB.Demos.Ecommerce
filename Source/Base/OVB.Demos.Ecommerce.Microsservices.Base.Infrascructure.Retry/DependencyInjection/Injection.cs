@@ -9,8 +9,11 @@ public static class Injection
 {
     public static IServiceCollection AddOvbRetryPoliciesConfiguration(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddSingleton<IRetryConfiguration, RetryConfiguration>();
-        serviceCollection.AddSingleton<IRetry, Retry>();
+        serviceCollection.AddScoped<IRetryConfiguration>((serviceProvider) =>
+        {
+            return new RetryConfiguration().SetTypeOfRetryEqualArithmeticProgression(TimeSpan.FromMilliseconds(50), TimeSpan.FromMilliseconds(150), 5);
+        });
+        serviceCollection.AddScoped<IRetry, Retry>();
 
         return serviceCollection;
     }

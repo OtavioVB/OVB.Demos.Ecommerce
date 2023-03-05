@@ -20,6 +20,7 @@ public sealed class TraceManager : ITraceManager
     public void StartTracing<TInput>(string name, ActivityKind activityKind, TInput input, Action<TInput, Activity> handler, IDictionary<string, string> dictionaryTags)
     {
         using var activity = TracingSource.ActivitySource.StartActivity(name, activityKind);
+        activity?.Start();
 
         if (activity is null)
             throw new Exception("Observability Activity is not expected status. It is null.");

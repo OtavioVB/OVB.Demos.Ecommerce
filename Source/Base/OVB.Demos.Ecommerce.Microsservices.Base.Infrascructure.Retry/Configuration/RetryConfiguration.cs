@@ -12,7 +12,7 @@ public sealed class RetryConfiguration : IRetryConfiguration
     private TimeSpan _firstTime = TimeSpan.FromMilliseconds(50);
     private int _numberOfRetries = 5;
 
-    public Task<IRetryConfiguration> SetTypeOfRetryEqualGeometricProgression(TimeSpan ratio, TimeSpan firstTime, int numberOfRetries)
+    public IRetryConfiguration SetTypeOfRetryEqualGeometricProgression(TimeSpan ratio, TimeSpan firstTime, int numberOfRetries)
     {
         if (_typeRetry is not null)
             throw new Exception("Type of retry has been setted.");
@@ -21,10 +21,10 @@ public sealed class RetryConfiguration : IRetryConfiguration
         _firstTime = firstTime;
         _numberOfRetries = numberOfRetries;
         _typeRetry = TypeRetry.GeometricProgression;
-        return Task.FromResult((IRetryConfiguration)this);
+        return (RetryConfiguration)this;
     }
 
-    public Task<IRetryConfiguration> SetTypeOfRetryEqualArithmeticProgression(TimeSpan ratio, TimeSpan firstTime, int numberOfRetries)
+    public IRetryConfiguration SetTypeOfRetryEqualArithmeticProgression(TimeSpan ratio, TimeSpan firstTime, int numberOfRetries)
     {
         if (_typeRetry is not null)
             throw new Exception("Type of retry has been setted.");
@@ -33,17 +33,17 @@ public sealed class RetryConfiguration : IRetryConfiguration
         _firstTime = firstTime;
         _typeRetry = TypeRetry.ArithmeticProgression;
         _numberOfRetries = numberOfRetries;
-        return Task.FromResult((IRetryConfiguration)this);
+        return (RetryConfiguration)this;
     }
 
-    public Task<IRetryConfiguration> SetTypeOfRetryStandard(TimeSpan ratio, int numberOfRetries)
+    public IRetryConfiguration SetTypeOfRetryStandard(TimeSpan ratio, int numberOfRetries)
     {
         if (_typeRetry is not null)
             throw new Exception("Type of retry has been setted.");
 
         _numberOfRetries = numberOfRetries;
         _typeRetry = TypeRetry.Standard;
-        return Task.FromResult((IRetryConfiguration)this);
+        return (RetryConfiguration)this;
     }
 
     public RetryPolicy GetPolicy<TException>()

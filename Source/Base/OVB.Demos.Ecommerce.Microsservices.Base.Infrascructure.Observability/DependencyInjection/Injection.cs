@@ -7,6 +7,7 @@ using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Confi
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Configuration.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Management.Interfaces;
+using System.Diagnostics;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.DependencyInjection;
 
@@ -23,18 +24,23 @@ public static class Injection
             {
                 p.AddSource(serviceName);
                 p.SetResourceBuilder(ResourceBuilder.CreateDefault()
-                .AddService(serviceName,serviceVersion));
-                p.AddAspNetCoreInstrumentation();
-                p.AddHttpClientInstrumentation();
+                .AddService(serviceName, serviceVersion));
                 p.AddOtlpExporter(p =>
                 {
                     p.Endpoint = endpointOtlpExporter;
                     p.Protocol = endpointOtlpProtocol;
                 });
-            }).StartWithHost();
+            });
 
         serviceCollection.AddSingleton<ITracingSource>(p =>
         {
+            var activityListener = new ActivityListener
+            {
+                ShouldListenTo = s => true,
+                SampleUsingParentId = (ref ActivityCreationOptions<string> activityOptions) => ActivitySamplingResult.AllData,
+                Sample = (ref ActivityCreationOptions<ActivityContext> activityOptions) => ActivitySamplingResult.AllData
+            };
+            ActivitySource.AddActivityListener(activityListener);
             return new TracingSource(serviceName, serviceVersion);
         });
 

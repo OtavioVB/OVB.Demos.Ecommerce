@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class BaseMigratio : Migration
+    public partial class BaseMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

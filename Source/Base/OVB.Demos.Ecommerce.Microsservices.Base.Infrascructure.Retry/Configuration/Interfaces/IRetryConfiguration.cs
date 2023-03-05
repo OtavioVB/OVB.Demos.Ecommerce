@@ -4,9 +4,9 @@ namespace OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Configura
 
 public interface IRetryConfiguration
 {
-    public Task<IRetryConfiguration> SetTypeOfRetryEqualGeometricProgression(TimeSpan ratio, TimeSpan firstTime, int numberOfRetries);
-    public Task<IRetryConfiguration> SetTypeOfRetryEqualArithmeticProgression(TimeSpan ratio, TimeSpan firstTime, int numberOfRetries);
-    public Task<IRetryConfiguration> SetTypeOfRetryStandard(TimeSpan ratio, int numberOfRetries);
+    public IRetryConfiguration SetTypeOfRetryEqualGeometricProgression(TimeSpan ratio, TimeSpan firstTime, int numberOfRetries);
+    public IRetryConfiguration SetTypeOfRetryEqualArithmeticProgression(TimeSpan ratio, TimeSpan firstTime, int numberOfRetries);
+    public IRetryConfiguration SetTypeOfRetryStandard(TimeSpan ratio, int numberOfRetries);
     public RetryPolicy GetPolicy<TException>()
         where TException : Exception;
 }

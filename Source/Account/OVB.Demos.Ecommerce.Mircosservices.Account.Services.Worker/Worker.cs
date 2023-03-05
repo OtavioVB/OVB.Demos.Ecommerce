@@ -39,7 +39,7 @@ public class Worker : BackgroundService
                     var accountProtobuf = Serializator.DeserializeProtobuf<AccountProtobuf>(information);
                     await _baseRepositoryAccountBase.AddEntityAsync(_adapterAccountProtobufToAccountBase.Adapter(accountProtobuf));
                     return true;
-                }));
+                }))!;
             }, new Dictionary<string, string>());
         }
     }
