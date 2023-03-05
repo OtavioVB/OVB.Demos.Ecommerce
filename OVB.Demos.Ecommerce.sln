@@ -54,6 +54,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Company", "Company", "{F6F6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Company.Domain", "Source\Company\OVB.Demos.Ecommerce.Microsservices.Company.Domain\OVB.Demos.Ecommerce.Microsservices.Company.Domain.csproj", "{E65D4462-2C48-42F2-AC04-F510BB258321}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{A88746DA-A0A2-41EF-A9D5-1C2C119BE955}"
+	ProjectSection(SolutionItems) = preProject
+		microsservice-account-worker-cqrs.sql = microsservice-account-worker-cqrs.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
