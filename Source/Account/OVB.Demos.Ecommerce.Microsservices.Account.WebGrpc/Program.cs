@@ -1,7 +1,9 @@
+using Microsoft.EntityFrameworkCore;
 using OpenTelemetry.Exporter;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.UseCases.Inputs;
 using OVB.Demos.Ecommerce.Microsservices.Account.Domain.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data;
 using OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.Data.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.Adapters;
 using OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.Services;
@@ -85,6 +87,7 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc
             });
 
             app.Run();
+            app.Services.GetService<DataContext>()!.Database.Migrate();
         }
     }
 }

@@ -6,7 +6,7 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
+WORKDIR /Source
 COPY ["./Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.csproj", "Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc/"]
 COPY ["./Source/Base/OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability/OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.csproj", "Source/Base/OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability/"]
 COPY ["./Source/Base/OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ/OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj", "Source/Base/OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ/"]
@@ -22,11 +22,10 @@ COPY ["./Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.Infrascructur
 COPY ["./Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork/OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork.csproj", "Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.Infrascructure.UnitOfWork/"]
 RUN dotnet restore "Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.csproj"
 COPY . .
-WORKDIR "/src/Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc"
-RUN dotnet build "./OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.csproj" -c Release -o /app/build
+RUN dotnet build "Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "./OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc/OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

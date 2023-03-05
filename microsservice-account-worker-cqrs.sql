@@ -1,6 +1,6 @@
 CREATE DATABASE "ovb_demos_ecommerce_query";
 
-USE "ovb_demos_ecommerce_query";
+\c "ovb_demos_ecommerce_query";
 
 CREATE TABLE "accounts" (
 	"Identifier" uuid NOT NULL,
@@ -16,5 +16,5 @@ CREATE TABLE "accounts" (
 	"TypeAccount" VARCHAR(32) NOT NULL,
 	CONSTRAINT "PK_ACCOUNT_IDENTIFIER" PRIMARY KEY ("Identifier"),
  	CONSTRAINT "UK_ACCOUNT_CREDENTIALS_EMAIL" UNIQUE ("Email"),
-	CONSTRAINT "UK_ACCOUNT_CREDENTIALS_USERNAME" UNIQUE ("Username"),
+	CONSTRAINT "UK_ACCOUNT_CREDENTIALS_USERNAME" UNIQUE ("Username")
 );
