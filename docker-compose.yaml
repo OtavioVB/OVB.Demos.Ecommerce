@@ -41,13 +41,16 @@ services:
       - ovb-demos-ecommerce
 
   microsservice-account:
-    build: .
+    build: 
+      context: .
+      dockerfile: ${PWD}/Dockerfile
     container_name: 'microsservice-account'
     volumes: 
-      - ${PWD}/appsettings.json:/app/appsettings.json
+      - ${PWD}/Volumes/appsettings.json:/app/appsettings.json
+      - ${PWD}/Volumes/appsettings-worker.json:/app-worker/appsettings.json
+      - ${PWD}/Volumes/microsservice-account-command-db.sql:/docker-entrypoint-initdb.d/microsservice-account-command-db.sql
     networks:
-      - ovb-demos-ecommerce  
-
+      - ovb-demos-ecommerce   
 
   pgadmin:
     image: dpage/pgadmin4
@@ -70,7 +73,7 @@ services:
     image: postgres
     container_name: postgresquery
     volumes:
-      - ./microsservice-account-worker-cqrs.sql:/docker-entrypoint-initdb.d/microsservice-account-worker-cqrs.sql
+      - ${PWD}/Volumes/microsservice-account-worker-cqrs.sql:/docker-entrypoint-initdb.d/microsservice-account-worker-cqrs.sql
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 1234

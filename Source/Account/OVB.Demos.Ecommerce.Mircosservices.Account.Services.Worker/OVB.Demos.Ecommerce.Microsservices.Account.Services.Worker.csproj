@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -21,6 +21,5 @@
     <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.csproj" />
     <ProjectReference Include="..\..\Base\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer\OVB.Demos.Ecommerce.Microsservices.Account.Domain.Protobuffer.csproj" />
-    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.Account.Domain\OVB.Demos.Ecommerce.Microsservices.Account.Domain.csproj" />
   </ItemGroup>
 </Project>
