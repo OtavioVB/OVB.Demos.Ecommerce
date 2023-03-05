@@ -47,8 +47,17 @@ services:
     container_name: 'microsservice-account'
     volumes: 
       - ${PWD}/Volumes/appsettings.json:/app/appsettings.json
-      - ${PWD}/Volumes/appsettings-worker.json:/app-worker/appsettings.json
       - ${PWD}/Volumes/microsservice-account-command-db.sql:/docker-entrypoint-initdb.d/microsservice-account-command-db.sql
+    networks:
+      - ovb-demos-ecommerce   
+   
+  microsservice-account-worker:
+    build:
+      context: ./${PWD}/
+      dockerfile: ./${PWD}/Source/Account/OVB.Demos.Ecommerce.Mircosservices.Account.Services.Worker/Dockerfile
+    container_name: 'microsservice-account-worker'
+    volumes: 
+      - ${PWD}/Volumes/Worker/appsettings-worker.json:/app/appsettings.json
     networks:
       - ovb-demos-ecommerce   
 
