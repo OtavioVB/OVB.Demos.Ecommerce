@@ -1,7 +1,6 @@
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5001
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /Source
@@ -28,4 +27,4 @@ RUN dotnet publish "Source/Account/OVB.Demos.Ecommerce.Microsservices.Account.We
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.dll"]
+ENTRYPOINT ["dotnet", "OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc.dll", "--environment=Development"]

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using OpenTelemetry.Exporter;
 using OVB.Demos.Ecommerce.Microsservices.Account.Application.Services.DependencyInjection;
@@ -13,6 +14,7 @@ using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Observability.Depen
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.RabbitMQ.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry;
 using OVB.Demos.Ecommerce.Microsservices.Base.Infrascructure.Retry.Interfaces;
+using System.Net;
 
 namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc
 {
@@ -21,6 +23,15 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.WebHost.ConfigureKestrel(p =>
+            {
+                p.Listen(IPAddress.Any, 5001, p =>
+                {
+                    p.Protocols = HttpProtocols.Http2;
+                    p.UseHttps();
+                });
+            });
 
             builder.Services.AddSingleton<IAdapter<CreateAccountUseCaseGrpcInput, CreateAccountUseCaseInput>, AdapterCreateAccountUseCaseGrpcInputToCreateAccountUseCaseInput>();
 
@@ -78,16 +89,15 @@ namespace OVB.Demos.Ecommerce.Microsservices.Account.WebGrpc
 
             #endregion
 
-            builder.Services.AddGrpc();
+            builder.Services.AddGrpc(p => p.EnableDetailedErrors = true);
             var app = builder.Build();
+            app.Services.GetService<DataContext>()!.Database.Migrate();
             app.MapGrpcService<AccountService>();
             app.MapPost("/v1/account/create", async context => 
             {
                 await context.Response.WriteAsync("");
             });
-
             app.Run();
-            app.Services.GetService<DataContext>()!.Database.Migrate();
         }
     }
 }

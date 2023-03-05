@@ -72,12 +72,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Volumes", "Volumes", "{C1A7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{0B7E75F1-2FE5-4526-A9AD-A2AAF767AB48}"
 	ProjectSection(SolutionItems) = preProject
-		appsettings-worker.json = appsettings-worker.json
+		Volumes\Worker\appsettings-worker.json = Volumes\Worker\appsettings-worker.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{F5328C8B-DDBE-4397-B6A7-A5B15E97008E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dockerfiles", "Dockerfiles", "{F5328C8B-DDBE-4397-B6A7-A5B15E97008E}"
 	ProjectSection(SolutionItems) = preProject
-		Dockerfile = Dockerfile
+		microsservice-account-worker.Dockerfile = microsservice-account-worker.Dockerfile
+		microsservice-account.Dockerfile = microsservice-account.Dockerfile
 	EndProjectSection
 EndProject
 Global

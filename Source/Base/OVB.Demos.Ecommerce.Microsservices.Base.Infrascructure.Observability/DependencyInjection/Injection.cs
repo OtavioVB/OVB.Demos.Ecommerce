@@ -30,7 +30,7 @@ public static class Injection
                     p.Endpoint = endpointOtlpExporter;
                     p.Protocol = endpointOtlpProtocol;
                 });
-            });
+            }).StartWithHost();
 
         serviceCollection.AddSingleton<ITracingSource>(p =>
         {
@@ -44,7 +44,7 @@ public static class Injection
             return new TracingSource(serviceName, serviceVersion);
         });
 
-        serviceCollection.AddScoped<ITraceManager, TraceManager>();
+        serviceCollection.AddSingleton<ITraceManager, TraceManager>();
 
         return serviceCollection;
     }

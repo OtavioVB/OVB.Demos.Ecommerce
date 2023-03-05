@@ -40,27 +40,6 @@ services:
     networks: 
       - ovb-demos-ecommerce
 
-  microsservice-account:
-    image: microsservice-account:microsservice-account
-    build: 
-      dockerfile: microsservice-account.Dockerfile
-    container_name: 'microsservice-account'
-    volumes: 
-      - ${PWD}/Volumes/appsettings.json:/app/appsettings.json
-      - ${PWD}/Volumes/microsservice-account-command-db.sql:/docker-entrypoint-initdb.d/microsservice-account-command-db.sql
-    networks:
-      - ovb-demos-ecommerce   
-   
-  microsservice-account-worker:
-    image: microsservice-account-worker:microsservice-account-worker
-    build: 
-      dockerfile: microsservice-account-worker.Dockerfile
-    container_name: 'microsservice-account-worker'
-    volumes: 
-      - ${PWD}/Volumes/Worker/appsettings-worker.json:/app/appsettings.json
-    networks:
-      - ovb-demos-ecommerce   
-
   pgadmin:
     image: dpage/pgadmin4
     user: root
@@ -121,6 +100,32 @@ services:
     restart: always
     networks:
       - ovb-demos-ecommerce
+
+  microsservice-account:
+    image: microsservice-account:microsservice-account
+    build: 
+      dockerfile: microsservice-account.Dockerfile
+    container_name: 'microsservice-account'
+    environment:
+      - ASPNETCORE_URLS=https://+:5001
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes: 
+      - ${PWD}/Volumes/appsettings.json:/app/appsettings.json
+      - ${PWD}/Volumes/microsservice-account-command-db.sql:/docker-entrypoint-initdb.d/microsservice-account-command-db.sql
+    ports:
+      - "5001:5001"
+    networks:
+      - ovb-demos-ecommerce   
+   
+  microsservice-account-worker:
+    image: microsservice-account-worker:microsservice-account-worker
+    build: 
+      dockerfile: microsservice-account-worker.Dockerfile
+    container_name: 'microsservice-account-worker'
+    volumes: 
+      - ${PWD}/Volumes/Worker/appsettings-worker.json:/app/appsettings.json
+    networks:
+      - ovb-demos-ecommerce  
 
 networks:
   ovb-demos-ecommerce:
