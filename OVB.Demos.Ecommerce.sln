@@ -52,11 +52,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Company", "Company", "{F6F6081C-47CE-44A7-84FF-148A92F7DAF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.Company.Domain", "Source\Company\OVB.Demos.Ecommerce.Microsservices.Company.Domain\OVB.Demos.Ecommerce.Microsservices.Company.Domain.csproj", "{E65D4462-2C48-42F2-AC04-F510BB258321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.Company.Domain", "Source\Company\OVB.Demos.Ecommerce.Microsservices.Company.Domain\OVB.Demos.Ecommerce.Microsservices.Company.Domain.csproj", "{E65D4462-2C48-42F2-AC04-F510BB258321}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{A88746DA-A0A2-41EF-A9D5-1C2C119BE955}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Commands", "SQL Commands", "{A88746DA-A0A2-41EF-A9D5-1C2C119BE955}"
 	ProjectSection(SolutionItems) = preProject
 		microsservice-account-worker-cqrs.sql = microsservice-account-worker-cqrs.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{142D4131-16D2-430F-8E91-949D881AE63F}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+		start.sh = start.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Open Telemetry Collector", "Open Telemetry Collector", "{CA826D43-9A5F-4D04-AC11-83DD5310A846}"
+	ProjectSection(SolutionItems) = preProject
+		otel-collector-config.yaml = otel-collector-config.yaml
 	EndProjectSection
 EndProject
 Global
@@ -164,6 +175,7 @@ Global
 		{7F87573C-DCB7-4A35-8944-94DF44C5EE0A} = {0721EA75-27F5-456B-A2E6-3E60352CF879}
 		{F6F6081C-47CE-44A7-84FF-148A92F7DAF9} = {A8DFEBA1-1BBE-44D7-AA4B-786599B7E615}
 		{E65D4462-2C48-42F2-AC04-F510BB258321} = {F6F6081C-47CE-44A7-84FF-148A92F7DAF9}
+		{CA826D43-9A5F-4D04-AC11-83DD5310A846} = {142D4131-16D2-430F-8E91-949D881AE63F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBF79964-7822-4D70-AEB1-D41FE73BABA7}
