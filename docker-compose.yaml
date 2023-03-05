@@ -43,14 +43,14 @@ services:
   microsservice-account:
     build: 
       context: .
-      dockerfile: ${PWD}/Dockerfile
+      dockerfile: Dockerfile
     container_name: 'microsservice-account'
     volumes: 
       - ${PWD}/Volumes/appsettings.json:/app/appsettings.json
       - ${PWD}/Volumes/microsservice-account-command-db.sql:/docker-entrypoint-initdb.d/microsservice-account-command-db.sql
-      - ${PWD}/Volumes/Worker/appsettings-worker.json:/app-worker/appsettings.json
+      - ${PWD}/Volumes/Worker/appsettings-worker.json:/app/appsettings.json
     networks:
-      - ovb-demos-ecommerce     
+      - ovb-demos-ecommerce   
 
   pgadmin:
     image: dpage/pgadmin4
