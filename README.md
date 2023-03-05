@@ -34,6 +34,7 @@ Grande parte dos conceitos aplicados, foram escolhidos de modo atento aos proble
 - Architecture in Layers
 - Rich Domain
 - Orchestration Services
+- Choreography Services
 - SOLID Principles
 - Dependency Injection
 - Async Operations
