@@ -1,7 +1,7 @@
 # OVB.Demos.Ecommerce
 
 O projeto foi reiniciado, para voltar aos resultados anteriores:
-- [Reset 1](https://github.com/OtavioVB/OVB.Demos.Ecommerce/commits/main)
+- [Reset 1](https://github.com/OtavioVB/OVB.Demos.Ecommerce/tree/b0d7e882f6046332dd8527cbd8597262a240132f)
 
 ## Projeto em Desenvolvimento 
 
