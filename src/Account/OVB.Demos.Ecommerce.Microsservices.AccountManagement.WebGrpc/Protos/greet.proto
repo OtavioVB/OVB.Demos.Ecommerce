@@ -4,18 +4,22 @@ option csharp_namespace = "OVB.Demos.Ecommerce.Microsservices.AccountManagement.
 
 package greet;
 
-// The greeting service definition.
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply);
+service Account{
+	rpc CreateAccount (CreateAccountInput) returns (CreateAccountOutput);
 }
 
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
+message CreateAccountInput {
+	string username = 1;
+	string name = 2;
+	string last_name = 3;
+	string email = 4;
+	string password = 5;
+	string confirmPassword = 6;
 }
+
 
 // The response message containing the greetings.
-message HelloReply {
-  string message = 1;
+message CreateAccountOutput {
+	int32 status_code = 1;
+	repeated string messages = 2;
 }
