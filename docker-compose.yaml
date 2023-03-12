@@ -30,17 +30,6 @@ services:
     networks:
       - ovb-demos-ecommerce
 
-  microsservice-account:
-    build: 
-      dockerfile: ./src/Account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc/.
-    container_name: 'microsservice-account'
-    volumes: 
-      - ${PWD}/Volumes/microsservice-account-appsettings.json:/app/appsettings.json
-    ports:
-      - "5001:80"
-    networks:
-      - ovb-demos-ecommerce   
-
 networks:
   ovb-demos-ecommerce:
     driver: bridge  

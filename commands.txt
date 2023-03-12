@@ -1,0 +1,3 @@
+docker compose up -d
+dotnet run -p "${PWD}/src/ApiGateway/OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi"
+dotnet run -p "${PWD}/src/Account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc"

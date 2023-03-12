@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc.Services;
+using System.Security.Authentication;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc;
 
@@ -13,7 +15,7 @@ public class Program
 
         builder.WebHost.ConfigureKestrel(p =>
         {
-            p.ConfigureEndpointDefaults(p =>
+            p.ListenLocalhost(5200, p =>
             {
                 p.Protocols = HttpProtocols.Http2;
             });
@@ -23,8 +25,8 @@ public class Program
 
         builder.Services.AddGrpc();
         var app = builder.Build();
-        app.MapGrpcService<GreeterService>();
-        app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+        app.MapGrpcService<AccountService>();
+        app.MapGet("/", () => "Communication with gRPC endpoints.");
         app.Run();
     }
 }

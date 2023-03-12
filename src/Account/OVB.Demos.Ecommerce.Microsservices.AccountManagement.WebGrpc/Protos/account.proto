@@ -5,7 +5,7 @@ option csharp_namespace = "OVB.Demos.Ecommerce.Microsservices.AccountManagement.
 package greet;
 
 service Account{
-	rpc CreateAccount (CreateAccountInput) returns (CreateAccountOutput);
+	rpc CreateUserAccount (CreateAccountInput) returns (CreateAccountOutput);
 }
 
 message CreateAccountInput {

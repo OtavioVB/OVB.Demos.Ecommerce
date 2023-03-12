@@ -1,0 +1,24 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcAccountClient";
+
+package greet;
+
+service Account{
+	rpc CreateUserAccount (CreateAccountInput) returns (CreateAccountOutput);
+}
+
+message CreateAccountInput {
+	string username = 1;
+	string name = 2;
+	string last_name = 3;
+	string email = 4;
+	string password = 5;
+	string confirmPassword = 6;
+}
+
+
+message CreateAccountOutput {
+	int32 status_code = 1;
+	repeated string messages = 2;
+}
