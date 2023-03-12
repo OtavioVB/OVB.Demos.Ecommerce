@@ -24,7 +24,8 @@ public sealed class UserMapping : IEntityTypeConfiguration<User>
             .ValueGeneratedNever()
             .IsRequired()
             .HasColumnName(nameof(User.IsEmailConfirmed))
-            .HasColumnType("BOOLEAN");
+            .HasColumnType("BOOLEAN")
+            .IsFixedLength();
 
         builder.Property(p => p.CreatedOn)
             .ValueGeneratedNever()
@@ -36,13 +37,15 @@ public sealed class UserMapping : IEntityTypeConfiguration<User>
             .ValueGeneratedNever()
             .IsRequired()
             .HasColumnName(nameof(User.TenantIdentifier))
-            .HasColumnType("UUID");
+            .HasColumnType("UUID")
+            .IsFixedLength();
 
         builder.Property(p => p.CorrelationIdentifier)
             .ValueGeneratedNever()
             .IsRequired()
             .HasColumnName(nameof(User.CorrelationIdentifier))
-            .HasColumnType("UUID");
+            .HasColumnType("UUID")
+            .IsFixedLength();
 
         builder.Property(p => p.SourcePlatform)
             .ValueGeneratedNever()

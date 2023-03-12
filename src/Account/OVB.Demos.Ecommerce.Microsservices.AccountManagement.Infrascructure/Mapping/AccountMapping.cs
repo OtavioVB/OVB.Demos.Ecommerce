@@ -15,6 +15,8 @@ public sealed class AccountMapping : IEntityTypeConfiguration<Account>
 
         // Foreign Key
         builder.HasOne(p => p.User).WithOne(p => p.Account).HasForeignKey<User>(p => p.AccountIdentifier);
+        builder.HasOne(p => p.AccountAddress).WithMany(p => p.Accounts);
+        builder.HasMany(p => p.AccountPhones).WithOne(p => p.Account);
 
         // Index
         builder.HasIndex(p => p.Cpf).IsUnique().HasDatabaseName($"UK_{nameof(Account)}_{nameof(Account.Cpf)}");
@@ -23,8 +25,45 @@ public sealed class AccountMapping : IEntityTypeConfiguration<Account>
         builder.Property(p => p.Cpf)
             .ValueGeneratedNever()
             .IsRequired()
-            .HasColumnType("CHAR(11)")
+            .HasColumnType("CHAR")
             .HasColumnName(nameof(Account.Cpf))
-            .HasMaxLength(11);
+            .HasMaxLength(Cpf.Length)
+            .IsFixedLength(true);
+
+        builder.Property(p => p.GeneralRegistry)
+            .ValueGeneratedNever()
+            .IsRequired()
+            .HasColumnType("CHAR")
+            .HasColumnName(nameof(Account.GeneralRegistry))
+            .HasMaxLength(GeneralRegistry.Length)
+            .IsFixedLength(true);
+
+        builder.Property(p => p.TenantIdentifier)
+            .ValueGeneratedNever()
+            .IsRequired()
+            .HasColumnName(nameof(Account.TenantIdentifier))
+            .HasColumnType("UUID")
+            .IsFixedLength(true);
+
+        builder.Property(p => p.CorrelationIdentifier)
+            .ValueGeneratedNever()
+            .IsRequired()
+            .HasColumnName(nameof(Account.CorrelationIdentifier))
+            .HasColumnType("UUID")
+            .IsFixedLength(true);
+
+        builder.Property(p => p.SourcePlatform)
+            .ValueGeneratedNever()
+            .IsRequired()
+            .HasColumnType("VARCHAR")
+            .HasColumnName(nameof(Account.SourcePlatform))
+            .HasMaxLength(SourcePlatform.MaxLength);
+
+        builder.Property(p => p.AddressComplement)
+            .ValueGeneratedNever()
+            .HasColumnType("VARCHAR")
+            .IsRequired(false)
+            .HasColumnName(nameof(Account.AddressComplement))
+            .HasMaxLength(AddressComplement.MaxLength);
     }
 }
