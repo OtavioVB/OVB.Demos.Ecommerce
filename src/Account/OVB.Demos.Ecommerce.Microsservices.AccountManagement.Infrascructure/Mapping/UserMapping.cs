@@ -12,6 +12,9 @@ public sealed class UserMapping : IEntityTypeConfiguration<User>
         // Primary Key
         builder.HasKey(p => p.Identifier).HasName($"PK_{nameof(User)}_{nameof(User.Identifier)}");
 
+        // Foreign Key
+        builder.HasOne(p => p.Account).WithOne(p => p.User).HasForeignKey<User>(p => p.AccountIdentifier);
+
         // Index
         builder.HasIndex(p => p.Username).IsUnique().HasDatabaseName($"UK_{nameof(User)}_{nameof(User.Username)}");
         builder.HasIndex(p => p.Email).IsUnique().HasDatabaseName($"UK_{nameof(User)}_{nameof(User.Email)}");

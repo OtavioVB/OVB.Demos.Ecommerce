@@ -1,4 +1,5 @@
 ﻿using OVB.Demos.Ecommerce.Libraries.Domain;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.AccountContext.DataTransferObject;
 
@@ -15,4 +16,5 @@ public sealed class Account : DataTransferObjectBase
     public string Cpf { get; set; }
     public string GeneralRegistry { get; set; }
     public string Phone { get; set; }
+    public User? User { get; set; }
 }
