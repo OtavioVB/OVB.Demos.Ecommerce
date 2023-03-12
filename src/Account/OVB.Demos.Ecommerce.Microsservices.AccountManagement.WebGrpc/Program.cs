@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc.Services;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc;
@@ -7,6 +8,19 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        #region Kestrel Configuration
+
+        builder.WebHost.ConfigureKestrel(p =>
+        {
+            p.ConfigureEndpointDefaults(p =>
+            {
+                p.Protocols = HttpProtocols.Http2;
+            });
+        });
+
+        #endregion
+
         builder.Services.AddGrpc();
         var app = builder.Build();
         app.MapGrpcService<GreeterService>();
