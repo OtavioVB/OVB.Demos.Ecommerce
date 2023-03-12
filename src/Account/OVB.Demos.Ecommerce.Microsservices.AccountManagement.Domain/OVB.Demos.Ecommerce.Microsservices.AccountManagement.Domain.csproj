@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Domain\OVB.Demos.Ecommerce.Libraries.Domain.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ValueObjects\" />
+    <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Domain\OVB.Demos.Ecommerce.Libraries.Domain.csproj" />
   </ItemGroup>
 
 </Project>
