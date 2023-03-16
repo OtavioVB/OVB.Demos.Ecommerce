@@ -1,5 +1,11 @@
 import './LandingPage.css';
+import { Fragment } from 'react';
+import Header from '../../sections/Header/Header.js';
 
 export default function LandingPage(){
-    return (<p>LandingPage</p>);
+    return (
+        <Fragment>
+            <Header></Header>
+        </Fragment>
+    );
 }

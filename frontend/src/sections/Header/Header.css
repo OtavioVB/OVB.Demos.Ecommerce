@@ -1,0 +1,113 @@
+.header-ecommerce-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border-bottom: solid 0.5px gainsboro;
+    padding: 12px 16px;
+}
+
+.header-ecommerce-content-title-definition{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.header-ecommerce-content-title-definition-value{
+    font-size: 22px;
+    color: black;
+    font-weight: 600;
+}
+
+.separator {
+    vertical-align: middle;
+    width: 1px;
+    height: 20px;
+    background: gainsboro;
+    margin: 0 2vw;
+}
+
+.header-ecommerce-content-navigation, .header-ecommerce-content-navigation-nav, .header-ecommerce-content-navigation-nav-content-list{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header-ecommerce-content-navigation-nav-content-list-item{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 8px;
+}
+
+.header-ecommerce-content-navigation-nav-content-list-link{
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.header-ecommerce-content-navigation-nav-content-list-link:hover{
+    color: rgb(60, 53, 66);
+}
+
+#support-icon{
+    height: 12px;
+    width: 12px;
+    margin-left: 5px;
+    transition: 0.5s;
+}
+
+.header-ecommerce-content-navigation-nav-content-list-category{
+    display: none;
+    position: absolute;
+    border: solid 0.5px gainsboro;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    top: 55px;
+    padding: 8px 15px;
+    background-color: white;
+}
+
+.header-ecommerce-content-navigation-nav-content-list-category-item{
+    color: black;
+    list-style: none;
+    padding: 3px 8px;
+}
+
+.header-ecommerce-content-navigation-nav-content-list-category-item:hover{
+    background-color: rgb(249, 240, 255);
+    border-radius: 4px;
+}
+
+.header-ecommerce-content-account{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-ecommerce-content-navigation-nav-content-list-category-item-link{
+    text-decoration: none;
+    color: black;   
+}
+
+.header-ecommerce-content-account-link{
+    background-color: rgb(96, 40, 104);
+    padding: 5px 24px;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    font-weight: 505;
+}
