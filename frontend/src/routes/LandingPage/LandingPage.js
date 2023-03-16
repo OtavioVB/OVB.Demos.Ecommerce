@@ -6,6 +6,10 @@ export default function LandingPage(){
     return (
         <Fragment>
             <Header></Header>
+            <main>
+                <section class="section-view-most-popular-produts">
+                </section>
+            </main>
         </Fragment>
     );
 }
