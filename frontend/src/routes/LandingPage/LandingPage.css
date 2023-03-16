@@ -1,0 +1,126 @@
+main{
+    overflow-x: hidden;
+}
+
+.section-view-most-popular-products{
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    padding: 12px 10vw;
+    background-color: rgb(248, 242, 255);
+    border-top: 0.5px solid gainsboro;
+    border-bottom: 0.5px solid gainsboro;
+    margin-top: 50px;
+}
+
+.section-view-most-popular-products-content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+
+.section-view-most-popular-product-content-view{
+    background-color: white;
+    padding: 22px 22px;
+}
+
+.section-view-most-popular-product-content-view-title{
+    font-size: 16px;
+}
+
+.section-view-most-popular-products-content-carrousel{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    padding: 15px 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 55px;
+    border-left: 0.3px gainsboro solid;
+    border-right: 0.3px gainsboro solid;
+}
+
+.section-view-most-popular-products-content-carrousel-product-information{
+    padding: 16px 22px;
+    background-color: white;
+    margin: 0 8px;
+    box-shadow: 0px 0 15px 0 rgba(0,0,0,0.1);
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.section-view-most-popular-products-content-carrousel-product-information:hover{
+    box-shadow: 0px 0 15px 0 rgba(0,0,0,0.25);
+}
+
+.section-view-most-popular-products-content-carrousel-product-information-image{
+    height: 200px;
+    width: 200px;
+    background-color: black;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.section-view-most-popular-products-content-carrousel-product-information-title{
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.section-view-most-popular-products-content-carrousel-product-information-discount{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.section-view-most-popular-products-content-carrousel-product-information-discount-value{
+    color: rgb(0, 155, 0);
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.section-view-most-popular-products-content-carrousel-product-information-discount-value-porcentage{
+    font-weight: bold;
+    font-size: 10px;
+    background-color: rgb(0, 155, 0);
+    color: white;
+    text-align: center;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+
+.section-view-most-popular-products-content-carrousel-product-information-discount-description{
+    font-size: 14px;
+}
+
+#next-icon, #back-icon{
+    position: absolute;
+    box-shadow: 0px 0 15px 0 rgba(0,0,0,0.2);
+    border-radius: 50%;
+    color: black;
+    height: 30px;
+    width: 30px;
+    transition: 0.3s;
+}
+
+#next-icon:hover{
+    box-shadow: 0px 0 15px 0 rgba(0,0,0,0.4);
+}
+
+#back-icon:hover{
+    box-shadow: 0px 0 15px 0 rgba(0,0,0,0.4);
+}
+
+#back-icon{
+    rotate: 90deg;
+    left: 0;
+    margin-left: calc(10vw - 14px);
+}
+
+#next-icon{
+    margin-right: 0;
+    margin-left: calc(80vw - 8px);
+    rotate: -90deg;
+}

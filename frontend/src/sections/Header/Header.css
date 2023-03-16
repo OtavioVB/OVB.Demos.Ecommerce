@@ -110,4 +110,9 @@
     text-decoration: none;
     color: white;
     font-weight: 505;
+    transition: 0.5s;
+}
+
+.header-ecommerce-content-account-link:hover{
+    background-color: rgb(74, 0, 83);
 }
