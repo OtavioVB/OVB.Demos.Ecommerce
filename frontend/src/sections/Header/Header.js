@@ -57,7 +57,7 @@ export default function Header(){
                 <span class="separator"></span>
             </div>
             <div class="header-ecommerce-content-account">
-                <a class="header-ecommerce-content-account-link" href="https://google.com.br">Entrar</a>
+                <a class="header-ecommerce-content-account-link" href="http://localhost:3000/authentication">Entrar</a>
             </div>
         </div>
     </header>
