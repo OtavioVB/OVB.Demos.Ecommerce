@@ -24,6 +24,13 @@
     background-color: black;
 }
 
+.authentication-main-distribution-content-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) opacity(1) saturate(0.5); 
+}
+
 .authentication-main-distribution-form-area{
     display: flex;
     flex-direction: column;
@@ -56,4 +63,14 @@
 
 .authentication-main-distribution-form-area-footer-text-bold-author-reference{
     text-decoration: none;
+}
+
+@media screen and (max-width: 930px) {
+    .authentication-main-distribution-content{
+        display: none;
+    }
+
+    .authentication-main-distribution-form-area{
+        width: 95vw;
+    }
 }
