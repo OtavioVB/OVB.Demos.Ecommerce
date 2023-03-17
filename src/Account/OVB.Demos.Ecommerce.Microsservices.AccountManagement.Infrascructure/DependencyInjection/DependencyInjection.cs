@@ -5,6 +5,8 @@ using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Reposi
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories.Base;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories.Extensions;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories.Interfaces;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.UnitOfWork;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.UnitOfWork.Interfaces;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.DependencyInjection;
 
@@ -13,6 +15,8 @@ public static class DependencyInjection
     public static IServiceCollection AddOvbInfrascructureConfiguration(this IServiceCollection serviceCollection, string databaseConnectionString, string migrationsAssembly)
     {
         serviceCollection.AddDbContextPool<DataContext>(p => p.UseNpgsql(databaseConnectionString, p => p.MigrationsAssembly(migrationsAssembly)), 20);
+
+        serviceCollection.AddScoped<IUnitOfWork, DefaultUnitOfWork>();
 
         serviceCollection.AddScoped<IBaseRepository<User>, UserRepository>();
         serviceCollection.AddScoped<BaseRepository<User>, UserRepository>();

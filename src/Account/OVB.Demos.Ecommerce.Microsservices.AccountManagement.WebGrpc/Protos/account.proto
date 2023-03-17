@@ -14,6 +14,7 @@ message CreateAccountInput {
 	string last_name = 3;
 	string email = 4;
 	string password = 5;
+	string confirm_password = 6;
 }
 
 

@@ -13,6 +13,9 @@ public sealed class UserRepository : BaseRepository<User>, IExtensionUserReposit
 
     public Task<bool> VerifyUserExistsByUsernameOrEmail(string username, string email, CancellationToken cancellationToken)
     {
+        if (_dataContext.Set<User>().Local.Where(p => p.Username == username || p.Email == email).Any() == true)
+            return Task.FromResult(true);
+
         return _dataContext.Set<User>().Where(p => p.Username == username || p.Email == email).AnyAsync(cancellationToken);
     }
 }

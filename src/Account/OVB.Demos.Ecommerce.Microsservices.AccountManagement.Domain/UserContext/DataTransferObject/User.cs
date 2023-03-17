@@ -5,7 +5,7 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContex
 
 public sealed class User : DataTransferObjectBase
 {
-    public User(string username, string name, string lastName, string email, string password, bool isEmailConfirmed, 
+    public User(string username, string name, string lastName, string email, string password, bool isEmailConfirmed, int typeUser,
         Guid identifier, Guid tenantIdentifier, Guid correlationIdentifier, string sourcePlatform, DateTime createdOn) 
         : base(identifier, tenantIdentifier, correlationIdentifier, sourcePlatform, createdOn)
     {
@@ -15,6 +15,7 @@ public sealed class User : DataTransferObjectBase
         Email = email;
         Password = password;
         IsEmailConfirmed = isEmailConfirmed;
+        TypeUser = typeUser;
     }
 
     public string Username { get; set; }
@@ -22,6 +23,7 @@ public sealed class User : DataTransferObjectBase
     public string LastName { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
+    public int TypeUser { get; set; }
     public bool IsEmailConfirmed { get; set; }
 
     public Guid AccountIdentifier { get; set; }

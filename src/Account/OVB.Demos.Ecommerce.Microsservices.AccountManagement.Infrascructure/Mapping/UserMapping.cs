@@ -27,6 +27,12 @@ public sealed class UserMapping : IEntityTypeConfiguration<User>
             .HasColumnType("BOOLEAN")
             .IsFixedLength();
 
+        builder.Property(p => p.TypeUser)
+            .ValueGeneratedNever()
+            .IsRequired()
+            .HasColumnName(nameof(User.TypeUser))
+            .HasColumnType("TINYINT");
+
         builder.Property(p => p.CreatedOn)
             .ValueGeneratedNever()
             .IsRequired()
