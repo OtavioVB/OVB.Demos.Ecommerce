@@ -49,6 +49,9 @@ export default function Header(){
                                 </li>
                             </ul>
                         </li>
+                        <li class="header-ecommerce-content-navigation-nav-content-list-item">
+                            <a href="https://google.com.br" class="header-ecommerce-content-navigation-nav-content-list-link">Servidor</a>
+                        </li>
                     </ul>
                 </nav>
                 <span class="separator"></span>

@@ -29,9 +29,10 @@ export default function LandingPage(){
         <Fragment>
             <Header></Header>
             <main>
+                <p class="quantity-of-users">Atualmente, somos uma plataforma com <b>1 usuários</b> ativos. &#127919;</p>
                 <section class="section-view-most-popular-products">
                     <div class="section-view-most-popular-products-content">
-                        <h1 class="section-view-most-popular-products-content-title">Ofertas</h1>
+                        <h1 class="section-view-most-popular-products-content-title">Ofertas &#128184;</h1>
                         <div class="section-view-most-popular-products-content-carrousel">
                             <div id="allcontent" class="section-view-most-popular-products-content-carrousel-allcontent">
                                 <div class="section-view-most-popular-products-content-carrousel-product-information">

@@ -2,6 +2,14 @@ main{
     overflow-x: hidden;
 }
 
+.quantity-of-users{
+    padding: 4px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 13px;
+}
+
 .section-view-most-popular-products{
     display: flex;
     align-items: center;
