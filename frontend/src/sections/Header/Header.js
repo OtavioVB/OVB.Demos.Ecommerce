@@ -26,7 +26,7 @@ export default function Header(){
     <header>
         <div class="header-ecommerce-content">
             <div class="header-ecommerce-content-title-definition">
-                <h1 class="header-ecommerce-content-title-definition-value"><strong>Ecommerce</strong></h1>
+                <h1 class="header-ecommerce-content-title-definition-value"><strong><a class="header-ecommerce-content-title-definition-value-link" href="http://localhost:3000/">Ecommerce</a></strong></h1>
                 <span class="separator"></span>
             </div>
             <div class="header-ecommerce-content-navigation">
@@ -50,7 +50,7 @@ export default function Header(){
                             </ul>
                         </li>
                         <li class="header-ecommerce-content-navigation-nav-content-list-item">
-                            <a href="https://google.com.br" class="header-ecommerce-content-navigation-nav-content-list-link">Servidor</a>
+                            <a href="http://localhost:3000/server/status" class="header-ecommerce-content-navigation-nav-content-list-link">Servidor</a>
                         </li>
                     </ul>
                 </nav>

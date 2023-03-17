@@ -7,6 +7,11 @@
     padding: 12px 16px;
 }
 
+.header-ecommerce-content-title-definition-value-link{
+    color: black;
+    text-decoration: none;
+}
+
 .header-ecommerce-content-title-definition{
     display: flex;
     flex-direction: row;
@@ -53,6 +58,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    cursor: pointer;
 }
 
 .header-ecommerce-content-navigation-nav-content-list-link:hover{
