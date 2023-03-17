@@ -20,6 +20,11 @@ export default function Authentication(){
                     <SeparatorHorizontal Text="Ainda não tem uma conta?"></SeparatorHorizontal>
                     <ButtonRedirection Href="https://google.com.br" Value="Criar conta como empresa"></ButtonRedirection>
                     <ButtonRedirection Href="https://google.com.br" Value="Criar conta como membro"></ButtonRedirection>
+                    <div class="authentication-main-distribution-form-area-footer">
+                        <SeparatorHorizontal Text="Contribuidores"></SeparatorHorizontal>
+                        <p class="authentication-main-distribution-form-area-footer-text">Copyright &copy; 2023 - Ecommerce | Desenvolvido com &#128156; por 
+                        <a class="authentication-main-distribution-form-area-footer-text-bold-author-reference" href="https://www.linkedin.com/in/otaviovillasboassimoncinicarmanini/"><b class="authentication-main-distribution-form-area-footer-text-bold"> Otávio Villas Boas Simoncini Carmanini</b></a></p>
+                    </div>
                 </div>
                 <div class="authentication-main-distribution-content">
                     
