@@ -26,10 +26,11 @@ export default function Authentication(){
                     <FormItem Placeholder="********" Identifier="password" Text="Senha" TypeInput="password"></FormItem>
                     <FormSubmitItem Value="Entrar agora mesmo" Identifier="submit-form"></FormSubmitItem>
                     <SeparatorHorizontal Text="ou"></SeparatorHorizontal>
-                    <ButtonRedirection Href="https://google.com.br" Value="Entrar como empresa"></ButtonRedirection>
+                    <ButtonRedirection Href="/authentication/company/login" Value="Entrar como empresa"></ButtonRedirection>
                     <SeparatorHorizontal Text="Ainda não tem uma conta?"></SeparatorHorizontal>
-                    <ButtonRedirection Href="https://google.com.br" Value="Criar conta como empresa"></ButtonRedirection>
-                    <ButtonRedirection Href="https://google.com.br" Value="Criar conta como membro"></ButtonRedirection>
+                    <ButtonRedirection Href="/authentication/company/create" Value="Criar conta como empresa"></ButtonRedirection>
+                    <ButtonRedirection Href="/authentication/member/create" Value="Criar conta como membro"></ButtonRedirection>
+                    <ButtonRedirection Href="/" Value="Página Inicial"></ButtonRedirection>
                     <div className="authentication-main-distribution-form-area-footer">
                         <SeparatorHorizontal Text="Contribuidores"></SeparatorHorizontal>
                         <p className="authentication-main-distribution-form-area-footer-text">Copyright &copy; 2023 - Ecommerce | Desenvolvido com &#128156; por 
