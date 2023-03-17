@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc.Services;
 using System.Security.Authentication;
 
@@ -23,10 +24,25 @@ public class Program
 
         #endregion
 
+        #region Infrascructure Configuration
+
+        var databaseConnectionString = builder.Configuration["Infrascructure:Databases:EntityFrameworkCore:PostgreeSQL:ConnectionString"];
+        var migrationsAssembly = builder.Configuration["Infrascructure:Databases:EntityFrameworkCore:PostgreeSQL:MigrationsAssembly"];
+
+        if (databaseConnectionString is null)
+            throw new Exception("Is not possible to connect in database, because the connection string is not valid.");
+
+        if (migrationsAssembly is null)
+            throw new Exception("Is not possible to configure the database, because the migrations assembly is not valid.");
+
+        builder.Services.AddOvbInfrascructureConfiguration(databaseConnectionString, migrationsAssembly);
+
+        #endregion
+
         builder.Services.AddGrpc();
         var app = builder.Build();
         app.MapGrpcService<AccountService>();
-        app.MapGet("/", () => "Communication with gRPC endpoints.");
+        app.MapGet("/", () => "Communication with endpoints.");
         app.Run();
     }
 }
