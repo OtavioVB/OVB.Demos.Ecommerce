@@ -10,7 +10,9 @@ export default function Authentication(){
     React.useEffect(() => {
         document.getElementById("submit-form").addEventListener("click", () => {
             let inputUsername = document.getElementById("username");
+            let inputPassword = document.getElementById("password");
             console.log(inputUsername.value);
+            console.log(inputPassword.value);
         });
     });
 
