@@ -40,6 +40,16 @@ main{
     border-radius: 55px;
     border-left: 0.3px gainsboro solid;
     border-right: 0.3px gainsboro solid;
+    background-color: white;
+    margin-top: 15px;
+}
+
+.section-view-most-popular-products-content-carrousel-allcontent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .section-view-most-popular-products-content-carrousel-product-information{
@@ -79,6 +89,11 @@ main{
     color: rgb(0, 155, 0);
     margin-right: 5px;
     font-size: 18px;
+}
+
+#first{
+    transition: 0.5s;
+    position: relative;
 }
 
 .section-view-most-popular-products-content-carrousel-product-information-discount-value-porcentage{
