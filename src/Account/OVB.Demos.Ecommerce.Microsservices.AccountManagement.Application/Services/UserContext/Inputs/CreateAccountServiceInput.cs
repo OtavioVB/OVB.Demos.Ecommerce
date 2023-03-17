@@ -2,7 +2,8 @@
 
 public struct CreateAccountServiceInput
 {
-    public CreateAccountServiceInput(string username, string name, string lastName, string email, string password, string confirmPassword)
+    public CreateAccountServiceInput(string username, string name, string lastName, string email, string password, string confirmPassword, Guid tenantIdentifier,
+        Guid correlationIdentifier, string sourcePlatform)
     {
         Username = username;
         Name = name;
@@ -10,6 +11,9 @@ public struct CreateAccountServiceInput
         Email = email;
         Password = password;
         ConfirmPassword = confirmPassword;
+        TenantIdentifier = tenantIdentifier;
+        CorrelationIdentifier = correlationIdentifier;
+        SourcePlatform = sourcePlatform;
     }
 
     public string Username { get; init; }
@@ -18,4 +22,7 @@ public struct CreateAccountServiceInput
     public string Email { get; init; }
     public string Password { get; init; }
     public string ConfirmPassword { get; init; }
+    public Guid TenantIdentifier { get; init; }
+    public Guid CorrelationIdentifier { get; init; }
+    public string SourcePlatform { get; init; }
 }

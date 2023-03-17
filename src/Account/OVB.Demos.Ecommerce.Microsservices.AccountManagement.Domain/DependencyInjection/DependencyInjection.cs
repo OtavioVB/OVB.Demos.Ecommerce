@@ -7,7 +7,7 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.Dependency
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddDomainAccountManagementMicrosserviceConfigurations(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddOvbDomainAccountManagementMicrosserviceConfiguration(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddDomainValidatorsConfiguration();
 

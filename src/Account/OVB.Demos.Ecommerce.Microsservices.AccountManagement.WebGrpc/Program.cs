@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc.Services;
 using System.Security.Authentication;
@@ -24,6 +26,12 @@ public class Program
 
         #endregion
 
+        #region Domain Configuration
+
+        builder.Services.AddOvbDomainAccountManagementMicrosserviceConfiguration();
+
+        #endregion
+
         #region Infrascructure Configuration
 
         var databaseConnectionString = builder.Configuration["Infrascructure:Databases:EntityFrameworkCore:PostgreeSQL:ConnectionString"];
@@ -36,6 +44,12 @@ public class Program
             throw new Exception("Is not possible to configure the database, because the migrations assembly is not valid.");
 
         builder.Services.AddOvbInfrascructureConfiguration(databaseConnectionString, migrationsAssembly);
+
+        #endregion
+
+        #region Application Configuration
+
+        builder.Services.AddOvbAccountManagementMicrosserviceApplicationConfiguration();
 
         #endregion
 

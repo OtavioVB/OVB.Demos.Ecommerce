@@ -6,7 +6,7 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Depen
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddOvbApplicationConfiguration(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddOvbAccountManagementMicrosserviceApplicationConfiguration(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddScoped<IUserService, UserService>();
 
