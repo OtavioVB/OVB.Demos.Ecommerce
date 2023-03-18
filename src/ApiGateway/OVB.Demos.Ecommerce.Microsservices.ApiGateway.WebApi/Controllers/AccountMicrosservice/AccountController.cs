@@ -23,7 +23,6 @@ public class AccountController : ControllerBase
         [FromBody] CreateUserAccountPayloadInput input,
         CancellationToken cancellationToken)
     {
-
         var grpcChannel = GrpcChannel.ForAddress("http://localhost:5200", new GrpcChannelOptions());
         var client = new Account.AccountClient(grpcChannel);
         var call = await client.CreateUserAccountAsync(new CreateAccountInput()
@@ -31,7 +30,7 @@ public class AccountController : ControllerBase
             ConfirmPassword = input.ConfirmPassword,
             CorrelationIdentifier = input.CorrelationIdentifier.ToString(),
             Email = input.Email,
-            LastName = input.LastName, 
+            LastName = input.LastName,
             Name = input.Name,
             Password = input.Password,
             SourcePlatform = input.SourcePlatform,

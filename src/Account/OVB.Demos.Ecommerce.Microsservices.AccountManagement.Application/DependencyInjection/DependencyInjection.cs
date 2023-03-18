@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.UseCases.Interfaces;
@@ -12,6 +13,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddOvbAccountManagementMicrosserviceApplicationConfiguration(this IServiceCollection serviceCollection)
     {
+        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration();
+
         serviceCollection.AddScoped<IUserService, UserService>();
 
         serviceCollection.AddScoped<IUseCase<CreateUserUseCaseInput, CreateUserUseCaseOutput>, CreateUserUseCase>();
