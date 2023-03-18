@@ -36,6 +36,24 @@ Com a pasta da solução em aberto, comece executando o **Docker Compose** para 
 docker compose up -d
 ```
 
+Nesse momento é necessário a definição dos appsettings.json para cada microsserviço/workerservice/apigateway:
+
+Microsservice Account: OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc
+```json
+{
+  "Infrascructure": {
+    "Databases": {
+      "EntityFrameworkCore": {
+        "PostgreeSQL": {
+          "ConnectionString": "User Id=admin;Password=1234;Server=localhost;Port=5432;Database=ovbdemosecommerceaccountmanagement",
+          "MigrationsAssembly": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure"
+        }
+      }
+    }
+  }
+}
+```
+
 Agora é possível que você rode cada microsserviço/apigateway/workerservice:
 
 ```
