@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories.Base;
@@ -14,6 +15,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddOvbInfrascructureConfiguration(this IServiceCollection serviceCollection, string databaseConnectionString, string migrationsAssembly)
     {
+        serviceCollection.AddOvbRetryPoliciesConfiguration(TimeSpan.FromMilliseconds(50), 5);
+
         serviceCollection.AddDbContextPool<DataContext>(p => p.UseNpgsql(databaseConnectionString, p => p.MigrationsAssembly(migrationsAssembly)), 20);
 
         serviceCollection.AddScoped<IUnitOfWork, DefaultUnitOfWork>();
