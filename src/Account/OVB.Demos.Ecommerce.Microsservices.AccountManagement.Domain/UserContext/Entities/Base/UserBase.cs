@@ -4,8 +4,6 @@ using OVB.Demos.Ecommerce.Libraries.Domain.ENUMs;
 using OVB.Demos.Ecommerce.Libraries.Domain.ValueObjects;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.ENUMs;
-using System.Data.Common;
-using System.Diagnostics;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.Entities.Base;
 
