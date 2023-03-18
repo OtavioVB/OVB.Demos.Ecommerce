@@ -11,7 +11,40 @@ O **objetivo** desse projeto é aplicar os principais conceitos utilizados em co
 
 # ⚙️ Como rodar o projeto
 
-Por enquanto ainda `não é possível rodar o projeto`.
+## Pré-Requisitos
+- .NET 7 SDK Instalado.
+- Docker instalado.
+- Conhecimento básicos de Docker e C#/.NET
+
+## Executando
+
+Para rodar o projeto, primeramente, é necessário `que você clone o projeto na sua máquina para assim conseguir rodar as dependências externas e as aplicações:
+
+```
+git clone https://github.com/otaviovb/ovb.demos.ecommerce
+```
+
+Após rodar o projeto, entre na pasta da solução:
+
+```
+cd OVB.Demos.Ecommerce
+```
+
+Com a pasta da solução em aberto, comece executando o **Docker Compose** para implantação das dependências necessárias:
+
+```
+docker compose up -d
+```
+
+Agora é possível que você rode cada microsserviço/apigateway/workerservice:
+
+```
+dotnet run --project "src/Account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc"
+```
+
+```
+dotnet run --project "src/ApiGateway/OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi"
+```
 
 # 🧑‍🤝‍🧑 Autor
 
