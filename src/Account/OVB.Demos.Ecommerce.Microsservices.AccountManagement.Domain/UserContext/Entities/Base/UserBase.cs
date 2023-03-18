@@ -3,6 +3,7 @@ using OVB.Demos.Ecommerce.Libraries.Domain;
 using OVB.Demos.Ecommerce.Libraries.Domain.ENUMs;
 using OVB.Demos.Ecommerce.Libraries.Domain.ValueObjects;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.ENUMs;
 using System.Data.Common;
 using System.Diagnostics;
 
@@ -130,7 +131,7 @@ public abstract class UserBase : DomainEntityBase
         Name = name;
         LastName = lastName;
         User = new User(username.ToString(), name.ToString(), lastName.ToString(), email.ToString(), password.ToString(),
-            false, Identifier, TenantIdentifier, CorrelationIdentifier, SourcePlatform.ToString(), CreatedOn);
+            false, (int)TypeUser.Default,Identifier, TenantIdentifier, CorrelationIdentifier, SourcePlatform.ToString(), CreatedOn);
         State = DomainState.Available;
     }
 }

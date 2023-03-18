@@ -20,5 +20,6 @@ public sealed class Account : DataTransferObjectBase
     public string AddressComplement { get; set; }
     public AccountAddress? AccountAddress { get; set; }
     public List<AccountPhone> AccountPhones { get; set; } = new List<AccountPhone>(); 
+    public Guid UserIdentifier { get; set; }
     public User? User { get; set; }
 }

@@ -20,8 +20,6 @@ message CreateAccountInput {
 	string source_platform = 9;
 }
 
-
-// The response message containing the greetings.
 message CreateAccountOutput {
 	int32 status_code = 1;
 	repeated string messages = 2;

@@ -15,7 +15,21 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.51.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.csproj" />
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.csproj" />
   </ItemGroup>
 
 </Project>

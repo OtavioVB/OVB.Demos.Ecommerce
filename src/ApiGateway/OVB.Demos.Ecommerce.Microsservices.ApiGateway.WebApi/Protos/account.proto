@@ -14,9 +14,11 @@ message CreateAccountInput {
 	string last_name = 3;
 	string email = 4;
 	string password = 5;
-	string confirmPassword = 6;
+	string confirm_password = 6;
+	string tenant_identifier = 7;
+	string correlation_identifier = 8;
+	string source_platform = 9;
 }
-
 
 message CreateAccountOutput {
 	int32 status_code = 1;

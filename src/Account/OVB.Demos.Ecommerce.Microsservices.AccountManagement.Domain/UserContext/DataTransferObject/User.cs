@@ -25,7 +25,5 @@ public sealed class User : DataTransferObjectBase
     public string Password { get; set; }
     public int TypeUser { get; set; }
     public bool IsEmailConfirmed { get; set; }
-
-    public Guid AccountIdentifier { get; set; }
     public Account? Account { get; set; }
 }

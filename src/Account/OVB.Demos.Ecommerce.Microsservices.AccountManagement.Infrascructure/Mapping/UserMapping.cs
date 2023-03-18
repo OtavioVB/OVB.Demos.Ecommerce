@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OVB.Demos.Ecommerce.Libraries.Domain.ValueObjects;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.AccountContext.DataTransferObject;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Mapping;
@@ -13,7 +14,7 @@ public sealed class UserMapping : IEntityTypeConfiguration<User>
         builder.HasKey(p => p.Identifier).HasName($"PK_{nameof(User)}_{nameof(User.Identifier)}");
 
         // Foreign Key
-        builder.HasOne(p => p.Account).WithOne(p => p.User).HasForeignKey<User>(p => p.AccountIdentifier);
+        builder.HasOne(p => p.Account).WithOne(p => p.User).HasForeignKey<Account>(p => p.UserIdentifier);
 
         // Index
         builder.HasIndex(p => p.Username).IsUnique().HasDatabaseName($"UK_{nameof(User)}_{nameof(User.Username)}");
@@ -31,7 +32,7 @@ public sealed class UserMapping : IEntityTypeConfiguration<User>
             .ValueGeneratedNever()
             .IsRequired()
             .HasColumnName(nameof(User.TypeUser))
-            .HasColumnType("TINYINT");
+            .HasColumnType("SMALLINT");
 
         builder.Property(p => p.CreatedOn)
             .ValueGeneratedNever()
@@ -64,7 +65,7 @@ public sealed class UserMapping : IEntityTypeConfiguration<User>
             .ValueGeneratedNever()
             .IsRequired()
             .HasColumnType("VARCHAR")
-            .HasColumnName(nameof(User.Email))
+            .HasColumnName(nameof(User.Username))
             .HasMaxLength(Username.MaxLength);
 
         builder.Property(p => p.Name)

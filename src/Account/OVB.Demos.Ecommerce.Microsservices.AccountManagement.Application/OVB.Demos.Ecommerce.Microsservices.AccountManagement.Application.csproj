@@ -7,16 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="UseCases\**" />
-    <EmbeddedResource Remove="UseCases\**" />
-    <None Remove="UseCases\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.csproj" />
   </ItemGroup>
 

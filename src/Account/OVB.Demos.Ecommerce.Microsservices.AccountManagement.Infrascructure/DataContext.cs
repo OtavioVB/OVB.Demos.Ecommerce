@@ -9,11 +9,17 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure;
 
 public sealed class DataContext : DbContext
 {
+    public DataContext(DbContextOptions options) : base(options)
+    {
+    }
+
     public DbSet<Account> Accounts { get; set; }
     public DbSet<AccountAddress> AccountAddresses { get; set; }
     public DbSet<AccountPhone> AccountPhones { get; set; }
 
     public DbSet<User> Users { get; set; }
+
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

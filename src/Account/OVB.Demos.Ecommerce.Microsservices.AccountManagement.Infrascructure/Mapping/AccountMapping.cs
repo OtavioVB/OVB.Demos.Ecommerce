@@ -14,7 +14,7 @@ public sealed class AccountMapping : IEntityTypeConfiguration<Account>
         builder.HasKey(p => p.Identifier).HasName($"PK_{nameof(Account)}_{nameof(Account.Identifier)}");
 
         // Foreign Key
-        builder.HasOne(p => p.User).WithOne(p => p.Account).HasForeignKey<User>(p => p.AccountIdentifier);
+        builder.HasOne(p => p.User).WithOne(p => p.Account).HasForeignKey<Account>(p => p.UserIdentifier);
         builder.HasOne(p => p.AccountAddress).WithMany(p => p.Accounts);
         builder.HasMany(p => p.AccountPhones).WithOne(p => p.Account);
 
