@@ -1,0 +1,26 @@
+.NotificationContainer{
+    display: grid;
+    padding: 15px;
+    position: absolute;
+    top: 45px;
+    left: 5px;
+}
+
+.NotificationContainerItem{
+    background-color: rgb(255, 200, 200);
+    padding: 8px 14px;
+    color: red;
+    max-width: 300px;
+    margin: 2px 0;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+}
+
+.NotificationContainerItemTitle{
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.NotificationContainerItemDescription{
+    font-size: 12px;
+}

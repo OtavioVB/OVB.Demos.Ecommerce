@@ -1,11 +1,13 @@
 import HeaderWithoutNav from '../../../../sections/Header/HeaderWithoutNav.js';
 import styles from './MemberCreate.module.css';
+import stylesNotification from '../../../../components/Notifications/NotificationContainer.module.css';
 import SeparatorHorizontal from '../../../../components/Separator/SeparatorHorizontal/SeparatorHorizontal.js';
 import FormItem from '../../../../components/Form/FormItem/FormItem.js';
 import FormSubmitItem from '../../../../components/Form/FormSubmitItem/FormSubmitItem.js';
 import { Fragment, useState } from 'react';
 import Footer from '../../../../sections/Footer/Footer.js';
 import React from 'react';
+import NotificationContainer from '../../../../components/Notifications/NotificationContainer.js';
 /* import CreateAccount from '../../../../repositories/AccountRepository/AccountRepository.js';
 import { ProjectSourcePlatform, ProjectTenantIdentifier } from '../../../../configuration/ProjectConfiguration.js'; */
 
@@ -36,14 +38,20 @@ export default function MemberCreate(){
                     <FormItem Value={email} OnChange={e => setEmail(e.target.value)} Placeholder="Insira seu email" Identifier="email" Text="Email" TypeInput="email"></FormItem>
                     <FormItem Value={password} OnChange={e => setPassword(e.target.value)} Placeholder="Insira sua senha" Identifier="password" Text="Senha" TypeInput="password"></FormItem>
                     <FormItem Value={confirmPassword} OnChange={e => setConfirmPassword(e.target.value)} Placeholder="Insira sua confirmação de senha" Identifier="confirmPassword" Text="Confirme sua Senha" TypeInput="password"></FormItem>
-                    <FormSubmitItem OnClick={() => { addNotification("teste"); }}Identifier="submit-form" Value="Cadastrar-se"></FormSubmitItem>
-                    {
-                        notifications.map(notification => {
-                            return (
-                                <p>{notification}</p>
-                            );
-                        })
-                    }
+                    <FormSubmitItem OnClick={() => { addNotification("Não foi possível acessar sua conta, tente novamente."); }}Identifier="submit-form" Value="Cadastrar-se"></FormSubmitItem>
+                    
+                    <NotificationContainer>
+                        {
+                            notifications.map(notification => {
+                                return (
+                                    <div className={stylesNotification.NotificationContainerItem}>
+                                        <h1 className={stylesNotification.NotificationContainerItemTitle}>Erro</h1>
+                                        <p className={stylesNotification.NotificationContainerItemDescription}>{notification}</p>
+                                    </div>
+                                );
+                            })  
+                        }
+                    </NotificationContainer>
                     <Footer WithContact={true}></Footer>
                 </section>
             </main>
