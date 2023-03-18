@@ -1,5 +1,7 @@
 ﻿using OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.Configuration.ENUMs;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.Configuration.Interfaces;
+using Polly;
+using Polly.Retry;
 
 namespace OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.Configuration;
 

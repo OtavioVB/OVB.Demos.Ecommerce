@@ -1,10 +1,10 @@
 import './FormItem.css';
 
-export default function FormItem(props){
+export default function FormItem({Identifier, Text, TypeInput, Placeholder}){
     return (
         <div className="form-item-component">
-            <label htmlFor={props.Identifier} maxLength="32" className="form-item-component-label">{props.Text}</label>
-            <input id={props.Identifier} maxLength="32" className="form-item-component-input" type={props.TypeInput} placeholder={props.Placeholder}></input>
+            <label htmlFor={Identifier} className="form-item-component-label">{Text}</label>
+            <input id={Identifier} maxLength="256" className="form-item-component-input" type={TypeInput} placeholder={Placeholder}></input>
         </div>
     );
 }

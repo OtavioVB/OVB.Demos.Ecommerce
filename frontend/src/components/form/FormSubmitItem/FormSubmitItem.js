@@ -1,7 +1,7 @@
 import './FormSubmitItem.css';
 
-export default function FormSubmitItem(props){
+export default function FormSubmitItem({Identifier, Value}){
     return (
-        <input id={props.Identifier} className="component-form-formsubmititem" type="submit" value={props.Value}></input>
+        <input id={Identifier} className="component-form-formsubmititem" type="submit" value={Value}></input>
     );
 }

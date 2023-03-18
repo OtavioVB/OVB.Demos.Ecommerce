@@ -11,7 +11,7 @@ export default function HeaderWithoutNav(){
                     <span className="separator"></span>
                 </div>
                 <div className="header-ecommerce-content-account">
-                    <Link className="header-ecommerce-content-account-link" to="/authentication">VOLTAR</Link>
+                    <Link className="header-ecommerce-content-account-link" to="/authentication">Voltar</Link>
                 </div>
             </div>
         </header>

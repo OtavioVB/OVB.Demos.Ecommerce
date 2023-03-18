@@ -5,7 +5,7 @@ import FormItem from '../../components/Form/FormItem/FormItem.js';
 import FormSubmitItem from '../../components/Form/FormSubmitItem/FormSubmitItem';
 import ButtonRedirection from '../../components/Redirections/ButtonRedirection/ButtonRedirection';
 import React from 'react';
-import Footer from '../../sections/Footer/Footer';
+import Footer from '../../sections/Footer/Footer.js';
 
 export default function Authentication(){
     React.useEffect(() => {
@@ -32,7 +32,7 @@ export default function Authentication(){
                     <ButtonRedirection Href="/authentication/company/create" Value="Criar conta como empresa"></ButtonRedirection>
                     <ButtonRedirection Href="/authentication/create" Value="Criar conta como membro"></ButtonRedirection>
                     <ButtonRedirection Href="/" Value="Página Inicial"></ButtonRedirection>
-                    <Footer></Footer>
+                    <Footer WithContact={true}></Footer>
                 </div>
                 <div className="authentication-main-distribution-content">
                     <img className="authentication-main-distribution-content-image" alt="" src='/assets/imgs/business.jfif'></img>
