@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext.Interfaces;
@@ -13,7 +14,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddOvbAccountManagementMicrosserviceApplicationConfiguration(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration();
+        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration()
+            .AddCircuitBreakerPolicy<NpgsqlException>("Npgsql", 1, TimeSpan.FromMilliseconds(1500))
+            .AddCircuitBreakerPolicy<PostgresException>("Postgres", 1, TimeSpan.FromMilliseconds(1500));
 
         serviceCollection.AddScoped<IUserService, UserService>();
 
