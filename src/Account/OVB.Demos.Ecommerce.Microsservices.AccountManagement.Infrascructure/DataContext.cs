@@ -19,8 +19,6 @@ public sealed class DataContext : DbContext
 
     public DbSet<User> Users { get; set; }
 
-
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new AccountMapping());

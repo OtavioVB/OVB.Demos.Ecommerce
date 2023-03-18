@@ -1,13 +1,18 @@
 # OVB.Demos.Ecommerce
 
-O projeto foi reiniciado, para voltar aos resultados anteriores:
-- [Reset 1](https://github.com/OtavioVB/OVB.Demos.Ecommerce/tree/b0d7e882f6046332dd8527cbd8597262a240132f)
+- [First Code Reset](https://github.com/OtavioVB/OVB.Demos.Ecommerce/tree/b0d7e882f6046332dd8527cbd8597262a240132f)
 
 ## Projeto em Desenvolvimento 
 
 Esse projeto é um código fonte de OVB.Demos.Ecommerce destinado ao processo de estudos realizados pelo [Otávio Villas Boas Simoncini Carmanini](https://www.linkedin.com/in/otaviovillasboas/) de modo a colocar em prática os conhecimentos passados pelas mentorias oferecidas por [Marcelo Castelo Branco](https://www.linkedin.com/in/marcelocastelobranco/).
 
 Grande parte dos conceitos aplicados, foram escolhidos de modo atento aos problemas e soluções esperados pelo projeto.
+
+## Como rodar o projeto?
+
+```docker compose up -d```
+```dotnet run --project "src/ApiGateway/OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi"```
+```dotnet run --project "src/Account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc"```
 
 ## Tecnologias Utilizadas
 - ASP. NET Core 7
