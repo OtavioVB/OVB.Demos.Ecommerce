@@ -22,6 +22,19 @@ public sealed class Retry : IRetry
         });
     }
 
+    public TOutput TryRetry<TOutput, TException, TExceptionTwo>(Func<TOutput> handler)
+        where TException : Exception
+        where TExceptionTwo : Exception
+    {
+        return _retryConfiguration.GetPolicy<TExceptionTwo>().Execute(() =>
+        {
+            return _retryConfiguration.GetPolicy<TException>().Execute(() =>
+            {
+                return handler();
+            });
+        });
+    }
+
     public Task TryRetry<TException>(Func<Task> handler)
         where TException : Exception
     {

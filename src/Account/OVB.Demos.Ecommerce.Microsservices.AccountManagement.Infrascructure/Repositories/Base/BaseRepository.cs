@@ -20,7 +20,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public Task AddAsync(TEntity entity, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException>(() =>
+        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(_dataContext.Set<TEntity>().AddAsync(entity, cancellationToken));
         });
@@ -28,7 +28,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException>(() =>
+        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(_dataContext.Set<TEntity>().AddRangeAsync(entities, cancellationToken));
         });
@@ -36,7 +36,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public Task DeleteAsync(TEntity entity, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException>(() =>
+        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(() =>
             {
@@ -47,7 +47,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException>(() =>
+        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(() =>
             {
@@ -58,7 +58,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public Task<TEntity?> GetByIdentifierAsync(Guid identifier, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task<TEntity?>, NpgsqlException>(() =>
+        return _retry.TryRetry<Task<TEntity?>, NpgsqlException, PostgresException>(() =>
         {
             return _dataContext.Set<TEntity>().Where(p => p.Identifier == identifier).FirstOrDefaultAsync();
         });
@@ -66,7 +66,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public Task UpdateAsync(TEntity entity, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException>(() =>
+        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(() =>
             {
@@ -77,7 +77,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException>(() =>
+        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(() =>
             {
