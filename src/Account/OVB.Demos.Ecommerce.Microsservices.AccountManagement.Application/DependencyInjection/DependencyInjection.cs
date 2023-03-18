@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.UserContext;
-using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.UserContext.Interfaces;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext.Interfaces;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.DependencyInjection;
 

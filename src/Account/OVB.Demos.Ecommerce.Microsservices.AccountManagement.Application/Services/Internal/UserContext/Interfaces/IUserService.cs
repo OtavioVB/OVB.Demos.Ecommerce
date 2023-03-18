@@ -1,7 +1,7 @@
-﻿using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.UserContext.Inputs;
+﻿using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext.Inputs;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.Entities.Base;
 
-namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.UserContext.Interfaces;
+namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext.Interfaces;
 
 public interface IUserService
 {

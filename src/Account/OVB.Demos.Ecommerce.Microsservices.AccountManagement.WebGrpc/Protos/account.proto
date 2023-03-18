@@ -15,6 +15,9 @@ message CreateAccountInput {
 	string email = 4;
 	string password = 5;
 	string confirm_password = 6;
+	string tenant_identifier = 7;
+	string correlation_identifier = 8;
+	string source_platform = 9;
 }
 
 

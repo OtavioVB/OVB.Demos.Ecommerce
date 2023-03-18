@@ -1,4 +1,4 @@
-﻿namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.UserContext.Inputs;
+﻿namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext.Inputs;
 
 public struct CreateAccountServiceInput
 {

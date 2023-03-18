@@ -1,5 +1,5 @@
-﻿using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.UserContext.Inputs;
-using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.UserContext.Interfaces;
+﻿using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext.Inputs;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.Builders.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.Entities.Base;
@@ -8,7 +8,7 @@ using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Reposi
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.UnitOfWork.Interfaces;
 
-namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.UserContext;
+namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext;
 
 public sealed class UserService : IUserService
 {
@@ -18,9 +18,9 @@ public sealed class UserService : IUserService
     private readonly IUnitOfWork _unitOfWork;
 
     public UserService(
-        IBaseRepository<User> userBaseRepository, 
-        IExtensionUserRepository extensionUserRepository, 
-        IUserBuilder userBuilder, 
+        IBaseRepository<User> userBaseRepository,
+        IExtensionUserRepository extensionUserRepository,
+        IUserBuilder userBuilder,
         IUnitOfWork unitOfWork)
     {
         _userBaseRepository = userBaseRepository;
