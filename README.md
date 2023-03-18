@@ -1,18 +1,21 @@
-# OVB.Demos.Ecommerce
+# 👋 Sobre o Autor
 
-- [First Code Reset](https://github.com/OtavioVB/OVB.Demos.Ecommerce/tree/b0d7e882f6046332dd8527cbd8597262a240132f)
+O autor, [Otávio Villas Boas Simoncini Carmanini](https://www.linkedin.com/in/otaviovillasboassimoncinicarmanini/), buscou criar esse repositório para reproduzir os conhecimentos adquiridos ao longo do seu processo de desenvolvimento, assim como, aplicar discussões e trade-off's discutidos em mentorias coordenadas por [Marcelo Castelo Branco](https://www.linkedin.com/in/marcelocastelobranco/). Vale lembrar, que esse repositório, busca esclarecer o máximo de questões possíveis que podem ocorrer acerca do projeto de desenvolvimento, de modo que tenha um **caráter analítico** quanto a modelagem dos dados, a componentização dos microsserviços, o uso de certos padrões e suas relações com requisitos funcionais e não funcionais.
 
-## Projeto em Desenvolvimento 
+Desse modo, ao longo dessa wiki, buscarei colocar diferentes pontos de vistas e soluções para o mesmo problema, assim como, obter dados factuais para a escolha de certos processos de não funcionais.
 
-Esse projeto é um código fonte de OVB.Demos.Ecommerce destinado ao processo de estudos realizados pelo [Otávio Villas Boas Simoncini Carmanini](https://www.linkedin.com/in/otaviovillasboas/) de modo a colocar em prática os conhecimentos passados pelas mentorias oferecidas por [Marcelo Castelo Branco](https://www.linkedin.com/in/marcelocastelobranco/).
 
-Grande parte dos conceitos aplicados, foram escolhidos de modo atento aos problemas e soluções esperados pelo projeto.
+# 📌 Objetivo do Projeto
 
-## Como rodar o projeto?
+O **objetivo** desse projeto é aplicar os principais conceitos utilizados em conjunto a arquitetura de microsserviços, como forma de compreender e visar os reais motivos para utilização de cada padrão a fim de entender quais são suas consequências e o que elas tem de oferecer de melhor. Vale ressaltar, que a ideia é explicar **O que**, o **Porquê**, a **Finalidade** e a **Consequência**.
 
-```docker compose up -d```
-```dotnet run --project "src/ApiGateway/OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi"```
-```dotnet run --project "src/Account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc"```
+# ⚙️ Como rodar o projeto
+
+Por enquanto ainda `não é possível rodar o projeto`.
+
+# 🧑‍🤝‍🧑 Autor
+
+[Otávio Villas Boas Simoncini Carmanini](https://www.linkedin.com/in/otaviovillasboassimoncinicarmanini/)
 
 ## Tecnologias Utilizadas
 - ASP. NET Core 7
@@ -64,9 +67,3 @@ Grande parte dos conceitos aplicados, foram escolhidos de modo atento aos proble
 - Domain Driven Design
 - Unit Tests
 - Integration Test
-
-## Desenvolvedores
-- [Otávio Villas Boas Simoncini Carmanini](https://www.linkedin.com/in/otaviovillasboas/)
-
-## Mentores
-- [Marcelo Castelo Branco](https://www.linkedin.com/in/marcelocastelobranco/)
