@@ -1,10 +1,11 @@
 import './Authentication.css';
-import SeparatorHorizontal from '../../components/separator/SeparatorHorizontal/SeparatorHorizontal';
+import SeparatorHorizontal from '../../components/Separator/SeparatorHorizontal/SeparatorHorizontal';
 import { Fragment } from 'react';
-import FormItem from '../../components/form/FormItem/FormItem.js';
-import FormSubmitItem from '../../components/form/FormSubmitItem/FormSubmitItem';
+import FormItem from '../../components/Form/FormItem/FormItem.js';
+import FormSubmitItem from '../../components/Form/FormSubmitItem/FormSubmitItem';
 import ButtonRedirection from '../../components/Redirections/ButtonRedirection/ButtonRedirection';
 import React from 'react';
+import Footer from '../../sections/Footer/Footer';
 
 export default function Authentication(){
     React.useEffect(() => {
@@ -31,11 +32,7 @@ export default function Authentication(){
                     <ButtonRedirection Href="/authentication/company/create" Value="Criar conta como empresa"></ButtonRedirection>
                     <ButtonRedirection Href="/authentication/create" Value="Criar conta como membro"></ButtonRedirection>
                     <ButtonRedirection Href="/" Value="Página Inicial"></ButtonRedirection>
-                    <div className="authentication-main-distribution-form-area-footer">
-                        <SeparatorHorizontal Text="Contribuidores"></SeparatorHorizontal>
-                        <p className="authentication-main-distribution-form-area-footer-text">Copyright &copy; 2023 - Ecommerce | Desenvolvido com &#128156; por 
-                        <a className="authentication-main-distribution-form-area-footer-text-bold-author-reference" href="https://www.linkedin.com/in/otaviovillasboassimoncinicarmanini/"><b className="authentication-main-distribution-form-area-footer-text-bold"> Otávio Villas Boas Simoncini Carmanini</b></a></p>
-                    </div>
+                    <Footer></Footer>
                 </div>
                 <div className="authentication-main-distribution-content">
                     <img className="authentication-main-distribution-content-image" alt="" src='/assets/imgs/business.jfif'></img>

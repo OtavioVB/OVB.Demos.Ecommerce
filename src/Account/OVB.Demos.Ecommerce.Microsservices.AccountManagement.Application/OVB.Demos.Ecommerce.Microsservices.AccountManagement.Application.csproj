@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.csproj" />
   </ItemGroup>
 

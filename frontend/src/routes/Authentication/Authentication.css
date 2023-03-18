@@ -43,28 +43,6 @@
     background-color: white;
 }
 
-.authentication-main-distribution-form-area-footer{
-    padding: 5px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.authentication-main-distribution-form-area-footer-text{
-    font-size: 12px;
-}
-
-.authentication-main-distribution-form-area-footer-text-bold{
-    font-weight: 600;
-}
-
-.authentication-main-distribution-form-area-footer-text-bold-author-reference{
-    text-decoration: none;
-}
-
 @media screen and (max-width: 930px) {
     .authentication-main-distribution-content{
         display: none;
