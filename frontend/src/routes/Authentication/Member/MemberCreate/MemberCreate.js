@@ -8,8 +8,7 @@ import { Fragment, useState } from 'react';
 import Footer from '../../../../sections/Footer/Footer.js';
 import React from 'react';
 import NotificationContainer from '../../../../components/Notifications/NotificationContainer.js';
-/* import CreateAccount from '../../../../repositories/AccountRepository/AccountRepository.js';
-import { ProjectSourcePlatform, ProjectTenantIdentifier } from '../../../../configuration/ProjectConfiguration.js'; */
+import { CreateAccountUseCase } from '../../../../usecases/AccountUseCases.js';
 
 export default function MemberCreate(){
     const [username, setUsername] = useState("");
@@ -20,8 +19,17 @@ export default function MemberCreate(){
     const [confirmPassword, setConfirmPassword] = useState("");
     const [notifications, setNotifications] = useState([]);
 
-    function addNotification(notification){
-        setNotifications(oldList => [...oldList, notification])
+    function addNotifications(notifications){
+        setNotifications(oldList => oldList.concat(notifications));
+    }
+
+    function removeNotification(id){
+        setNotifications(oldList => oldList.filter(item => item.Id !== id));
+    }
+
+    function createAccount(usernameInput, passwordInput, nameInput, lastNameInput, emailInput, confirmPasswordInput){
+        let notificationsResult = CreateAccountUseCase(usernameInput, passwordInput, nameInput, lastNameInput, emailInput, confirmPasswordInput);
+        setNotifications(notificationsResult);
     }
 
     return (
@@ -38,21 +46,34 @@ export default function MemberCreate(){
                     <FormItem Value={email} OnChange={e => setEmail(e.target.value)} Placeholder="Insira seu email" Identifier="email" Text="Email" TypeInput="email"></FormItem>
                     <FormItem Value={password} OnChange={e => setPassword(e.target.value)} Placeholder="Insira sua senha" Identifier="password" Text="Senha" TypeInput="password"></FormItem>
                     <FormItem Value={confirmPassword} OnChange={e => setConfirmPassword(e.target.value)} Placeholder="Insira sua confirmação de senha" Identifier="confirmPassword" Text="Confirme sua Senha" TypeInput="password"></FormItem>
-                    <FormSubmitItem OnClick={() => { addNotification("Não foi possível acessar sua conta, tente novamente."); }}Identifier="submit-form" Value="Cadastrar-se"></FormSubmitItem>
+                    <FormSubmitItem OnClick={
+                        () => { 
+                            createAccount(username, password, name, lastName, email, confirmPassword);
+                        }} Identifier="submit-form" Value="Cadastrar-se"></FormSubmitItem>
                     
                     <NotificationContainer>
                         {
                             notifications.map(notification => {
                                 return (
-                                    <div className={stylesNotification.NotificationContainerItem}>
+                                    <div key={notification.Id} onClick={() => { removeNotification(notification.Id); }} className={stylesNotification.NotificationContainerItem}>
                                         <h1 className={stylesNotification.NotificationContainerItemTitle}>Erro</h1>
-                                        <p className={stylesNotification.NotificationContainerItemDescription}>{notification}</p>
+                                        <p className={stylesNotification.NotificationContainerItemDescription}>{notification.Text}</p>
                                     </div>
-                                );
-                            })  
+                                )
+                            })
                         }
                     </NotificationContainer>
                     <Footer WithContact={true}></Footer>
+                    {
+                        React.useEffect(() => {
+                            for (let i = 0; i < notifications.length; i++)
+                            {
+                                setTimeout(() => {
+                                    removeNotification(notifications[i].Id);
+                                }, 2000);
+                            };
+                        })
+                    }
                 </section>
             </main>
         </Fragment>
