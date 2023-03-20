@@ -19,9 +19,9 @@ export default function MemberCreate(){
     const [confirmPassword, setConfirmPassword] = useState("");
     const [notifications, setNotifications] = useState([]);
 
-    function addNotifications(notifications){
+    /*function addNotifications(notifications){
         setNotifications(oldList => oldList.concat(notifications));
-    }
+    }*/
 
     function removeNotification(id){
         setNotifications(oldList => oldList.filter(item => item.Id !== id));

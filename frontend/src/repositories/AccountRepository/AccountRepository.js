@@ -1,27 +1,38 @@
 import { Endpoint } from "../Endpoint";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
+import { ProjectTenantIdentifier, ProjectSourcePlatform } from "../../configuration/ProjectConfiguration";
 
 const AccountControllerEndpoint = Endpoint + "api/gateway/v1/management/account/";
 
-export default function CreateAccount(username, name, lastName, email, password, confirmPassword, tenantIdentifier, sourcePlatform){
-    axios.post(AccountControllerEndpoint + "Create", {
-        username: username,
-        name: name, 
-        lastName: lastName,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-        tenantIdentifier: tenantIdentifier,
-        sourcePlatform: sourcePlatform
-    })
-    .then(function (response) {
-        if(response.status === 500){
-            console.log("Internal Server Error1");
-        }
+export function CreateAccount(username, name, lastName, email, password, confirmPassword){
+    let notifications = [];
 
-        console.log(response);
-    })
-    .catch(() => {
-        console.log("Internal Server Error2");
-    });
+    try
+    {
+        axios.post(AccountControllerEndpoint + "Create", {
+            username: username,
+            name: name, 
+            lastName: lastName,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+            tenantIdentifier: ProjectTenantIdentifier,
+            sourcePlatform: ProjectSourcePlatform
+        }).catch(error => {
+            notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
+            return notifications;
+        });
+    }
+    catch
+    {
+        notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
+        return notifications;
+    }
+
+    return notifications;
+}
+
+function GenerateNotification(text){
+    return { Text: text, Id: uuidv4() };
 }
