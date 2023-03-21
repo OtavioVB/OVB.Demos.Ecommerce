@@ -5,7 +5,7 @@ option csharp_namespace = "OVB.Demos.Ecommerce.Microsservices.AccountManagement.
 package greet;
 
 service HealthChecks{
-	rpc ReadinessHealthCheck returns (ReadinessHealthCheckOutput);
+	rpc ReadinessHealthCheck (ReadinessHealthCheckInput) returns (ReadinessHealthCheckOutput);
 }
 
 message ServiceReadiness{
@@ -18,4 +18,7 @@ message ServiceReadiness{
 message ReadinessHealthCheckOutput {
 	string ready = 1;
 	repeated ServiceReadiness services = 2;
+}
+
+message ReadinessHealthCheckInput {
 }
