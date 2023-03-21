@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.HealthChecks.Interfaces;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.ReadinessCheck;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories.Base;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories.Extensions;
@@ -13,7 +15,9 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.De
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddOvbInfrascructureConfiguration(this IServiceCollection serviceCollection, string databaseConnectionString, string migrationsAssembly)
+    public static IServiceCollection AddOvbInfrascructureConfiguration(this IServiceCollection serviceCollection, 
+        string databaseConnectionString, string migrationsAssembly, string postgreeSqlServiceName, string postgreeSqlDescription, 
+        string postgreeSqlServiceVersion)
     {
         serviceCollection.AddOvbRetryPoliciesConfiguration(TimeSpan.FromMilliseconds(50), 5);
 
@@ -24,6 +28,11 @@ public static class DependencyInjection
         serviceCollection.AddScoped<IBaseRepository<User>, UserRepository>();
         serviceCollection.AddScoped<BaseRepository<User>, UserRepository>();
         serviceCollection.AddScoped<IExtensionUserRepository, UserRepository>();
+
+        serviceCollection.AddSingleton<IDatabaseHealthCheck, PostgreeSqlHealthCheck>(p =>
+        {
+            return new PostgreeSqlHealthCheck(postgreeSqlServiceName, postgreeSqlServiceVersion, postgreeSqlDescription, databaseConnectionString);
+        });
 
         return serviceCollection;
     }

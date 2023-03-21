@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="Mapping\" />
+    <Folder Include="ReadinessCheck\Interfaces\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 

@@ -36,6 +36,9 @@ public class Program
 
         var databaseConnectionString = builder.Configuration["Infrascructure:Databases:EntityFrameworkCore:PostgreeSQL:ConnectionString"];
         var migrationsAssembly = builder.Configuration["Infrascructure:Databases:EntityFrameworkCore:PostgreeSQL:MigrationsAssembly"];
+        var serviceName = builder.Configuration["Infrascructure:Databases:EntityFrameworkCore:PostgreeSQL:ServiceName"];
+        var serviceVersion = builder.Configuration["Infrascructure:Databases:EntityFrameworkCore:PostgreeSQL:ServiceVersion"];
+        var serviceDescription = builder.Configuration["Infrascructure:Databases:EntityFrameworkCore:PostgreeSQL:ServiceDescription"];
 
         if (databaseConnectionString is null)
             throw new Exception("Is not possible to connect in database, because the connection string is not valid.");
@@ -43,7 +46,16 @@ public class Program
         if (migrationsAssembly is null)
             throw new Exception("Is not possible to configure the database, because the migrations assembly is not valid.");
 
-        builder.Services.AddOvbInfrascructureConfiguration(databaseConnectionString, migrationsAssembly);
+        if (serviceName is null)
+            throw new Exception("Is not possible to configure and check the database with service name being null.");
+
+        if (serviceVersion is null)
+            throw new Exception("Is not possible to configure and check the database with service version being null.");
+
+        if (serviceDescription is null)
+            throw new Exception("Is not possible to configure and check the database with service description being null.");
+
+        builder.Services.AddOvbInfrascructureConfiguration(databaseConnectionString, migrationsAssembly, serviceName, serviceVersion, serviceDescription);
 
         #endregion
 

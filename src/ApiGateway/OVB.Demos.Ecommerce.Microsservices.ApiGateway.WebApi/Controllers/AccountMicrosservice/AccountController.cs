@@ -39,12 +39,10 @@ public class AccountController : ControllerBase
         }, new CallOptions(cancellationToken: cancellationToken));
 
         if (call.StatusCode == 200 || call.StatusCode == 201)
-        {
             return StatusCode(StatusCodes.Status201Created);
-        }
-        else
-        {
+        else if(call.StatusCode == 422)
             return StatusCode(call.StatusCode, call.Messages);
-        }
+        else
+            return StatusCode(500, "Is not possible to finish the requisiton.");
     }
 }

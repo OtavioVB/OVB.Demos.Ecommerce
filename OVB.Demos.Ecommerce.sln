@@ -46,13 +46,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern\OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.csproj", "{639D481D-2530-43B8-9B7A-F14ECB2C67BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker", "src\Account\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.csproj", "{7769FEBD-865F-4996-A1C4-580E014DD593}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker", "src\Account\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.csproj", "{7769FEBD-865F-4996-A1C4-580E014DD593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.csproj", "{E4E8C645-EE74-446E-8F0A-D63785CE021D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.csproj", "{E4E8C645-EE74-446E-8F0A-D63785CE021D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.csproj", "{9C73235A-0ABE-41BC-9DA1-F62BFB98FD42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.csproj", "{9C73235A-0ABE-41BC-9DA1-F62BFB98FD42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Libraries.Domain.Serializator", "Libraries\OVB.Demos.Ecommerce.Libraries.Domain.Serializator\OVB.Demos.Ecommerce.Libraries.Domain.Serializator.csproj", "{0B9EAA77-88EE-4636-9DE5-FF8DBCAF2F51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Libraries.Domain.Serializator", "Libraries\OVB.Demos.Ecommerce.Libraries.Domain.Serializator\OVB.Demos.Ecommerce.Libraries.Domain.Serializator.csproj", "{0B9EAA77-88EE-4636-9DE5-FF8DBCAF2F51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.HealthChecks", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.HealthChecks\OVB.Demos.Ecommerce.Libraries.Infrascructure.HealthChecks.csproj", "{39B692EE-C4A3-4939-89B2-BF465EF376A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,6 +114,10 @@ Global
 		{0B9EAA77-88EE-4636-9DE5-FF8DBCAF2F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B9EAA77-88EE-4636-9DE5-FF8DBCAF2F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B9EAA77-88EE-4636-9DE5-FF8DBCAF2F51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B692EE-C4A3-4939-89B2-BF465EF376A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B692EE-C4A3-4939-89B2-BF465EF376A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B692EE-C4A3-4939-89B2-BF465EF376A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B692EE-C4A3-4939-89B2-BF465EF376A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +138,7 @@ Global
 		{E4E8C645-EE74-446E-8F0A-D63785CE021D} = {D5014E6D-5B42-43ED-919F-1ACE96CCCAA4}
 		{9C73235A-0ABE-41BC-9DA1-F62BFB98FD42} = {D5014E6D-5B42-43ED-919F-1ACE96CCCAA4}
 		{0B9EAA77-88EE-4636-9DE5-FF8DBCAF2F51} = {D5014E6D-5B42-43ED-919F-1ACE96CCCAA4}
+		{39B692EE-C4A3-4939-89B2-BF465EF376A9} = {D5014E6D-5B42-43ED-919F-1ACE96CCCAA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C34F0EE0-526C-4387-B226-EA9EE55908C3}

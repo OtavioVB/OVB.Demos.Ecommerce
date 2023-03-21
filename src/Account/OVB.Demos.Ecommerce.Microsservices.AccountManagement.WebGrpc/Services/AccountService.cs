@@ -1,3 +1,4 @@
+using Google.Protobuf.Collections;
 using Grpc.Core;
 using Microsoft.AspNetCore.Mvc;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.UseCases.Interfaces;
@@ -17,32 +18,26 @@ public class AccountService : Account.AccountBase
 
     public override async Task<CreateAccountOutput> CreateUserAccount(CreateAccountInput request, ServerCallContext context)
     {
-        try
-        {
-            var useCaseResponse = await _useCaseCreateUser.ExecuteUseCaseAsync(new CreateUserUseCaseInput(
-                request.Username, request.Name, request.LastName, request.Email, request.Password, request.ConfirmPassword,
-                new Guid(request.TenantIdentifier), new Guid(request.CorrelationIdentifier), request.SourcePlatform), context.CancellationToken);
+        var useCaseResponse = await _useCaseCreateUser.ExecuteUseCaseAsync(new CreateUserUseCaseInput(
+            request.Username, request.Name, request.LastName, request.Email, request.Password, request.ConfirmPassword,
+            new Guid(request.TenantIdentifier), new Guid(request.CorrelationIdentifier), request.SourcePlatform), context.CancellationToken);
 
-            if (useCaseResponse.HasDone == true)
-            {
-                return (new CreateAccountOutput()
-                {
-                    StatusCode = 200
-                });
-            }
-            else
-            {
-                var outputResponse = new CreateAccountOutput() { StatusCode = 422 };
-                outputResponse.Messages.AddRange(useCaseResponse.Output.Notifications);
-                return (outputResponse);
-            }
-        }
-        catch
+        if (useCaseResponse.HasDone == true)
         {
             return (new CreateAccountOutput()
             {
-                StatusCode = 500
+                StatusCode = 200
             });
+        }
+        else
+        {
+            if (useCaseResponse.Output.Notifications is null)
+                throw new Exception("The notifications needs to be not null.");
+
+            var outputResponse = new CreateAccountOutput();
+            outputResponse.StatusCode = 422;
+            outputResponse.Messages.AddRange(useCaseResponse.Output.Notifications);
+            return (outputResponse);
         }
     }
 }

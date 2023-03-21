@@ -22,7 +22,7 @@ export function CreateAccount(username, name, lastName, email, password, confirm
         }).catch(error => {
             notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
             return notifications;
-        });
+        })
     }
     catch
     {
