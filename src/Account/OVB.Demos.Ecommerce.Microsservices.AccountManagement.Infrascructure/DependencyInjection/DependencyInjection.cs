@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.DependencyInjection;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.HealthChecks.Interfaces;
@@ -17,9 +18,13 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddOvbInfrascructureConfiguration(this IServiceCollection serviceCollection, 
         string databaseConnectionString, string migrationsAssembly, string postgreeSqlServiceName, string postgreeSqlDescription, 
-        string postgreeSqlServiceVersion)
+        string postgreeSqlServiceVersion, string rabbitMqHostname, string rabbitMqVirtualhost, int rabbitMqPort, string rabbitMqClientProviderName,
+        string rabbitMqUsername, string rabbitMqPassword)
     {
         serviceCollection.AddOvbRetryPoliciesConfiguration(TimeSpan.FromMilliseconds(50), 5);
+
+        serviceCollection.AddOvbRabbitMQInfrascructureConfiguration(rabbitMqHostname, rabbitMqVirtualhost, rabbitMqPort, rabbitMqClientProviderName, rabbitMqUsername,
+            rabbitMqPassword);
 
         serviceCollection.AddDbContextPool<DataContext>(p => p.UseNpgsql(databaseConnectionString, p => p.MigrationsAssembly(migrationsAssembly)), 20);
 

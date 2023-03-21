@@ -13,6 +13,18 @@ services:
     networks: 
       - ovb-demos-ecommerce
 
+  postgres-synchronizer:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5433:5432"
+    restart: always
+    networks: 
+      - ovb-demos-ecommerce-synchronizer
+
   pgadmin:
     image: dpage/pgadmin4
     user: root
@@ -30,6 +42,23 @@ services:
     networks:
       - ovb-demos-ecommerce
 
+  pgadmin-synchronizer:
+    image: dpage/pgadmin4
+    user: root
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "otavio@otavio.com"
+      PGADMIN_DEFAULT_PASSWORD: "1234"
+    ports:
+      - "8081:80"
+    restart: always
+    links:
+      - postgres-synchronizer
+    depends_on:
+      - postgres-synchronizer
+    networks:
+      - ovb-demos-ecommerce-synchronizer
+
   rabbitmq:
     image: rabbitmq:3.11.10-management-alpine
     container_name: rabbitmq
@@ -46,3 +75,5 @@ services:
 networks:
   ovb-demos-ecommerce:
     driver: bridge  
+  ovb-demos-ecommerce-synchronizer:
+    driver: bridge
