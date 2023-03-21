@@ -104,10 +104,12 @@ dotnet run --project "src/ApiGateway/OVB.Demos.Ecommerce.Microsservices.ApiGatew
 - Data Pagination
 - Api Versioning
 - Messenger
+- Health Checks
 - Eventual Consistency
 - Command Query Responsability Segregation (CQRS)
 - Retry Pattern
 - Resilience Policies
+- Circuit Breaker Pattern
 - Protobuf Binary Serialization (Faster than JsonSerializer or other libraries)
 - Worker Services
 - gRPC Communication Services

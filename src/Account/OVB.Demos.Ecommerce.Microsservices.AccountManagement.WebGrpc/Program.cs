@@ -84,7 +84,7 @@ public class Program
         if (rabbitMqClientProviderName is null)
             throw new Exception("Is not possible to configure and check the rabbit mq messenger with client provider name being null.");
 
-        bool isValidPort = Int32.TryParse(rabbitMqPort, out int rabbitMqValidPort);
+        bool isValidPort = UInt16.TryParse(rabbitMqPort, out ushort rabbitMqValidPort);
 
         if (isValidPort == false)
             throw new Exception("Is not possible to configure and check the rabbit mq messenger with port being in a not valid state.");
