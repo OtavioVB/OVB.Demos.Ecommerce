@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.HealthChecks\OVB.Demos.Ecommerce.Libraries.Infrascructure.HealthChecks.csproj" />
+    <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.csproj" />
     <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern\OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.csproj" />
   </ItemGroup>
