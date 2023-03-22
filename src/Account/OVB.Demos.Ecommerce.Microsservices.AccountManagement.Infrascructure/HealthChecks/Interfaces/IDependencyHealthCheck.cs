@@ -2,7 +2,7 @@
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.HealthChecks.Interfaces;
 
-public interface IDatabaseHealthCheck
+public interface IDependencyHealthCheck
 {
     public string ServiceName { get; }
     public string ServiceVersion { get; }

@@ -6,7 +6,7 @@ using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Health
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.ReadinessCheck;
 
-public sealed class PostgreeSqlHealthCheck : IDatabaseHealthCheck
+public sealed class PostgreeSqlHealthCheck : IDependencyHealthCheck
 {
     public string ServiceName { get; init; }
     public string ServiceVersion { get; init; }

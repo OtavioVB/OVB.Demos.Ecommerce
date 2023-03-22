@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.DependencyInjection;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.HealthChecks;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.HealthChecks.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.ReadinessCheck;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories;
@@ -19,7 +20,7 @@ public static class DependencyInjection
     public static IServiceCollection AddOvbInfrascructureConfiguration(this IServiceCollection serviceCollection, 
         string databaseConnectionString, string migrationsAssembly, string postgreeSqlServiceName, string postgreeSqlDescription, 
         string postgreeSqlServiceVersion, string rabbitMqHostname, string rabbitMqVirtualhost, int rabbitMqPort, string rabbitMqClientProviderName,
-        string rabbitMqUsername, string rabbitMqPassword)
+        string rabbitMqUsername, string rabbitMqPassword, string rabbitMqServiceName, string rabbitMqServiceVersion, string rabbitMqServiceDescription)
     {
         serviceCollection.AddOvbRetryPoliciesConfiguration(TimeSpan.FromMilliseconds(50), 5);
 
@@ -34,9 +35,14 @@ public static class DependencyInjection
         serviceCollection.AddScoped<BaseRepository<User>, UserRepository>();
         serviceCollection.AddScoped<IExtensionUserRepository, UserRepository>();
 
-        serviceCollection.AddSingleton<IDatabaseHealthCheck, PostgreeSqlHealthCheck>(p =>
+        serviceCollection.AddSingleton<IDependencyHealthCheck, PostgreeSqlHealthCheck>(p =>
         {
             return new PostgreeSqlHealthCheck(postgreeSqlServiceName, postgreeSqlServiceVersion, postgreeSqlDescription, databaseConnectionString);
+        });
+
+        serviceCollection.AddSingleton<IRabbitMqHealthCheck, RabbitMqHealthCheck>(p =>
+        {
+            return new RabbitMqHealthCheck(rabbitMqServiceName, rabbitMqServiceVersion, rabbitMqServiceDescription);
         });
 
         return serviceCollection;

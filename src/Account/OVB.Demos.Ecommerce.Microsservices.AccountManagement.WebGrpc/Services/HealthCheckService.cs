@@ -7,9 +7,9 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc.Services;
 
 public sealed class HealthCheckService : HealthChecks.HealthChecksBase
 {
-    private readonly IDatabaseHealthCheck _databaseHealthCheck;
+    private readonly IDependencyHealthCheck _databaseHealthCheck;
 
-    public HealthCheckService(IDatabaseHealthCheck databaseHealthCheck)
+    public HealthCheckService(IDependencyHealthCheck databaseHealthCheck)
     {
         _databaseHealthCheck = databaseHealthCheck;
     }

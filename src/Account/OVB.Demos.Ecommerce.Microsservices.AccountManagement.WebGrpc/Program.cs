@@ -50,6 +50,9 @@ public class Program
         var rabbitMqPort = builder.Configuration["Infrascructure:Messenger:RabbitMQ:Port"];
         var rabbitMqPassword = builder.Configuration["Infrascructure:Messenger:RabbitMQ:Password"];
         var rabbitMqClientProviderName = builder.Configuration["Infrascructure:Messenger:RabbitMQ:ClientProviderName"];
+        var rabbitMqServiceName = builder.Configuration["Infrascructure:Messenger:RabbitMQ:ServiceName"];
+        var rabbitMqServiceDescription = builder.Configuration["Infrascructure:Messenger:RabbitMQ:ServiceDescription"];
+        var rabbitMqServiceVersion = builder.Configuration["Infrascructure:Messenger:RabbitMQ:ServiceVersion"];
 
         if (databaseConnectionString is null)
             throw new Exception("Is not possible to connect in database, because the connection string is not valid.");
@@ -89,8 +92,18 @@ public class Program
         if (isValidPort == false)
             throw new Exception("Is not possible to configure and check the rabbit mq messenger with port being in a not valid state.");
 
+        if (rabbitMqServiceName is null)
+            throw new Exception("Is not possible to configure and check the rabbit mq messenger with an service name in a not valid state.");
+
+        if (rabbitMqServiceDescription is null)
+            throw new Exception("Is not possible to configure and check the rabbit mq messenger with an service description in a not valid state.");
+
+        if (rabbitMqServiceVersion is null)
+            throw new Exception("Is not possible to configure and check the rabbit mq messenger with an service version in a not valid state.");
+
         builder.Services.AddOvbInfrascructureConfiguration(databaseConnectionString, migrationsAssembly, serviceName, serviceVersion, serviceDescription, rabbitMqHostname,
-            rabbitMqVirtualhost, rabbitMqValidPort, rabbitMqClientProviderName, rabbitMqUsername, rabbitMqPassword);
+            rabbitMqVirtualhost, rabbitMqValidPort, rabbitMqClientProviderName, rabbitMqUsername, rabbitMqPassword, rabbitMqServiceName, rabbitMqServiceVersion, 
+            rabbitMqServiceDescription);
 
         #endregion
 
