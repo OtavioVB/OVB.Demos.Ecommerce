@@ -19,7 +19,7 @@ public sealed class HealthCheckService : HealthChecks.HealthChecksBase
         bool hasAnyUnhealthy = false;
 
         var postgreeHealthCheck = await _databaseHealthCheck.ReadinessHealthCheck(context.CancellationToken);
-        if (postgreeHealthCheck.Status == Libraries.Infrascructure.HealthChecks.ENUMs.HealthCheckStatus.Unhealthy)
+        if (postgreeHealthCheck.Status == HealthCheckStatus.Unhealthy)
             hasAnyUnhealthy = true;
 
 

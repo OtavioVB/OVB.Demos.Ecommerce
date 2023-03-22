@@ -42,11 +42,24 @@ Microsservice Account: OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebG
 ```json
 {
   "Infrascructure": {
+    "Messenger": {
+      "RabbitMQ": {
+        "Hostname": "localhost",
+        "Virtualhost": "/",
+        "Username": "guest",
+        "Password": "guest",
+        "Port": "5672",
+        "ClientProviderName": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc"
+      }
+    },
     "Databases": {
       "EntityFrameworkCore": {
         "PostgreeSQL": {
           "ConnectionString": "User Id=admin;Password=1234;Server=localhost;Port=5432;Database=ovbdemosecommerceaccountmanagement",
-          "MigrationsAssembly": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure"
+          "MigrationsAssembly": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure",
+          "ServiceName": "Microsserviço de Conta - PostgreeSQL",
+          "ServiceDescription": "Serviço para acesso e armazenamento de dados.",
+          "ServiceVersion": "15.2.0"
         }
       }
     }
