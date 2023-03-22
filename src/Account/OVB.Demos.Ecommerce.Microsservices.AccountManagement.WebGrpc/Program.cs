@@ -4,6 +4,7 @@ using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Dependenc
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc.Services;
+using System.Net;
 using System.Security.Authentication;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc;
@@ -18,7 +19,12 @@ public class Program
 
         builder.WebHost.ConfigureKestrel(p =>
         {
-            p.ListenLocalhost(5200, p =>
+            p.Listen(IPAddress.Any, 5199, p =>
+            {
+                p.Protocols = HttpProtocols.Http1AndHttp2;
+            });
+
+            p.Listen(IPAddress.Any, 5200, p =>
             {
                 p.Protocols = HttpProtocols.Http2;
             });
@@ -116,7 +122,7 @@ public class Program
         builder.Services.AddGrpc();
         var app = builder.Build();
         app.MapGrpcService<AccountService>();
-        app.MapGet("/", () => "Communication with endpoints.");
+        app.MapGrpcService<HealthCheckService>();
         app.Run();
     }
 }

@@ -49,7 +49,10 @@ Microsservice Account: OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebG
         "Username": "guest",
         "Password": "guest",
         "Port": "5672",
-        "ClientProviderName": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc"
+        "ClientProviderName": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc",
+        "ServiceName": "RabbitMQ - Principal Network",
+        "ServiceDescription": "Serviço para envio de mensagens de modo assíncrono, como forma de comunicação entre os sistemas da aplicação.",
+        "ServiceVersion": "6.9.1"
       }
     },
     "Databases": {
