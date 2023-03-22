@@ -38,6 +38,9 @@
     <Protobuf Include="Protos\account.proto">
       <CustomToolNamespace>GrpcAccountClient</CustomToolNamespace>
     </Protobuf>
+	<Protobuf Include="Protos\healthchecks.proto">
+		<CustomToolNamespace>GrpcAccountClient</CustomToolNamespace>
+	</Protobuf>
   </ItemGroup>
 
 </Project>

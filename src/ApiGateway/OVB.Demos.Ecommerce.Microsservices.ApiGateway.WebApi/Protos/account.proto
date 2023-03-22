@@ -2,7 +2,7 @@
 
 option csharp_namespace = "GrpcAccountClient";
 
-package greet;
+package Account;
 
 service Account{
 	rpc CreateUserAccount (CreateAccountInput) returns (CreateAccountOutput);

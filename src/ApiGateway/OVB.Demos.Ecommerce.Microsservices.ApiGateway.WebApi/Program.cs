@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi.HealthChecks;
 using System.Text;
 
 namespace OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi;
@@ -32,13 +31,6 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-
-        #region Health Checks Configuration
-
-        builder.Services.AddHealthChecks()
-            .AddCheck<StartupCheck>("api/health/startup");
-
-        #endregion
 
         #region Api Versioning Configuration
 

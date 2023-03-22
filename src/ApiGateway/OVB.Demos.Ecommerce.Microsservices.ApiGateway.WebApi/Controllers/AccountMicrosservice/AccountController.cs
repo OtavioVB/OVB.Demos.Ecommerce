@@ -15,6 +15,7 @@ public class AccountController : ControllerBase
 {
     [HttpPost]
     [Route("Create")]
+    [Consumes("application/json")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
