@@ -8,9 +8,12 @@ public class Program
     public static void Main(string[] args)
     {
         IHost host = Host.CreateDefaultBuilder(args)
-            .ConfigureServices(services =>
+            .ConfigureServices((hostContext, services) =>
             {
-                //var databaseConnectionString = services.Configuration["Infrascructure:Databases:PostgreeSQL:ConnectionString"];
+                var databaseConnectionString = hostContext.Configuration["Infrascructure:Databases:PostgreeSQL:ConnectionString"];
+
+                if (databaseConnectionString is null)
+                    throw new Exception("Database connection string cannot be null.");
 
                 services.AddTransient<IDataConnection, DataConnection>(p =>
                 {

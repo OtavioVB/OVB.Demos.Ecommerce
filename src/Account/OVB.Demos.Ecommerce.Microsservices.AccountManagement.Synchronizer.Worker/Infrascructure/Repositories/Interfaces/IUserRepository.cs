@@ -1,7 +1,7 @@
 ﻿namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Repositories.Interfaces;
 
-public interface IAccountRepository
+public interface IUserRepository
 {
-    public Task CreateTableAccountIfThisNotExists();
-    public Task AddAccountAsync();
+    public Task CreateTableUserIfThisNotExists();
+    public Task AddUserAsync();
 }

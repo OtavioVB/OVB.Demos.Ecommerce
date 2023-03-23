@@ -15,7 +15,7 @@ services:
 
   postgres-synchronizer:
     image: postgres
-    container_name: postgres
+    container_name: postgres-synchronizer
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 1234
@@ -45,7 +45,7 @@ services:
   pgadmin-synchronizer:
     image: dpage/pgadmin4
     user: root
-    container_name: pgadmin
+    container_name: pgadmin-synchronizer
     environment:
       PGADMIN_DEFAULT_EMAIL: "otavio@otavio.com"
       PGADMIN_DEFAULT_PASSWORD: "1234"
