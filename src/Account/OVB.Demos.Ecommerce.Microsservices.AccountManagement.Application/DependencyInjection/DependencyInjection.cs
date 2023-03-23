@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.External.MessengerContext;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.External.MessengerContext.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.Internal.UserContext.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.UseCases.Interfaces;
@@ -19,6 +21,8 @@ public static class DependencyInjection
             .AddCircuitBreakerPolicy<PostgresException>("Postgres", 1, TimeSpan.FromMilliseconds(1500));
 
         serviceCollection.AddScoped<IUserService, UserService>();
+
+        serviceCollection.AddScoped<IMessengerSynchronizerService, MessengerSynchronizerService>();
 
         serviceCollection.AddScoped<IUseCase<CreateUserUseCaseInput, CreateUserUseCaseOutput>, CreateUserUseCase>();
 

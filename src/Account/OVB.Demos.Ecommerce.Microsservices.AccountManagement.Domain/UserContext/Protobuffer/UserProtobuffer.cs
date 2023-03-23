@@ -5,7 +5,8 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContex
 [ProtoContract()]
 public sealed class UserProtobuffer
 {
-    public UserProtobuffer(string username, string name, string lastName, string email, string password, int typeUser, bool isEmailConfirmed)
+    public UserProtobuffer(string username, string name, string lastName, string email, string password, int typeUser, 
+        bool isEmailConfirmed, string identifier, string correlationIdentifier, string tenantIdentifier, string sourcePlatform, DateTime createdOn)
     {
         Username = username;
         Name = name;
@@ -14,6 +15,11 @@ public sealed class UserProtobuffer
         Password = password;
         TypeUser = typeUser;
         IsEmailConfirmed = isEmailConfirmed;
+        Identifier = identifier;
+        CorrelationIdentifier = correlationIdentifier;
+        TenantIdentifier = tenantIdentifier;
+        SourcePlatform = sourcePlatform;
+        CreatedOn = createdOn;
     }
 
     [ProtoMember(1)]
@@ -36,4 +42,19 @@ public sealed class UserProtobuffer
 
     [ProtoMember(7)]
     public bool IsEmailConfirmed { get; set; }
+
+    [ProtoMember(8)]
+    public string Identifier { get; set; }
+
+    [ProtoMember(9)]
+    public string CorrelationIdentifier { get; set; }
+
+    [ProtoMember(10)]
+    public string TenantIdentifier { get; set; }
+
+    [ProtoMember(11)]
+    public string SourcePlatform { get; set; }
+
+    [ProtoMember(12)]
+    public DateTime CreatedOn { get; set; }
 }

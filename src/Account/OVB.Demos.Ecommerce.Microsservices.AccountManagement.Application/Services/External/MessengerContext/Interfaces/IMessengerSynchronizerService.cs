@@ -4,5 +4,5 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Servi
 
 public interface IMessengerSynchronizerService
 {
-    public Task PublishMessageToBusToSynchronizeDatabaseWithInsert(UserProtobuffer user, Guid correlationIdentifier, string sourcePlatform);
+    public Task PublishMessageToBusToSynchronizeDatabaseWithInsert(UserProtobuffer user, Guid correlationIdentifier, Guid tenantIdentifier, string sourcePlatform);
 }

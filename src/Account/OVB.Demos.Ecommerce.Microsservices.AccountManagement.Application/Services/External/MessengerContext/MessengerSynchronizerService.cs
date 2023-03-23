@@ -16,7 +16,7 @@ public sealed class MessengerSynchronizerService : IMessengerSynchronizerService
         _rabbitMqPublisher = rabbitMqPublisher;
     }
 
-    public Task PublishMessageToBusToSynchronizeDatabaseWithInsert(UserProtobuffer user, Guid correlationIdentifier, string sourcePlatform)
+    public Task PublishMessageToBusToSynchronizeDatabaseWithInsert(UserProtobuffer user, Guid correlationIdentifier, Guid tenantIdentifier, string sourcePlatform)
     {
         return Task.FromResult(() =>
         {
@@ -32,7 +32,8 @@ public sealed class MessengerSynchronizerService : IMessengerSynchronizerService
             _rabbitMqPublisher.PublishQueue(queueName, new BasicProperties(exchangeType.ToString(), exchangeName, routingKey)
             {
                 CorrelationId = correlationIdentifier.ToString(),
-                AppId = sourcePlatform
+                AppId = sourcePlatform,
+                ClusterId = tenantIdentifier.ToString()
             }, userSerialized);
         });
     }
