@@ -19,8 +19,24 @@ export function CreateAccount(username, name, lastName, email, password, confirm
             confirmPassword: confirmPassword,
             tenantIdentifier: ProjectTenantIdentifier,
             sourcePlatform: ProjectSourcePlatform
+        }).then(response => {
+            if(response.status === 201 || response.status === 200)
+            {
+
+            }
+            else
+            {
+                notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
+            }
         }).catch(error => {
-            notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
+            if(error.response.status === 400)
+            {
+
+            }
+            else
+            {
+                notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
+            }
             return notifications;
         })
     }
@@ -29,8 +45,6 @@ export function CreateAccount(username, name, lastName, email, password, confirm
         notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
         return notifications;
     }
-
-    return notifications;
 }
 
 function GenerateNotification(text){
