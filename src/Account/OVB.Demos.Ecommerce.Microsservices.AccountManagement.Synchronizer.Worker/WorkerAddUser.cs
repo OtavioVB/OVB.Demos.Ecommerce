@@ -3,7 +3,7 @@ using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.I
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker;
 
-public class Worker : BackgroundService
+public class WorkerAddUser : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {

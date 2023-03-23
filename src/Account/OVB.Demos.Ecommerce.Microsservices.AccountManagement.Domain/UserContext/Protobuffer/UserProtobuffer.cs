@@ -3,9 +3,9 @@
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.Protobuffer;
 
 [ProtoContract()]
-public sealed class AccountProtobuffer
+public sealed class UserProtobuffer
 {
-    public AccountProtobuffer(string username, string name, string lastName, string email, string password, int typeUser, bool isEmailConfirmed)
+    public UserProtobuffer(string username, string name, string lastName, string email, string password, int typeUser, bool isEmailConfirmed)
     {
         Username = username;
         Name = name;

@@ -20,7 +20,7 @@ public class Program
                     return new DataConnection(databaseConnectionString);
                 });
 
-                services.AddHostedService<Worker>();
+                services.AddHostedService<WorkerAddUser>();
             })
             .Build();
         host.Run();
