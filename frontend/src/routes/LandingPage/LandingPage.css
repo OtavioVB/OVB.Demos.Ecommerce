@@ -8,6 +8,7 @@ main{
     background-color: black;
     color: white;
     font-size: 13px;
+    vertical-align: middle;
 }
 
 .section-view-most-popular-products{

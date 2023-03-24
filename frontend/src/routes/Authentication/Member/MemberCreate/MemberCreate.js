@@ -54,7 +54,7 @@ export default function MemberCreate(){
                     <NotificationContainer>
                         {
                             notifications.map(notification => {
-                                if(notification.Type == "Error"){
+                                if(notification.Type === "Error"){
                                     return (
                                         <div key={notification.Id} onClick={() => { removeNotification(notification.Id); }} className={stylesNotification.NotificationContainerItem}>
                                             <h1 className={stylesNotification.NotificationContainerItemTitle}>Erro</h1>

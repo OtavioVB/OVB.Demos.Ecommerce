@@ -1,5 +1,5 @@
 import { CreateAccount } from '../repositories/AccountRepository/AccountRepository.js';
-import { GenerateNotification, GenerateSuccessNotification } from '../components/Notifications/NotificationContainer.js';
+import { GenerateNotification } from '../components/Notifications/NotificationContainer.js';
 
 
 export async function CreateAccountUseCase(username, password, name, lastName, email, confirmPassword)
