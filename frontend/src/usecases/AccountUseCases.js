@@ -1,28 +1,26 @@
 import { CreateAccount } from '../repositories/AccountRepository/AccountRepository.js';
-import { v4 as uuidv4 } from 'uuid';
+import { GenerateNotification, GenerateSuccessNotification } from '../components/Notifications/NotificationContainer.js';
 
 
-export function CreateAccountUseCase(username, password, name, lastName, email, confirmPassword)
+export async function CreateAccountUseCase(username, password, name, lastName, email, confirmPassword)
 {
     let notifications = [];
 
     if(username === "" || password === "" || name === "" || lastName === "" || email === "" || confirmPassword === ""){
         notifications.push(GenerateNotification("É necessário que todos os campos estejam preenchidos."));
+        return notifications;
     }
 
     if(password !== confirmPassword){
         notifications.push(GenerateNotification("A confirmação de senha não coincide com a respectiva senha."));
+        return notifications;
     }
     
-    let createAccountResponse = CreateAccount(username, name, lastName, email, password, confirmPassword);
-
-    createAccountResponse.forEach(notification => {
-        notifications.push({ Text: notification.Text, Id: notification.Id });
-    });
+    let createAccountResult = await CreateAccount(username, name, lastName, email, password, confirmPassword);
     
-    return notifications;   
-}
+    createAccountResult.forEach(notification => {
+        notifications.push(notification);
+    })
 
-function GenerateNotification(text){
-    return { Text: text, Id: uuidv4() };
+    return notifications;   
 }

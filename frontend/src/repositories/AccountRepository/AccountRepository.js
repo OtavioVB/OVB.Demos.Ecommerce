@@ -1,16 +1,16 @@
 import { Endpoint } from "../Endpoint";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
 import { ProjectTenantIdentifier, ProjectSourcePlatform } from "../../configuration/ProjectConfiguration";
+import { GenerateNotification, GenerateSuccessNotification } from "../../components/Notifications/NotificationContainer";
 
 const AccountControllerEndpoint = Endpoint + "api/gateway/v1/management/account/";
 
-export function CreateAccount(username, name, lastName, email, password, confirmPassword){
+export async function CreateAccount(username, name, lastName, email, password, confirmPassword){
     let notifications = [];
 
     try
     {
-        axios.post(AccountControllerEndpoint + "Create", {
+        await axios.post(AccountControllerEndpoint + "create", {
             username: username,
             name: name, 
             lastName: lastName,
@@ -22,31 +22,41 @@ export function CreateAccount(username, name, lastName, email, password, confirm
         }).then(response => {
             if(response.status === 201 || response.status === 200)
             {
-
+                notifications.push(GenerateSuccessNotification("Cadastro realizado com sucesso!"));
+                return notifications;
             }
             else
             {
                 notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
+                return notifications;
             }
         }).catch(error => {
-            if(error.response.status === 400)
-            {
-
+            if(error.request.status !== 0){
+                if(error.response.status === 422)
+                {
+                    error.response.status.data.forEach(element => {
+                        notifications.push(element);
+                    });
+                    return notifications;
+                }
+                else
+                {
+                    notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
+                    return notifications;
+                }
             }
             else
             {
-                notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
+                notifications.push(GenerateNotification("Contate o suporte. Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados."));
+                return notifications;
             }
-            return notifications;
         })
+
+        return notifications;
     }
     catch
     {
         notifications.push(GenerateNotification("Não foi possível logar em sua conta, erro interno do sistema de conexão e integração com a api de processamento de dados, contate o suporte."));
         return notifications;
     }
-}
-
-function GenerateNotification(text){
-    return { Text: text, Id: uuidv4() };
 }

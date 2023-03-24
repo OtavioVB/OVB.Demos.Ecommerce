@@ -17,6 +17,17 @@
     transition: 0.5s;
 }
 
+.NotificationContainerItemSuccess{
+    background-color: rgb(200, 255, 216);
+    padding: 8px 14px;
+    color: rgb(0, 109, 15);
+    max-width: 300px;
+    margin: 2px 0;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+}
+
 .NotificationContainerItemTitle{
     font-weight: 600;
     font-size: 14px;

@@ -75,17 +75,6 @@ public class Program
 
         var app = builder.Build();
 
-        #region Health Checks
-
-        app.MapHealthChecks("api/health/startup",
-        options: new HealthCheckOptions
-        {
-            AllowCachingResponses = false,
-            Predicate = healthCheck => healthCheck.Tags.Contains("startup")
-        });
-
-        #endregion
-
         #region Swagger Documentation
 
         app.UseSwagger();

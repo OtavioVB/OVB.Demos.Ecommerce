@@ -7,7 +7,7 @@ import FormSubmitItem from '../../../../components/Form/FormSubmitItem/FormSubmi
 import { Fragment, useState } from 'react';
 import Footer from '../../../../sections/Footer/Footer.js';
 import React from 'react';
-import NotificationContainer from '../../../../components/Notifications/NotificationContainer.js';
+import { NotificationContainer } from '../../../../components/Notifications/NotificationContainer.js';
 import { CreateAccountUseCase } from '../../../../usecases/AccountUseCases.js';
 
 export default function MemberCreate(){
@@ -27,8 +27,8 @@ export default function MemberCreate(){
         setNotifications(oldList => oldList.filter(item => item.Id !== id));
     }
 
-    function createAccount(usernameInput, passwordInput, nameInput, lastNameInput, emailInput, confirmPasswordInput){
-        let notificationsResult = CreateAccountUseCase(usernameInput, passwordInput, nameInput, lastNameInput, emailInput, confirmPasswordInput);
+    async function createAccount(usernameInput, passwordInput, nameInput, lastNameInput, emailInput, confirmPasswordInput){
+        let notificationsResult = await CreateAccountUseCase(usernameInput, passwordInput, nameInput, lastNameInput, emailInput, confirmPasswordInput);
         setNotifications(notificationsResult);
     }
 
@@ -54,12 +54,21 @@ export default function MemberCreate(){
                     <NotificationContainer>
                         {
                             notifications.map(notification => {
-                                return (
-                                    <div key={notification.Id} onClick={() => { removeNotification(notification.Id); }} className={stylesNotification.NotificationContainerItem}>
-                                        <h1 className={stylesNotification.NotificationContainerItemTitle}>Erro</h1>
-                                        <p className={stylesNotification.NotificationContainerItemDescription}>{notification.Text}</p>
-                                    </div>
-                                )
+                                if(notification.Type == "Error"){
+                                    return (
+                                        <div key={notification.Id} onClick={() => { removeNotification(notification.Id); }} className={stylesNotification.NotificationContainerItem}>
+                                            <h1 className={stylesNotification.NotificationContainerItemTitle}>Erro</h1>
+                                            <p className={stylesNotification.NotificationContainerItemDescription}>{notification.Text}</p>
+                                        </div>
+                                    )
+                                }else{
+                                    return (
+                                        <div key={notification.Id} onClick={() => { removeNotification(notification.Id); }} className={stylesNotification.NotificationContainerItemSuccess}>
+                                            <h1 className={stylesNotification.NotificationContainerItemTitle}>Sucesso</h1>
+                                            <p className={stylesNotification.NotificationContainerItemDescription}>{notification.Text}</p>
+                                        </div>
+                                    )
+                                }
                             })
                         }
                     </NotificationContainer>
@@ -70,7 +79,7 @@ export default function MemberCreate(){
                             {
                                 setTimeout(() => {
                                     removeNotification(notifications[i].Id);
-                                }, 2000);
+                                }, 5000);
                             };
                         })
                     }
