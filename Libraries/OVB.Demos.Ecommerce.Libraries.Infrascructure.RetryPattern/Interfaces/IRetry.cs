@@ -8,4 +8,7 @@ public interface IRetry
     public TOutput TryRetry<TOutput, TException, TExceptionTwo>(Func<TOutput> handler)
         where TException : Exception
         where TExceptionTwo : Exception;
+
+    public Task TryRetry<TException>(Func<Task> handler)
+        where TException : Exception;
 }
