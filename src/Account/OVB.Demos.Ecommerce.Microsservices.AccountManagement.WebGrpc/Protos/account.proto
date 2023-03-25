@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc";
 
-package greet;
+package Account;
 
 service Account{
 	rpc CreateUserAccount (CreateAccountInput) returns (CreateAccountOutput);

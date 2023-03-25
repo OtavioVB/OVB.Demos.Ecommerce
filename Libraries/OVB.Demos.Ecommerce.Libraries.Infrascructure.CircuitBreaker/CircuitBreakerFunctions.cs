@@ -18,20 +18,21 @@ public sealed class CircuitBreakerFunctions : ICircuitBreakerFunctions
     {
         var respectiveCircuitBreakerPolicy = _circuitBreakerConfiguration.GetCircuitBreakerPolicyByKey(nameCircuitBreaker);
 
+        TOutput? response = default;
+
         var policyResult = await respectiveCircuitBreakerPolicy.ExecuteAndCaptureAsync(async (context, cancellationToken) =>
         {
-            var response = await handler(cancellationToken);
-            context.Add("output", response);
-        }, contextData: new Dictionary<string, object?>(), cancellationToken);
+            response = await handler(cancellationToken);
+        }, contextData: new Dictionary<string, object>(), cancellationToken);
 
         var policyHasBeenExecutedSuccesfull = policyResult.Outcome == OutcomeType.Successful;
 
         if (policyHasBeenExecutedSuccesfull == false)
         {
-            return (HasDone: false, Output: (TOutput)policyResult.Context["output"]);
+            return (HasDone: false, Output: response);
         }
 
-        return (true, (TOutput)policyResult.Context["output"]);
+        return (true, response);
     }
 
     public async Task<(bool HasDone, TOutput? Output)> ExecuteCircuitBreakerAsync<TInput, TOutput>(
@@ -39,19 +40,20 @@ public sealed class CircuitBreakerFunctions : ICircuitBreakerFunctions
     {
         var respectiveCircuitBreakerPolicy = _circuitBreakerConfiguration.GetCircuitBreakerPolicyByKey(nameCircuitBreaker);
 
+        TOutput? response = default;
+
         var policyResult = await respectiveCircuitBreakerPolicy.ExecuteAndCaptureAsync(async (context, cancellationToken) =>
         {
-            var response = await handler(input, cancellationToken);
-            context.Add("output", response);
-        }, contextData: new Dictionary<string, object?>(), cancellationToken);
+            response = await handler(input, cancellationToken);
+        }, contextData: new Dictionary<string, object>(), cancellationToken);
 
         var policyHasBeenExecutedSuccesfull = policyResult.Outcome == OutcomeType.Successful;
 
         if (policyHasBeenExecutedSuccesfull == false)
         {
-            return (HasDone: false, Output: (TOutput)policyResult.Context["output"]);
+            return (HasDone: false, Output: response);
         }
 
-        return (true, (TOutput)policyResult.Context["output"]);
+        return (true, response);
     }
 }

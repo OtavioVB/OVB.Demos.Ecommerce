@@ -24,7 +24,7 @@ public class AccountController : ControllerBase
         [FromBody] CreateUserAccountPayloadInput input,
         CancellationToken cancellationToken)
     {
-        var grpcChannel = GrpcChannel.ForAddress("http://localhost:5200", new GrpcChannelOptions());
+        var grpcChannel = GrpcChannel.ForAddress("http://localhost:5100", new GrpcChannelOptions());
         var client = new Account.AccountClient(grpcChannel);
         var call = await client.CreateUserAccountAsync(new CreateAccountInput()
         {

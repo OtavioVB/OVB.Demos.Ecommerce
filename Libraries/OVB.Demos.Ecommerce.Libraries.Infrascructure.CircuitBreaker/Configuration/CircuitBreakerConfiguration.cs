@@ -1,4 +1,5 @@
-﻿using OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.Configuration.Interfaces;
+﻿using Npgsql;
+using OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.Configuration.Interfaces;
 using Polly;
 using Polly.CircuitBreaker;
 
@@ -11,6 +12,9 @@ public sealed class CircuitBreakerConfiguration : ICircuitBreakerConfiguration
     public CircuitBreakerConfiguration()
     {
         _circuitBreakerPolicies = new Dictionary<string, AsyncCircuitBreakerPolicy>();
+
+        AddCircuitBreakerPolicy<NpgsqlException>("Npgsql", 1, TimeSpan.FromMilliseconds(1500));
+        AddCircuitBreakerPolicy<PostgresException>("Postgres", 1, TimeSpan.FromMilliseconds(1500));
     }
 
     public ICircuitBreakerConfiguration AddCircuitBreakerPolicy<TException>(string name, int exceptionsAllowedBeforeBreak, TimeSpan durationOfBreak)

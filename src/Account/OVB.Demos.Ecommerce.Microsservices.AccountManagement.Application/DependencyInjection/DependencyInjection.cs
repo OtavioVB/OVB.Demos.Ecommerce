@@ -16,9 +16,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddOvbAccountManagementMicrosserviceApplicationConfiguration(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration()
-            .AddCircuitBreakerPolicy<NpgsqlException>("Npgsql", 1, TimeSpan.FromMilliseconds(1500))
-            .AddCircuitBreakerPolicy<PostgresException>("Postgres", 1, TimeSpan.FromMilliseconds(1500));
+        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration();
 
         serviceCollection.AddScoped<IUserService, UserService>();
 

@@ -17,7 +17,7 @@ public class Program
 
         #region Kestrel Configuration
 
-        builder.WebHost.ConfigureKestrel(p =>
+        /*builder.WebHost.ConfigureKestrel(p =>
         {
             p.Listen(IPAddress.Any, 5199, p =>
             {
@@ -28,7 +28,7 @@ public class Program
             {
                 p.Protocols = HttpProtocols.Http2;
             });
-        });
+        });*/
 
         #endregion
 

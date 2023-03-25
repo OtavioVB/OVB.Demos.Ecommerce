@@ -1,4 +1,6 @@
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Application;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Application.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Connection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Connection.Interfaces;
 
@@ -43,6 +45,7 @@ public class Program
                 services.AddOvbRabbitMQInfrascructureConfiguration(rabbitMqHostname, rabbitMqVirtualhost, Convert.ToUInt16(rabbitMqPort), 
                     rabbitMqClientProviderName, rabbitMqUsername, rabbitMqPassword);
 
+                services.AddTransient<IRabbitMqInsertUserConsumer, RabbitMqInsertUserConsumer>();
 
                 services.AddTransient<IDataConnection, DataConnection>(p =>
                 {

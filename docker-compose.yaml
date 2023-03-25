@@ -71,7 +71,6 @@ services:
     networks:
       - ovb-demos-ecommerce
 
-
 networks:
   ovb-demos-ecommerce:
     driver: bridge  

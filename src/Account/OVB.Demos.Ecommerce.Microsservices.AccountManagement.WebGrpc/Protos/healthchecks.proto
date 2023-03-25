@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc";
 
-package greet;
+package HealthChecks;
 
 service HealthChecks{
 	rpc ReadinessHealthCheck (ReadinessHealthCheckInput) returns (ReadinessHealthCheckOutput);

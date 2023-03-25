@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Domain.Serializator\OVB.Demos.Ecommerce.Libraries.Domain.Serializator.csproj" />
     <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Domain\OVB.Demos.Ecommerce.Libraries.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.csproj" />
     <ProjectReference Include="..\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain\OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.csproj" />
   </ItemGroup>
 </Project>
