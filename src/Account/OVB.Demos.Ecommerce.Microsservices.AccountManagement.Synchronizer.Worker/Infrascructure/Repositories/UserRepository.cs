@@ -1,4 +1,5 @@
 ﻿using OVB.Demos.Ecommerce.Libraries.Domain.ValueObjects;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.Protobuffer;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Connection.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Repositories.Interfaces;
 
@@ -13,9 +14,23 @@ public sealed class UserRepository : IUserRepository
         _dataConnection = dataConnection;
     }
 
-    public Task AddUserAsync()
+    public async Task AddUserAsync(UserProtobuffer user)
     {
-        throw new NotImplementedException();
+        var connection = await _dataConnection.GetNpgsqlConnectionAsync();
+        using (var command = connection.CreateCommand())
+        {
+            command.CommandText = "INSERT INTO User (Identifier, Username, Name, LastName, Email, Password, TypeUser, IsEmailConfirmed) VALUES (" +
+                "@Identifier, @Username, @Name, @LastName, @Email, @Password, @TypeUser, @IsEmailConfirmed)";
+            command.Parameters.AddWithValue("@Identifier", user.Identifier);
+            command.Parameters.AddWithValue("@Username", user.Username);
+            command.Parameters.AddWithValue("@Name", user.Name);
+            command.Parameters.AddWithValue("@LastName", user.LastName);
+            command.Parameters.AddWithValue("@Email", user.Email);
+            command.Parameters.AddWithValue("@Password", user.Password);
+            command.Parameters.AddWithValue("@TypeUser", user.TypeUser);
+            command.Parameters.AddWithValue("@IsEmailConfirmed");
+            await command.ExecuteNonQueryAsync();
+        }
     }
 
     public async Task CreateTableUserIfThisNotExists()
