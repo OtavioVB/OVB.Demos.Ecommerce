@@ -58,6 +58,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Librari
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{7A8C345B-B849-4FF6-B3E7-8983B2FA6F29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.OpenTelemetry", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.OpenTelemetry\OVB.Demos.Ecommerce.Libraries.Infrascructure.OpenTelemetry.csproj", "{A398A0CE-B50B-443A-98F0-5F9EA514CB2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +122,10 @@ Global
 		{6E524B0E-77D7-4DC3-9429-B16A1B8AB3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E524B0E-77D7-4DC3-9429-B16A1B8AB3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E524B0E-77D7-4DC3-9429-B16A1B8AB3F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A398A0CE-B50B-443A-98F0-5F9EA514CB2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A398A0CE-B50B-443A-98F0-5F9EA514CB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A398A0CE-B50B-443A-98F0-5F9EA514CB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A398A0CE-B50B-443A-98F0-5F9EA514CB2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +148,7 @@ Global
 		{0B9EAA77-88EE-4636-9DE5-FF8DBCAF2F51} = {D5014E6D-5B42-43ED-919F-1ACE96CCCAA4}
 		{6E524B0E-77D7-4DC3-9429-B16A1B8AB3F2} = {D5014E6D-5B42-43ED-919F-1ACE96CCCAA4}
 		{7A8C345B-B849-4FF6-B3E7-8983B2FA6F29} = {15F4C61B-76B9-424C-9B66-C9DE99C88328}
+		{A398A0CE-B50B-443A-98F0-5F9EA514CB2D} = {D5014E6D-5B42-43ED-919F-1ACE96CCCAA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C34F0EE0-526C-4387-B226-EA9EE55908C3}

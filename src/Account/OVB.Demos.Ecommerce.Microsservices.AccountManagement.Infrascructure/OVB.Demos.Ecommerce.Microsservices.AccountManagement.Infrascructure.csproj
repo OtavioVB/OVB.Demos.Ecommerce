@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.csproj" />
     <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.HealthChecks\OVB.Demos.Ecommerce.Libraries.Infrascructure.HealthChecks.csproj" />
     <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ\OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.csproj" />
     <ProjectReference Include="..\..\..\Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern\OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.csproj" />
