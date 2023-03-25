@@ -107,7 +107,7 @@ public class Program
         if (rabbitMqServiceVersion is null)
             throw new Exception("Is not possible to configure and check the rabbit mq messenger with an service version in a not valid state.");
 
-        builder.Services.AddOvbInfrascructureConfiguration(databaseConnectionString, migrationsAssembly, serviceName, serviceVersion, serviceDescription, rabbitMqHostname,
+        builder.Services.AddOvbInfrascructureConfiguration(databaseConnectionString, migrationsAssembly, serviceName, serviceDescription, serviceVersion, rabbitMqHostname,
             rabbitMqVirtualhost, rabbitMqValidPort, rabbitMqClientProviderName, rabbitMqUsername, rabbitMqPassword, rabbitMqServiceName, rabbitMqServiceVersion, 
             rabbitMqServiceDescription);
 

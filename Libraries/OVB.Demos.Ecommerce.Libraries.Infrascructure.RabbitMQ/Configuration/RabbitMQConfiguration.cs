@@ -10,25 +10,41 @@ public sealed class RabbitMQConfiguration : IRabbitMQConfiguration
     private IConnection? RabbitMQConnection { get; set; }
     private IModel? RabbitMQChannel { get; set; }
 
+    private string Hostname { get; set; }
+    private string Virtualhost { get; set; }
+    private int Port { get; set; }
+    private string ClientProviderName { get; set; }
+    private string Username { get; set; }
+    private string Password { get; set; }
+
     public RabbitMQConfiguration(string hostName, string virtualHost, int port, string clientProviderName, string userName, string password)
     {
-        var factory = new ConnectionFactory()
-        {
-            Port = port,
-            HostName = hostName,
-            VirtualHost = virtualHost,
-            UserName = userName,
-            ClientProvidedName = clientProviderName,
-            Password = password,
-        };
-        RabbitMQConnection = factory.CreateConnection();
-        RabbitMQChannel = RabbitMQConnection.CreateModel();
+        Hostname = hostName;
+        Virtualhost = virtualHost;
+        Port = port;
+        ClientProviderName = clientProviderName;
+        Username = userName;
+        Password = password;
     }
 
     public IModel GetChannel()
     {
+        if (RabbitMQConnection is null)
+        {
+            var factory = new ConnectionFactory()
+            {
+                Port = Port,
+                HostName = Hostname,
+                VirtualHost = Virtualhost,
+                UserName = Username,
+                ClientProvidedName = ClientProviderName,
+                Password = Password,
+            };
+            RabbitMQConnection = factory.CreateConnection();
+        }
+
         if (RabbitMQChannel is null)
-            throw new OvbRabbitMQException("The RabbitMQ connection and RabbitMQ channel needs to be configured correctly.");
+            RabbitMQChannel = RabbitMQConnection.CreateModel();
 
         return RabbitMQChannel;
     }
