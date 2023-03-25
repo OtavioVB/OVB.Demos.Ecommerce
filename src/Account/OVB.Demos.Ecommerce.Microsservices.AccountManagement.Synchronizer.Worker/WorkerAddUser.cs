@@ -1,3 +1,4 @@
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Application.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Connection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Repositories;
 
@@ -5,11 +6,18 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Work
 
 public class WorkerAddUser : BackgroundService
 {
+    private readonly IRabbitMqInsertUserConsumer _rabbitMqInserUserConsumer;
+
+    public WorkerAddUser(IRabbitMqInsertUserConsumer rabbitMqInserUserConsumer)
+    {
+        _rabbitMqInserUserConsumer = rabbitMqInserUserConsumer;
+    }
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            await new UserRepository(new DataConnection("User Id=admin;Password=1234;Server=localhost;Port=5433;Database=ovbdemosecommerce")).CreateTableUserIfThisNotExists();
+            await _rabbitMqInserUserConsumer.CreateUserWithConsumerAsync();
             await Task.Delay(1000, stoppingToken);
         }
     }

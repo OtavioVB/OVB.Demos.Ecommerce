@@ -28,7 +28,7 @@ public sealed class UserRepository : IUserRepository
             command.Parameters.AddWithValue("@Email", user.Email);
             command.Parameters.AddWithValue("@Password", user.Password);
             command.Parameters.AddWithValue("@TypeUser", user.TypeUser);
-            command.Parameters.AddWithValue("@IsEmailConfirmed");
+            command.Parameters.AddWithValue("@IsEmailConfirmed", user.IsEmailConfirmed);
             await command.ExecuteNonQueryAsync();
         }
     }
