@@ -8,6 +8,6 @@ public interface ICircuitBreakerFunctions
         where TException : Exception;
 
     public Task<TOutput> ExecuteCircuitBreakerAsync<TInput, TOutput, TException>(TInput input,
-        Func<TInput, CancellationToken, TOutput> handler, CancellationToken cancellationToken)
+        Func<TInput, CancellationToken, Task<TOutput>> handler, CancellationToken cancellationToken)
         where TException : Exception;
 }

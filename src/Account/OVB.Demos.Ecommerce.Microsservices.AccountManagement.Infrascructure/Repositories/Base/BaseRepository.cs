@@ -58,9 +58,9 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public async Task<TEntity?> GetByIdentifierAsync(Guid identifier, CancellationToken cancellationToken)
     {
-        return _retry.TryRetryWithCircuitBreaker<Task<TEntity?>, NpgsqlException, PostgresException>(async () =>
+        return await _retry.TryRetryWithCircuitBreaker<TEntity?, NpgsqlException, PostgresException>(() =>
         {
-            return await _dataContext.Set<TEntity>().Where(p => p.Identifier == identifier).FirstOrDefaultAsync(cancellationToken);
+            return _dataContext.Set<TEntity>().Where(p => p.Identifier == identifier).FirstOrDefaultAsync(cancellationToken).Result;
         }, cancellationToken);
     }
 
