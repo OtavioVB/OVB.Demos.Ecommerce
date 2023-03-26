@@ -13,32 +13,6 @@ public sealed class CircuitBreakerFunctions : ICircuitBreakerFunctions
         _circuitBreakerConfiguration = circuitBreakerConfiguration;
     }
 
-    public async Task<TOutput> ExecuteCircuitBreakerAsync<TOutput, TException>(
-        Func<CancellationToken, TOutput> handler, CancellationToken cancellationToken)
-        where TException : Exception
-    {
-        var respectiveCircuitBreakerPolicy = _circuitBreakerConfiguration.GetCircuitBreakerPolicyByKey<TException>();
-
-        TOutput? response = default(TOutput);
-
-        var policyResult = await respectiveCircuitBreakerPolicy.Execute((context, cancellationToken) =>
-        {
-            response = handler(cancellationToken);
-        }, contextData: new Dictionary<string, object>(), cancellationToken);
-
-        var policyHasBeenExecutedSuccesfull = policyResult.Outcome == OutcomeType.Successful;
-
-        if (policyHasBeenExecutedSuccesfull == false)
-        {
-            throw policyResult.FinalException;
-        }
-
-        if (response is null)
-            throw new NotImplementedException();
-
-        return (response);
-    }
-
     public async Task<TOutput> ExecuteCircuitBreakerAsync<TInput, TOutput, TException>(TInput input, 
         Func<TInput, CancellationToken, TOutput> handler, CancellationToken cancellationToken)
         where TException : Exception

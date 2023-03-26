@@ -59,9 +59,9 @@ public sealed class Retry : IRetry
             {
                 return _retryConfiguration.GetPolicy<TExceptionTwo>().Execute(() =>
                 {
-                    return _retryConfiguration.GetPolicy<TException>().Execute(() =>
+                    return _retryConfiguration.GetPolicy<TException>().Execute(async () =>
                     {
-                        return handler();
+                        return await handler();
                     });
                 });
             }, cancellationToken);
