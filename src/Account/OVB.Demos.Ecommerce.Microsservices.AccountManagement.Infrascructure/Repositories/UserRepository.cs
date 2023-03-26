@@ -13,19 +13,19 @@ public sealed class UserRepository : BaseRepository<User>, IExtensionUserReposit
     {
     }
 
-    public Task<bool> VerifyUserExistsByUsernameOrEmail(string username, string email, CancellationToken cancellationToken)
+    public async Task<bool> VerifyUserExistsByUsernameOrEmail(string username, string email, CancellationToken cancellationToken)
     {
-        var localResponse = _retry.TryRetry<bool, NpgsqlException, PostgresException>(() =>
+        var localResponse = await _retry.TryRetryWithCircuitBreaker<bool, NpgsqlException, PostgresException>(() =>
         {
             return _dataContext.Set<User>().Local.Where(p => p.Username == username || p.Email == email).Any();
-        });
+        }, cancellationToken);
         
         if (localResponse)
-            return Task.FromResult(true);
+            return true;
 
-        return _retry.TryRetry<Task<bool>, NpgsqlException, PostgresException>(() =>
+        return await _retry.TryRetryWithCircuitBreaker<bool, NpgsqlException, PostgresException>(() =>
         {
-            return _dataContext.Set<User>().Where(p => p.Username == username || p.Email == email).AnyAsync(cancellationToken);
-        });
+            return _dataContext.Set<User>().Where(p => p.Username == username || p.Email == email).AnyAsync(cancellationToken).Result;
+        }, cancellationToken);
     }
 }

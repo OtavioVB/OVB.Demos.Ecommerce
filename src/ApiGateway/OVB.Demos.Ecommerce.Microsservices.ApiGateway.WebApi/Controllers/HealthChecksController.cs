@@ -1,9 +1,7 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcAccountClient;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration.EnvironmentVariables;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.HealthChecks.ENUMs;
 
 namespace OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi.Controllers;

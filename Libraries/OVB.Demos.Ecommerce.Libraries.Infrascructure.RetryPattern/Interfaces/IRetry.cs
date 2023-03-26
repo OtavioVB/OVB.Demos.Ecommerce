@@ -11,4 +11,11 @@ public interface IRetry
 
     public Task TryRetry<TException>(Func<Task> handler)
         where TException : Exception;
+
+    public Task<TOutput> TryRetryWithCircuitBreaker<TOutput, TException, TExceptionTwo>(Func<TOutput> handler, CancellationToken cancellationToken)
+        where TException : Exception
+        where TExceptionTwo : Exception;
+
+    public Task<TOutput> TryRetryWithCircuitBreaker<TOutput, TException>(Func<TOutput> handler, CancellationToken cancellationToken)
+        where TException : Exception;
 }

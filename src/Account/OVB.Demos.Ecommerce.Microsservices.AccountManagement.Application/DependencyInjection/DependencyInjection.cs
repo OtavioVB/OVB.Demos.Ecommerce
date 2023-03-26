@@ -16,8 +16,6 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddOvbAccountManagementMicrosserviceApplicationConfiguration(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration();
-
         serviceCollection.AddScoped<IUserService, UserService>();
 
         serviceCollection.AddScoped<IMessengerSynchronizerService, MessengerSynchronizerService>();

@@ -4,7 +4,8 @@ namespace OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.Configurat
 
 public interface ICircuitBreakerConfiguration
 {
-    public ICircuitBreakerConfiguration AddCircuitBreakerPolicy<TException>(string name, int exceptionsAllowedBeforeBreak, TimeSpan durationOfBreak)
+    public ICircuitBreakerConfiguration AddCircuitBreakerPolicy<TException>(int exceptionsAllowedBeforeBreak, TimeSpan durationOfBreak)
         where TException : Exception;
-    public AsyncCircuitBreakerPolicy GetCircuitBreakerPolicyByKey(string key);
+    public AsyncCircuitBreakerPolicy GetCircuitBreakerPolicyByKey<TException>()
+        where TException : Exception;
 }

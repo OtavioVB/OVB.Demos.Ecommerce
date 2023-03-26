@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.DependencyInjection;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.DependencyInjection;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.DataTransferObject;
@@ -22,6 +23,8 @@ public static class DependencyInjection
         string postgreeSqlServiceVersion, string rabbitMqHostname, string rabbitMqVirtualhost, int rabbitMqPort, string rabbitMqClientProviderName,
         string rabbitMqUsername, string rabbitMqPassword, string rabbitMqServiceName, string rabbitMqServiceVersion, string rabbitMqServiceDescription)
     {
+        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration();
+
         serviceCollection.AddOvbRetryPoliciesConfiguration(TimeSpan.FromMilliseconds(50), 5);
 
         serviceCollection.AddOvbRabbitMQInfrascructureConfiguration(rabbitMqHostname, rabbitMqVirtualhost, rabbitMqPort, rabbitMqClientProviderName, rabbitMqUsername,

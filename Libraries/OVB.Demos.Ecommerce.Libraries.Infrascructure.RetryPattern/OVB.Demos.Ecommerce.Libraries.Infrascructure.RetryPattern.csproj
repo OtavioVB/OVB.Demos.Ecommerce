@@ -11,4 +11,8 @@
     <PackageReference Include="Polly" Version="7.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker\OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.csproj" />
+  </ItemGroup>
+
 </Project>

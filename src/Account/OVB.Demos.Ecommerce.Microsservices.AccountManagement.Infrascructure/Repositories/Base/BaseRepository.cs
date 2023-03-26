@@ -20,69 +20,69 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public Task AddAsync(TEntity entity, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
+        return _retry.TryRetryWithCircuitBreaker<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(_dataContext.Set<TEntity>().AddAsync(entity, cancellationToken));
-        });
+        }, cancellationToken);
     }
 
     public Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
+        return _retry.TryRetryWithCircuitBreaker<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(_dataContext.Set<TEntity>().AddRangeAsync(entities, cancellationToken));
-        });
+        }, cancellationToken);
     }
 
     public Task DeleteAsync(TEntity entity, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
+        return _retry.TryRetryWithCircuitBreaker<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(() =>
             {
                 _dataContext.Set<TEntity>().Remove(entity);
             });
-        });
+        }, cancellationToken);
     }
 
     public Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
+        return _retry.TryRetryWithCircuitBreaker<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(() =>
             {
                 _dataContext.Set<TEntity>().RemoveRange(entities);
             });
-        });
+        }, cancellationToken);
     }
 
-    public Task<TEntity?> GetByIdentifierAsync(Guid identifier, CancellationToken cancellationToken)
+    public async Task<TEntity?> GetByIdentifierAsync(Guid identifier, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task<TEntity?>, NpgsqlException, PostgresException>(() =>
+        return _retry.TryRetryWithCircuitBreaker<Task<TEntity?>, NpgsqlException, PostgresException>(async () =>
         {
-            return _dataContext.Set<TEntity>().Where(p => p.Identifier == identifier).FirstOrDefaultAsync();
-        });
+            return await _dataContext.Set<TEntity>().Where(p => p.Identifier == identifier).FirstOrDefaultAsync(cancellationToken);
+        }, cancellationToken);
     }
 
     public Task UpdateAsync(TEntity entity, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
-        {
-            return Task.FromResult(() =>
-            {
-                _dataContext.Set<TEntity>().Update(entity);
-            });
-        });
+        return _retry.TryRetryWithCircuitBreaker<Task, NpgsqlException, PostgresException>(() => 
+        { 
+            return Task.FromResult(() => 
+            { 
+                _dataContext.Set<TEntity>().Update(entity); 
+            }); 
+        }, cancellationToken);
     }
 
     public Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
     {
-        return _retry.TryRetry<Task, NpgsqlException, PostgresException>(() =>
+        return _retry.TryRetryWithCircuitBreaker<Task, NpgsqlException, PostgresException>(() =>
         {
             return Task.FromResult(() =>
             {
                 _dataContext.Set<TEntity>().UpdateRange(entities);
             });
-        });
+        }, cancellationToken);
     }
 }

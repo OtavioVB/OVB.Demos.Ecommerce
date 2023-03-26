@@ -13,23 +13,24 @@ public sealed class CircuitBreakerConfiguration : ICircuitBreakerConfiguration
     {
         _circuitBreakerPolicies = new Dictionary<string, AsyncCircuitBreakerPolicy>();
 
-        AddCircuitBreakerPolicy<NpgsqlException>("Npgsql", 1, TimeSpan.FromMilliseconds(1500));
-        AddCircuitBreakerPolicy<PostgresException>("Postgres", 1, TimeSpan.FromMilliseconds(1500));
+        AddCircuitBreakerPolicy<NpgsqlException>(1, TimeSpan.FromMilliseconds(1500));
+        AddCircuitBreakerPolicy<PostgresException>(1, TimeSpan.FromMilliseconds(1500));
     }
 
-    public ICircuitBreakerConfiguration AddCircuitBreakerPolicy<TException>(string name, int exceptionsAllowedBeforeBreak, TimeSpan durationOfBreak)
+    public ICircuitBreakerConfiguration AddCircuitBreakerPolicy<TException>(int exceptionsAllowedBeforeBreak, TimeSpan durationOfBreak)
         where TException : Exception
     {
-        if (_circuitBreakerPolicies.ContainsKey(name))
+        if (_circuitBreakerPolicies.ContainsKey(nameof(TException)))
             throw new Exception("This key is already configured.");
 
-        _circuitBreakerPolicies.Add(KeyValuePair.Create(name, Policy.Handle<TException>().CircuitBreakerAsync(exceptionsAllowedBeforeBreak, durationOfBreak)));
+        _circuitBreakerPolicies.Add(KeyValuePair.Create(nameof(TException), Policy.Handle<TException>().CircuitBreakerAsync(exceptionsAllowedBeforeBreak, durationOfBreak)));
         return this;
     }
 
-    public AsyncCircuitBreakerPolicy GetCircuitBreakerPolicyByKey(string key)
+    public AsyncCircuitBreakerPolicy GetCircuitBreakerPolicyByKey<TException>()
+        where TException : Exception
     {
-        var circuitBreaker = _circuitBreakerPolicies[key];
+        var circuitBreaker = _circuitBreakerPolicies[nameof(TException)];
 
         if (circuitBreaker is null)
             throw new Exception("The circuit breaker is not configured.");
