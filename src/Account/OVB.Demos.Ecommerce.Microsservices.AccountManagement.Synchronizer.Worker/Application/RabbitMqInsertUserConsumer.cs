@@ -32,17 +32,10 @@ public sealed class RabbitMqInsertUserConsumer : IRabbitMqInsertUserConsumer
         var consumer = new AsyncEventingBasicConsumer(channel);
         consumer.Received += async (component, basicDeliverEventArgs) =>
         {
-            try
-            {
                 var body = basicDeliverEventArgs.Body;
                 var userProtobuffer = Serializator.DeserializeProtobuf<UserProtobuffer>(body.ToArray());
                 await _userRepository.AddUserAsync(userProtobuffer);
                 _rabbitMqPublisher.BasicAck(basicDeliverEventArgs.DeliveryTag, false);
-            }
-            catch
-            {
-                _rabbitMqPublisher.BasicNack(basicDeliverEventArgs.DeliveryTag, false, true);
-            }
         };
 
         return Task.FromResult(channel.BasicConsume("AccountMicrosservice.Synchronizer.User.Insert.Queue", false, consumer));

@@ -19,14 +19,14 @@ public sealed class UserRepository : IUserRepository
         var connection = await _dataConnection.GetNpgsqlConnectionAsync();
         using (var command = connection.CreateCommand())
         {
-            command.CommandText = "INSERT INTO User (Identifier, Username, Name, LastName, Email, Password, TypeUser, IsEmailConfirmed) VALUES (" +
+            command.CommandText = "INSERT INTO \"User\" (Identifier, Username, Name, LastName, Email, Password, TypeUser, IsEmailConfirmed) VALUES (" +
                 "@Identifier, @Username, @Name, @LastName, @Email, @Password, @TypeUser, @IsEmailConfirmed)";
-            command.Parameters.AddWithValue("@Identifier", user.Identifier);
-            command.Parameters.AddWithValue("@Username", user.Username);
-            command.Parameters.AddWithValue("@Name", user.Name);
-            command.Parameters.AddWithValue("@LastName", user.LastName);
-            command.Parameters.AddWithValue("@Email", user.Email);
-            command.Parameters.AddWithValue("@Password", user.Password);
+            command.Parameters.AddWithValue("@Identifier", new Guid(user.Identifier!));
+            command.Parameters.AddWithValue("@Username", user.Username!);
+            command.Parameters.AddWithValue("@Name", user.Name!);
+            command.Parameters.AddWithValue("@LastName", user.LastName!);
+            command.Parameters.AddWithValue("@Email", user.Email!);
+            command.Parameters.AddWithValue("@Password", user.Password!);
             command.Parameters.AddWithValue("@TypeUser", user.TypeUser);
             command.Parameters.AddWithValue("@IsEmailConfirmed", user.IsEmailConfirmed);
             await command.ExecuteNonQueryAsync();

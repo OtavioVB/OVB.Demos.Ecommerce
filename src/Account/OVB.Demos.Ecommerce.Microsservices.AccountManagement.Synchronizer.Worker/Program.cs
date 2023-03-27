@@ -3,6 +3,8 @@ using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.A
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Application.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Connection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Connection.Interfaces;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Repositories;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Repositories.Interfaces;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker;
 
@@ -45,9 +47,11 @@ public class Program
                 services.AddOvbRabbitMQInfrascructureConfiguration(rabbitMqHostname, rabbitMqVirtualhost, Convert.ToUInt16(rabbitMqPort), 
                     rabbitMqClientProviderName, rabbitMqUsername, rabbitMqPassword);
 
-                services.AddTransient<IRabbitMqInsertUserConsumer, RabbitMqInsertUserConsumer>();
+                services.AddSingleton<IUserRepository, UserRepository>();
 
-                services.AddTransient<IDataConnection, DataConnection>(p =>
+                services.AddSingleton<IRabbitMqInsertUserConsumer, RabbitMqInsertUserConsumer>();
+
+                services.AddSingleton<IDataConnection, DataConnection>(p =>
                 {
                     return new DataConnection(databaseConnectionString);
                 });

@@ -46,12 +46,21 @@ public sealed class CreateUserUseCase : IUseCase<CreateUserUseCaseInput, CreateU
                     throw new Exception("User Object in Create User Service can not be null.");
 
                 await _messengerSynchronizerService.PublishMessageToBusToSynchronizeDatabaseWithInsert(
-                    new UserProtobuffer(userServiceResponse.User.Username.ToString(), userServiceResponse.User.Name.ToString(), 
-                    userServiceResponse.User.LastName.ToString(), userServiceResponse.User.Email.ToString(), 
-                    userServiceResponse.User.Password.ToString(), 1, userServiceResponse.User.IsEmailConfirmed, userServiceResponse.User.Identifier.ToString(),
-                    userServiceResponse.User.CorrelationIdentifier.ToString(), userServiceResponse.User.TenantIdentifier.ToString(), 
-                    userServiceResponse.User.SourcePlatform.ToString(), userServiceResponse.User.CreatedOn), 
-                    input.CorrelationIdentifier, input.TenantIdentifier, input.SourcePlatform, cancellationToken);
+                    new UserProtobuffer()
+                    {
+                        CorrelationIdentifier = userServiceResponse.User.CorrelationIdentifier.ToString(),
+                        TenantIdentifier = userServiceResponse.User.TenantIdentifier.ToString(),
+                        Identifier = userServiceResponse.User.Identifier.ToString(),
+                        IsEmailConfirmed = userServiceResponse.User.IsEmailConfirmed,
+                        TypeUser = 1,
+                        Password = userServiceResponse.User.Password.ToString(),
+                        Username = userServiceResponse.User.Username.ToString(),
+                        Name = userServiceResponse.User.Name.ToString(),
+                        LastName = userServiceResponse.User.LastName.ToString(),
+                        Email = userServiceResponse.User.Email.ToString(),
+                        SourcePlatform = userServiceResponse.User.SourcePlatform.ToString(),
+                        CreatedOn = userServiceResponse.User.CreatedOn,
+                    }, input.CorrelationIdentifier, input.TenantIdentifier, input.SourcePlatform, cancellationToken) ;
 
                 return (true, (true, new CreateUserUseCaseOutput()));
             }

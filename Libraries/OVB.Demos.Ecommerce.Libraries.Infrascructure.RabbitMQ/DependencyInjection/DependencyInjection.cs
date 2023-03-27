@@ -16,7 +16,7 @@ public static class DependencyInjection
             return new RabbitMQConfiguration(hostName, virtualHost, port, clientProviderName, userName, password);
         });
 
-        serviceCollection.AddScoped<IRabbitMQPublisher, RabbitMQPublisher>();
+        serviceCollection.AddSingleton<IRabbitMQPublisher, RabbitMQPublisher>();
 
         return serviceCollection;
     }

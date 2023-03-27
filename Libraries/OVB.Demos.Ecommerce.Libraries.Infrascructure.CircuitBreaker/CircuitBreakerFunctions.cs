@@ -19,7 +19,7 @@ public sealed class CircuitBreakerFunctions : ICircuitBreakerFunctions
     {
         var respectiveCircuitBreakerPolicy = _circuitBreakerConfiguration.GetCircuitBreakerPolicyByKey<TException>();
 
-        TOutput? response = default(TOutput);
+        TOutput? response = default;
 
         var policyResult = await respectiveCircuitBreakerPolicy.ExecuteAndCaptureAsync(async (context, cancellationToken) =>
         {
@@ -44,7 +44,7 @@ public sealed class CircuitBreakerFunctions : ICircuitBreakerFunctions
     {
         var respectiveCircuitBreakerPolicy = _circuitBreakerConfiguration.GetCircuitBreakerPolicyByKey<TException>();
 
-        TOutput? response = default(TOutput);
+        TOutput? response = default;
 
         var policyResult = await respectiveCircuitBreakerPolicy.ExecuteAndCaptureAsync(async (context, cancellationToken) =>
         {

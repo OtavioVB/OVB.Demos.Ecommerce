@@ -2,6 +2,7 @@
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.Configuration.Interfaces;
 using Polly;
 using Polly.CircuitBreaker;
+using RabbitMQ.Client.Exceptions;
 
 namespace OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.Configuration;
 
@@ -15,6 +16,7 @@ public sealed class CircuitBreakerConfiguration : ICircuitBreakerConfiguration
 
         AddCircuitBreakerPolicy<NpgsqlException>(1, TimeSpan.FromMilliseconds(1500));
         AddCircuitBreakerPolicy<PostgresException>(1, TimeSpan.FromMilliseconds(1500));
+        AddCircuitBreakerPolicy<RabbitMQClientException>(1, TimeSpan.FromMilliseconds(1500));
     }
 
     public ICircuitBreakerConfiguration AddCircuitBreakerPolicy<TException>(int exceptionsAllowedBeforeBreak, TimeSpan durationOfBreak)

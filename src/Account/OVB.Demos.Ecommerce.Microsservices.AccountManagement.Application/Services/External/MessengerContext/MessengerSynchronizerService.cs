@@ -6,6 +6,7 @@ using OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.External.MessengerContext.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.UserContext.Protobuffer;
 using RabbitMQ.Client.Exceptions;
+using RabbitMQ.Client;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.Services.External.MessengerContext;
 
@@ -31,19 +32,14 @@ public sealed class MessengerSynchronizerService : IMessengerSynchronizerService
             {
                 var userSerialized = Serializator.SerializeProtobuf(user);
 
-                const ExchangeTypes exchangeType = ExchangeTypes.Direct;
-                const string exchangeName = "AccountMicrosservice.Synchronizer";
-                const string routingKey = "AccountMicrosservice.Synchronizer.User.Insert";
+                const ExchangeTypes exchangeType = ExchangeTypes.Topic;
+                const string exchangeName = "ExchangeSynchronizerAccountMicrosservice";
+                const string routingKey = "AccountMicrosservice.Synchronizer.User.Insert.*";
                 const string queueName = "AccountMicrosservice.Synchronizer.User.Insert.Queue";
-                _rabbitMqPublisher.ExchangeDeclare(exchangeName, ExchangeTypes.Direct, true, false, null);
-                _rabbitMqPublisher.QueueDeclare(queueName, true, false, false, null);
-                _rabbitMqPublisher.QueueBindDeclare(queueName, exchangeName, routingKey, new Dictionary<string, object>());
-                _rabbitMqPublisher.PublishQueue(queueName, new BasicProperties(exchangeType.ToString(), exchangeName, routingKey)
-                {
-                    CorrelationId = correlationIdentifier.ToString(),
-                    AppId = sourcePlatform,
-                    ClusterId = tenantIdentifier.ToString()
-                }, userSerialized);
+                _rabbitMqPublisher.ExchangeDeclare(exchangeName, exchangeType, true, false);
+                _rabbitMqPublisher.QueueDeclare(queueName, true, false, false);
+                _rabbitMqPublisher.QueueBindDeclare(queueName, exchangeName, routingKey);
+                _rabbitMqPublisher.PublishExchange(exchangeName, routingKey, userSerialized);
             });
         }, cancellationToken);
     }

@@ -24,7 +24,7 @@ public sealed class RabbitMQPublisher : IRabbitMQPublisher
         }
     }
 
-    public void PublishExchange(string exchangeName, string routingKey, IBasicProperties basicProperties, ReadOnlyMemory<byte> message)
+    public void PublishExchange(string exchangeName, string routingKey, ReadOnlyMemory<byte> message, IBasicProperties? basicProperties = null)
     {
         var channel = _rabbitMQConfiguration.GetChannel();
 
@@ -53,10 +53,10 @@ public sealed class RabbitMQPublisher : IRabbitMQPublisher
         }, isDurable, autoDelete, arguments);
     }
 
-    public void QueueBindDeclare(string queue, string exchange, string routingKey, IDictionary<string, object> arguments)
+    public void QueueBindDeclare(string queue, string exchange, string routingKey)
     {
         var channel = _rabbitMQConfiguration.GetChannel();
-        channel.QueueBind(queue, exchange, routingKey, arguments);
+        channel.QueueBind(queue, exchange, routingKey);
     }
 
     public void BasicAck(ulong deliveryTag, bool isMultiple)
