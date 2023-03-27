@@ -20,17 +20,17 @@ public sealed class CircuitBreakerConfiguration : ICircuitBreakerConfiguration
     public ICircuitBreakerConfiguration AddCircuitBreakerPolicy<TException>(int exceptionsAllowedBeforeBreak, TimeSpan durationOfBreak)
         where TException : Exception
     {
-        if (_circuitBreakerPolicies.ContainsKey(nameof(TException)))
-            throw new Exception("This key is already configured.");
+        if (_circuitBreakerPolicies.ContainsKey(typeof(TException).ToString()))
+            throw new Exception($"This key is already configured - {typeof(TException)}");
 
-        _circuitBreakerPolicies.Add(KeyValuePair.Create(nameof(TException), Policy.Handle<TException>().CircuitBreakerAsync(exceptionsAllowedBeforeBreak, durationOfBreak)));
+        _circuitBreakerPolicies.Add(KeyValuePair.Create(typeof(TException).ToString(), Policy.Handle<TException>().CircuitBreakerAsync(exceptionsAllowedBeforeBreak, durationOfBreak)));
         return this;
     }
 
     public AsyncCircuitBreakerPolicy GetCircuitBreakerPolicyByKey<TException>()
         where TException : Exception
     {
-        var circuitBreaker = _circuitBreakerPolicies[nameof(TException)];
+        var circuitBreaker = _circuitBreakerPolicies[typeof(TException).ToString()];
 
         if (circuitBreaker is null)
             throw new Exception("The circuit breaker is not configured.");

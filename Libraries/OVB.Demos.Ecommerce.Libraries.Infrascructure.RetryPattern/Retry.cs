@@ -49,7 +49,7 @@ public sealed class Retry : IRetry
         });
     }
 
-    public Task<TOutput> TryRetryWithCircuitBreaker<TOutput, TException, TExceptionTwo>(Func<TOutput> handler, CancellationToken cancellationToken)
+    public Task<TOutput> TryRetry<TOutput, TException, TExceptionTwo>(Func<Task<TOutput>> handler, CancellationToken cancellationToken)
         where TException : Exception
         where TExceptionTwo : Exception
     {
@@ -59,11 +59,30 @@ public sealed class Retry : IRetry
             {
                 return _retryConfiguration.GetPolicy<TExceptionTwo>().Execute(() =>
                 {
-                    return _retryConfiguration.GetPolicy<TException>().Execute(async () =>
+                    return _retryConfiguration.GetPolicy<TException>().Execute(() =>
                     {
-                        return await handler();
+                        return handler();
                     });
                 });
+            }, cancellationToken);
+        }, cancellationToken);
+    }
+
+    public Task<TOutput> TryRetryWithCircuitBreaker<TOutput, TException, TExceptionTwo>(Func<TOutput> handler, CancellationToken cancellationToken)
+        where TException : Exception
+        where TExceptionTwo : Exception
+    {
+        return _circuitBreakerFunctions.ExecuteCircuitBreakerAsync<TOutput, TException>(async (cancellationToken) =>
+        {
+            return await _circuitBreakerFunctions.ExecuteCircuitBreakerAsync<TOutput, TExceptionTwo>((cancellationToken) =>
+            {
+                return Task.FromResult(_retryConfiguration.GetPolicy<TExceptionTwo>().Execute(() =>
+                {
+                    return _retryConfiguration.GetPolicy<TException>().Execute(() =>
+                    {
+                        return handler();
+                    });
+                }));
             }, cancellationToken);
         }, cancellationToken);
     }
@@ -73,10 +92,29 @@ public sealed class Retry : IRetry
     {
         return _circuitBreakerFunctions.ExecuteCircuitBreakerAsync<TOutput, TException>((cancellationToken) =>
         {
-            return _retryConfiguration.GetPolicy<TException>().Execute(() =>
+            return Task.FromResult(_retryConfiguration.GetPolicy<TException>().Execute(() =>
             {
                 return handler();
-            });
+            }));
+        }, cancellationToken);
+    }
+
+    public Task<TOutput> TryRetryWithCircuitBreaker<TOutput, TException, TExceptionTwo>(Func<Task<TOutput>> handler, CancellationToken cancellationToken)
+        where TException : Exception
+        where TExceptionTwo : Exception
+    {
+        return _circuitBreakerFunctions.ExecuteCircuitBreakerAsync<TOutput, TException>(async (cancellationToken) =>
+        {
+            return await _circuitBreakerFunctions.ExecuteCircuitBreakerAsync<TOutput, TExceptionTwo>((cancellationToken) =>
+            {
+                return _retryConfiguration.GetPolicy<TExceptionTwo>().Execute(() =>
+                {
+                    return _retryConfiguration.GetPolicy<TException>().Execute(() =>
+                    {
+                        return handler();
+                    });
+                });
+            }, cancellationToken);
         }, cancellationToken);
     }
 }

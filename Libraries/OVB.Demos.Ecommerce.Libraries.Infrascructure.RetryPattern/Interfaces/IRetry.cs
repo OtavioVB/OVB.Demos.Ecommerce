@@ -9,10 +9,18 @@ public interface IRetry
         where TException : Exception
         where TExceptionTwo : Exception;
 
+    public Task<TOutput> TryRetry<TOutput, TException, TExceptionTwo>(Func<Task<TOutput>> handler, CancellationToken cancellationToken)
+        where TException : Exception
+        where TExceptionTwo : Exception;
+
     public Task TryRetry<TException>(Func<Task> handler)
         where TException : Exception;
 
     public Task<TOutput> TryRetryWithCircuitBreaker<TOutput, TException, TExceptionTwo>(Func<TOutput> handler, CancellationToken cancellationToken)
+        where TException : Exception
+        where TExceptionTwo : Exception;
+
+    public Task<TOutput> TryRetryWithCircuitBreaker<TOutput, TException, TExceptionTwo>(Func<Task<TOutput>> handler, CancellationToken cancellationToken)
         where TException : Exception
         where TExceptionTwo : Exception;
 

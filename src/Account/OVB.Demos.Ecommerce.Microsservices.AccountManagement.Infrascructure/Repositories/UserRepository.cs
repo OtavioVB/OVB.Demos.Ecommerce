@@ -23,9 +23,9 @@ public sealed class UserRepository : BaseRepository<User>, IExtensionUserReposit
         if (localResponse)
             return true;
 
-        return await _retry.TryRetryWithCircuitBreaker<bool, NpgsqlException, PostgresException>(() =>
+        return await _retry.TryRetryWithCircuitBreaker<bool, NpgsqlException, PostgresException>(async () =>
         {
-            return _dataContext.Set<User>().Where(p => p.Username == username || p.Email == email).AnyAsync(cancellationToken).Result;
+            return await _dataContext.Set<User>().Where(p => p.Username == username || p.Email == email).AnyAsync(cancellationToken);
         }, cancellationToken);
     }
 }

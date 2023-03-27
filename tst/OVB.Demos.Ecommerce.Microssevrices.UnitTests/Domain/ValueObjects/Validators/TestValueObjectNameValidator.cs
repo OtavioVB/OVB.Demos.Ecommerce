@@ -10,7 +10,20 @@ public sealed class TestValueObjectNameValidator
 
     [Theory]
     [InlineData("")]
+    [InlineData("  ")]
     public void TestValueObjectNameCannotBeNullOrEmpty(string name)
+    {
+        var validation = nameValidator.Validate(new Name(name));
+
+        Assert.False(validation.IsValid);
+    }
+
+    [Theory]
+    [InlineData("abcdefghijklmnopqrstuvwxyzabcdefx")]
+    [InlineData("abcdefghijklmnopqrstuvwxyzabcdefxx")]
+    [InlineData("abcdefghijklmnopqrstuvwxyzabcdefxxabcdefghijklmnopqrstuvwxyzabcde")]
+    [InlineData("abcdefghijklmnopqrstuvwxyzabcdefxxabcdefghijklmnopqrstuvwxyzabcdeabcdefghijklmnopqrstuvwxyzabcdefxxabcdefghijklmnopqrstuvwxyzabcde")]
+    public void TestValueObjectNameCannotBeLengthGreatherThan32Characters(string name)
     {
         var validation = nameValidator.Validate(new Name(name));
 
