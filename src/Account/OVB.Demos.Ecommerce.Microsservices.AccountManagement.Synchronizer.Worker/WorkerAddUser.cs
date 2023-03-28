@@ -12,14 +12,12 @@ namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Work
 
 public class WorkerAddUser : BackgroundService
 {
-    private readonly IRabbitMqInsertUserConsumer _rabbitMqInserUserConsumer;
     private readonly IRabbitMQConfiguration _rabbitMqConfiguration;
     private readonly IRabbitMQPublisher _rabbitMqPublisher;
     private readonly IUserRepository _userRepository;
 
-    public WorkerAddUser(IRabbitMqInsertUserConsumer rabbitMqInserUserConsumer, IRabbitMQConfiguration rabbitMqConfiguration, IRabbitMQPublisher rabbitMqPublisher, IUserRepository userRepository)
+    public WorkerAddUser(IRabbitMQConfiguration rabbitMqConfiguration, IRabbitMQPublisher rabbitMqPublisher, IUserRepository userRepository)
     {
-        _rabbitMqInserUserConsumer = rabbitMqInserUserConsumer;
         _rabbitMqConfiguration = rabbitMqConfiguration;
         _rabbitMqPublisher = rabbitMqPublisher;
         _userRepository = userRepository;
@@ -28,10 +26,10 @@ public class WorkerAddUser : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await _userRepository.CreateTableUserIfThisNotExists();
+        var channel = _rabbitMqConfiguration.GetChannel();
+        var consumer = new EventingBasicConsumer(channel);
         while (!stoppingToken.IsCancellationRequested)
         {
-            var channel = _rabbitMqConfiguration.GetChannel();
-            var consumer = new EventingBasicConsumer(channel);
             consumer.Received += async (component, basicDeliverEventArgs) =>
             {
                 var body = basicDeliverEventArgs.Body;
@@ -44,4 +42,4 @@ public class WorkerAddUser : BackgroundService
             await Task.Delay(1000, stoppingToken);
         }
     }
-}
+}   

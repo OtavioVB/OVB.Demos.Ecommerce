@@ -2,6 +2,7 @@ import './LandingPage.css';
 import { Fragment } from 'react';
 import Header from '../../sections/Header/Header.js';
 import React from 'react';
+import LandingPageAboutProject from '../../sections/Main/LandingPage/LandingPageAboutProject/LandingPageAboutProject';
 
 export default function LandingPage(){
     React.useEffect(() => {
@@ -104,6 +105,7 @@ export default function LandingPage(){
                         </div>
                     </div>
                 </section>
+                <LandingPageAboutProject></LandingPageAboutProject>
             </main>
         </Fragment>
     );

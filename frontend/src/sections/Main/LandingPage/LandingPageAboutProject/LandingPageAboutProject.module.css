@@ -1,0 +1,28 @@
+.LandingPageAboutProject{
+    display: flex;
+    margin-top: 30px;
+    padding: 0 5px;
+}
+
+.TitleContent{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 100%;
+    padding: 5px 10vw;
+}
+
+.Title{
+    color: black;
+    font-weight: 700;
+}
+
+.Text{
+    color: black;
+}
+
+@media screen and (max-width: 480px) {
+    .TitleContent{
+        padding: 5px 2vw;
+    }
+}

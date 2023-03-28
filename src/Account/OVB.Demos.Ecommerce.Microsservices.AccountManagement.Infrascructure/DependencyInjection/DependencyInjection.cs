@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.DependencyInjection;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.DependencyInjection;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.DependencyInjection;
@@ -13,6 +14,7 @@ using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Reposi
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.Repositories.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.UnitOfWork;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.UnitOfWork.Interfaces;
+using RabbitMQ.Client.Exceptions;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.DependencyInjection;
 
@@ -23,7 +25,10 @@ public static class DependencyInjection
         string postgreeSqlServiceVersion, string rabbitMqHostname, string rabbitMqVirtualhost, int rabbitMqPort, string rabbitMqClientProviderName,
         string rabbitMqUsername, string rabbitMqPassword, string rabbitMqServiceName, string rabbitMqServiceVersion, string rabbitMqServiceDescription)
     {
-        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration();
+        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration()
+            .AddCircuitBreakerPolicy<NpgsqlException>(1, TimeSpan.FromMilliseconds(1500))
+            .AddCircuitBreakerPolicy<PostgresException>(1, TimeSpan.FromMilliseconds(1500))
+            .AddCircuitBreakerPolicy<RabbitMQClientException>(1, TimeSpan.FromMilliseconds(1500));
 
         serviceCollection.AddOvbRetryPoliciesConfiguration(TimeSpan.FromMilliseconds(50), 5);
 

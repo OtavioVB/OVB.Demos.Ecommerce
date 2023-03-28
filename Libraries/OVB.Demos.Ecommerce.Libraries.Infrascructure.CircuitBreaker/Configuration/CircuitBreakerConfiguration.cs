@@ -13,10 +13,6 @@ public sealed class CircuitBreakerConfiguration : ICircuitBreakerConfiguration
     public CircuitBreakerConfiguration()
     {
         _circuitBreakerPolicies = new Dictionary<string, AsyncCircuitBreakerPolicy>();
-
-        AddCircuitBreakerPolicy<NpgsqlException>(1, TimeSpan.FromMilliseconds(1500));
-        AddCircuitBreakerPolicy<PostgresException>(1, TimeSpan.FromMilliseconds(1500));
-        AddCircuitBreakerPolicy<RabbitMQClientException>(1, TimeSpan.FromMilliseconds(1500));
     }
 
     public ICircuitBreakerConfiguration AddCircuitBreakerPolicy<TException>(int exceptionsAllowedBeforeBreak, TimeSpan durationOfBreak)
