@@ -37,11 +37,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Micross
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microssevrices.UnitTests", "tst\OVB.Demos.Ecommerce.Microssevrices.UnitTests\OVB.Demos.Ecommerce.Microssevrices.UnitTests.csproj", "{20883F45-15DC-4400-9AB8-BFF86A441048}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Volumes", "Volumes", "{E25E6F72-0869-48D3-81E3-1CDFF28C560E}"
-	ProjectSection(SolutionItems) = preProject
-		Volumes\microsservice-account-appsettings.json = Volumes\microsservice-account-appsettings.json
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi", "src\ApiGateway\OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi\OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi.csproj", "{774CD085-FFB7-49C6-8EB8-F575704798DC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern\OVB.Demos.Ecommerce.Libraries.Infrascructure.RetryPattern.csproj", "{639D481D-2530-43B8-9B7A-F14ECB2C67BE}"
@@ -58,7 +53,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Librari
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{7A8C345B-B849-4FF6-B3E7-8983B2FA6F29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.OpenTelemetry", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.OpenTelemetry\OVB.Demos.Ecommerce.Libraries.Infrascructure.OpenTelemetry.csproj", "{A398A0CE-B50B-443A-98F0-5F9EA514CB2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OVB.Demos.Ecommerce.Libraries.Infrascructure.OpenTelemetry", "Libraries\OVB.Demos.Ecommerce.Libraries.Infrascructure.OpenTelemetry\OVB.Demos.Ecommerce.Libraries.Infrascructure.OpenTelemetry.csproj", "{A398A0CE-B50B-443A-98F0-5F9EA514CB2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

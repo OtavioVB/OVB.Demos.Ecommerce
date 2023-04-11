@@ -15,23 +15,6 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        #region Kestrel Configuration
-
-        /*builder.WebHost.ConfigureKestrel(p =>
-        {
-            p.Listen(IPAddress.Any, 5199, p =>
-            {
-                p.Protocols = HttpProtocols.Http1AndHttp2;
-            });
-
-            p.Listen(IPAddress.Any, 5200, p =>
-            {
-                p.Protocols = HttpProtocols.Http2;
-            });
-        });*/
-
-        #endregion
-
         #region Domain Configuration
 
         builder.Services.AddOvbDomainAccountManagementMicrosserviceConfiguration();
