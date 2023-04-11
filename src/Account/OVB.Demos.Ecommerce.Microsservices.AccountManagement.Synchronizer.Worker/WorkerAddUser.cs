@@ -1,3 +1,4 @@
+using Npgsql;
 using OVB.Demos.Ecommerce.Libraries.Domain.Serializator;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.Configuration.Interfaces;
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.Publishers.Interfaces;
@@ -32,10 +33,17 @@ public class WorkerAddUser : BackgroundService
         {
             consumer.Received += async (component, basicDeliverEventArgs) =>
             {
-                var body = basicDeliverEventArgs.Body;
-                var userProtobuffer = Serializator.DeserializeProtobuf<UserProtobuffer>(body.ToArray());
-                await _userRepository.AddUserAsync(userProtobuffer);
-                _rabbitMqPublisher.BasicAck(basicDeliverEventArgs.DeliveryTag, false);
+                try
+                {
+                    var body = basicDeliverEventArgs.Body;
+                    var userProtobuffer = Serializator.DeserializeProtobuf<UserProtobuffer>(body.ToArray());
+                    await _userRepository.AddUserAsync(userProtobuffer);
+                    _rabbitMqPublisher.BasicAck(basicDeliverEventArgs.DeliveryTag, false);
+                }
+                catch
+                {
+                    _rabbitMqPublisher.BasicNack(basicDeliverEventArgs.DeliveryTag, false, true);
+                }
             };
 
             channel.BasicConsume("AccountMicrosservice.Synchronizer.User.Insert.Queue", false, consumer);

@@ -14,7 +14,6 @@ public sealed class CreateUserUseCase : IUseCase<CreateUserUseCaseInput, CreateU
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUserService _userService;
-    private readonly ICircuitBreakerFunctions _circuitBreaker;
     private readonly IMessengerSynchronizerService _messengerSynchronizerService;
 
     public CreateUserUseCase(
@@ -25,7 +24,6 @@ public sealed class CreateUserUseCase : IUseCase<CreateUserUseCaseInput, CreateU
     {
         _unitOfWork = unitOfWork;
         _userService = userService;
-        _circuitBreaker = circuitBreaker;
         _messengerSynchronizerService = messengerSynchronizerService;
     }
 
