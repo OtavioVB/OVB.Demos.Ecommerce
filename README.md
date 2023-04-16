@@ -36,50 +36,6 @@ Com a pasta da solução em aberto, comece executando o **Docker Compose** para 
 docker compose up -d
 ```
 
-Nesse momento é necessário a definição dos appsettings.json para cada microsserviço/workerservice/apigateway:
-
-Microsservice Account: OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc
-```json
-{
-  "Infrascructure": {
-    "Messenger": {
-      "RabbitMQ": {
-        "Hostname": "localhost",
-        "Virtualhost": "/",
-        "Username": "guest",
-        "Password": "guest",
-        "Port": "5672",
-        "ClientProviderName": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc",
-        "ServiceName": "RabbitMQ - Principal Network",
-        "ServiceDescription": "Serviço para envio de mensagens de modo assíncrono, como forma de comunicação entre os sistemas da aplicação.",
-        "ServiceVersion": "6.9.1"
-      }
-    },
-    "Databases": {
-      "EntityFrameworkCore": {
-        "PostgreeSQL": {
-          "ConnectionString": "User Id=admin;Password=1234;Server=localhost;Port=5432;Database=ovbdemosecommerceaccountmanagement",
-          "MigrationsAssembly": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure",
-          "ServiceName": "Microsserviço de Conta - PostgreeSQL",
-          "ServiceDescription": "Serviço para acesso e armazenamento de dados.",
-          "ServiceVersion": "15.2.0"
-        }
-      }
-    }
-  }
-}
-```
-
-Agora é possível que você rode cada microsserviço/apigateway/workerservice:
-
-```
-dotnet run --project "src/Account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc"
-```
-
-```
-dotnet run --project "src/ApiGateway/OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi"
-```
-
 # 🧑‍🤝‍🧑 Autor
 
 [Otávio Villas Boas Simoncini Carmanini](https://www.linkedin.com/in/otaviovillasboassimoncinicarmanini/)
