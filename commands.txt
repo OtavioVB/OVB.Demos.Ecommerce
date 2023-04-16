@@ -1,3 +1,0 @@
-docker compose up -d
-dotnet run --project "src/ApiGateway/OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi"
-dotnet run --project "src/Account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc"

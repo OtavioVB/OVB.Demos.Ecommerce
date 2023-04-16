@@ -25,6 +25,7 @@ public class WorkerAddUser : BackgroundService
     {
         await _userRepository.CreateTableUserIfThisNotExists();
         var channel = _rabbitMqConfiguration.GetChannel();
+        _rabbitMqPublisher.QueueDeclare("AccountMicrosservice.Synchronizer.User.Insert.Queue", true, false, false);
         var consumer = new EventingBasicConsumer(channel);
         while (!stoppingToken.IsCancellationRequested)
         {

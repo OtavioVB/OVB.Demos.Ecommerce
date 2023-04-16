@@ -21,7 +21,7 @@ public sealed class HealthChecksController : ControllerBase
     {
         try
         {
-            var grpcChannel = GrpcChannel.ForAddress("http://localhost:5100", new GrpcChannelOptions());
+            var grpcChannel = GrpcChannel.ForAddress("http://account-microsservice-webgprc:5200", new GrpcChannelOptions());
             var client = new HealthChecks.HealthChecksClient(grpcChannel);
             var call = await client.ReadinessHealthCheckAsync(new ReadinessHealthCheckInput() { }, new CallOptions(cancellationToken: cancellationToken));
 

@@ -1,14 +1,26 @@
 version: "3.9"
 
 services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - 5672:5672
+      - "15672:15672"
+    restart: always
+    networks:
+      - ovb-demos-ecommerce
+      - ovb-demos-ecommerce-synchronizer
+
   postgres:
     image: postgres
     container_name: postgres
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 1234
-    ports:
-      - "5432:5432"
     restart: always
     networks: 
       - ovb-demos-ecommerce
@@ -19,8 +31,8 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 1234
-    ports:
-      - "5433:5432"
+    volumes:
+      - ${PWD}/workerDatabaseVolume.sql:/docker-entrypoint-initdb.d/workerDatabaseVolume.sql
     restart: always
     networks: 
       - ovb-demos-ecommerce-synchronizer
@@ -59,21 +71,8 @@ services:
     networks:
       - ovb-demos-ecommerce-synchronizer
 
-  rabbitmq:
-    image: rabbitmq:3.11.10-management-alpine
-    container_name: rabbitmq
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    restart: always
-    networks:
-      - ovb-demos-ecommerce
-
   account-microsservice-webgprc:
-    hostname: "localhost"
+    container_name: "account-microsservice-webgprc"
     build:
       context: .
       dockerfile: accountWebGrpc.Dockerfile
@@ -88,18 +87,21 @@ services:
       - postgres
 
   account-microsservice-worker:
+    container_name: "account-microsservice-worker"
     build:
       context: .
       dockerfile: accountWorker.Dockerfile
     volumes:
       - "${PWD}/src/account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker/volumes.json:/app/appsettings.json"
     networks:
-      - ovb-demos-ecommerce
+      - ovb-demos-ecommerce-synchronizer
+    restart: always
     depends_on:
       - postgres-synchronizer
       - account-microsservice-webgprc
 
   apigateway: 
+    container_name: "apigateway"
     build:
       context: .
       dockerfile: apigateway.Dockerfile
@@ -109,6 +111,8 @@ services:
       - 8090:8090
     networks:
       - ovb-demos-ecommerce
+    depends_on:
+      - account-microsservice-worker
         
 
 networks:

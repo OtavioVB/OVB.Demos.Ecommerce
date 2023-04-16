@@ -2,7 +2,7 @@
   "Infrascructure": {
     "Messenger": {
       "RabbitMQ": {
-        "Hostname": "localhost",
+        "Hostname": "rabbitmq",
         "Virtualhost": "/",
         "Username": "guest",
         "Password": "guest",
@@ -16,7 +16,7 @@
     "Databases": {
       "EntityFrameworkCore": {
         "PostgreeSQL": {
-          "ConnectionString": "User Id=admin;Password=1234;Server=localhost;Port=5432;Database=ovbdemosecommerceaccountmanagement",
+          "ConnectionString": "User Id=admin;Password=1234;Server=postgres;Port=5432;Database=ovbdemosecommerceaccountmanagement",
           "MigrationsAssembly": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure",
           "ServiceName": "Microsserviço de Conta - PostgreeSQL",
           "ServiceDescription": "Serviço para acesso e armazenamento de dados.",

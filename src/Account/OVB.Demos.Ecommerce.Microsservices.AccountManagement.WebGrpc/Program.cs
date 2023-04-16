@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.EntityFrameworkCore;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.DependencyInjection;
+using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc.Services;
 
@@ -127,6 +129,7 @@ public class Program
 
         builder.Services.AddGrpc();
         var app = builder.Build();
+        app.Services.GetService<DataContext>()!.Database.Migrate();
         app.MapGrpcService<AccountService>();
         app.MapGrpcService<HealthCheckService>();
         app.UseCors("AllowAny");

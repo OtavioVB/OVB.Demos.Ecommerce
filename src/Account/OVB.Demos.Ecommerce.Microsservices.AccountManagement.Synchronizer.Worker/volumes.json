@@ -2,7 +2,7 @@
   "Infrascructure": {
     "Databases": {
       "PostgreeSQL": {
-        "ConnectionString": "User Id=admin;Password=1234;Server=localhost;Port=5433;Database=ovbdemosecommerce",
+        "ConnectionString": "User Id=admin;Password=1234;Server=postgres-synchronizer;Port=5432;Database=ovbdemosecommerce",
         "MigrationsAssembly": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure",
         "ServiceName": "Sincronizador do Microsserviço de Conta - PostgreeSQL",
         "ServiceDescription": "Serviço desnormalizado para acesso e armazenamento de dados.",
@@ -11,7 +11,7 @@
     },
     "Messenger": {
       "RabbitMQ": {
-        "Hostname": "localhost",
+        "Hostname": "rabbitmq",
         "Virtualhost": "/",
         "Username": "guest",
         "Password": "guest",
