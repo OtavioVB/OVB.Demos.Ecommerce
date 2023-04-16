@@ -1,6 +1,4 @@
 using OVB.Demos.Ecommerce.Libraries.Infrascructure.RabbitMQ.DependencyInjection;
-using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Application;
-using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Application.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Connection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Connection.Interfaces;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker.Infrascructure.Repositories;
@@ -48,8 +46,6 @@ public class Program
                     rabbitMqClientProviderName, rabbitMqUsername, rabbitMqPassword);
 
                 services.AddSingleton<IUserRepository, UserRepository>();
-
-                services.AddSingleton<IRabbitMqInsertUserConsumer, RabbitMqInsertUserConsumer>();
 
                 services.AddSingleton<IDataConnection, DataConnection>(p =>
                 {

@@ -25,10 +25,7 @@ public static class DependencyInjection
         string postgreeSqlServiceVersion, string rabbitMqHostname, string rabbitMqVirtualhost, int rabbitMqPort, string rabbitMqClientProviderName,
         string rabbitMqUsername, string rabbitMqPassword, string rabbitMqServiceName, string rabbitMqServiceVersion, string rabbitMqServiceDescription)
     {
-        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration()
-            .AddCircuitBreakerPolicy<NpgsqlException>(1, TimeSpan.FromMilliseconds(1500))
-            .AddCircuitBreakerPolicy<PostgresException>(1, TimeSpan.FromMilliseconds(1500))
-            .AddCircuitBreakerPolicy<RabbitMQClientException>(1, TimeSpan.FromMilliseconds(1500));
+        serviceCollection.AddOvbCircuitBreakerResiliencePolicyConfiguration();
 
         serviceCollection.AddOvbRetryPoliciesConfiguration(TimeSpan.FromMilliseconds(50), 5);
 

@@ -7,11 +7,11 @@ namespace OVB.Demos.Ecommerce.Libraries.Infrascructure.CircuitBreaker.Dependency
 
 public static class DependencyInjection
 {
-    public static ICircuitBreakerConfiguration AddOvbCircuitBreakerResiliencePolicyConfiguration(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddOvbCircuitBreakerResiliencePolicyConfiguration(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddSingleton<ICircuitBreakerConfiguration, CircuitBreakerConfiguration>();
         serviceCollection.AddSingleton<ICircuitBreakerFunctions, CircuitBreakerFunctions>();
 
-        return new CircuitBreakerConfiguration();
+        return serviceCollection;
     }
 }
