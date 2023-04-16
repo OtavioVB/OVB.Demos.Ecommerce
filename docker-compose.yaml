@@ -72,6 +72,45 @@ services:
     networks:
       - ovb-demos-ecommerce
 
+  account-microsservice-webgprc:
+    hostname: "localhost"
+    build:
+      context: .
+      dockerfile: accountWebGrpc.Dockerfile
+    volumes:
+      - "${PWD}/src/account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc/volumes.json:/app/appsettings.json"
+    ports: 
+      - 5200:5200
+    networks:
+      - ovb-demos-ecommerce
+    depends_on:
+      - rabbitmq
+      - postgres
+
+  account-microsservice-worker:
+    build:
+      context: .
+      dockerfile: accountWorker.Dockerfile
+    volumes:
+      - "${PWD}/src/account/OVB.Demos.Ecommerce.Microsservices.AccountManagement.Synchronizer.Worker/volumes.json:/app/appsettings.json"
+    networks:
+      - ovb-demos-ecommerce
+    depends_on:
+      - postgres-synchronizer
+      - account-microsservice-webgprc
+
+  apigateway: 
+    build:
+      context: .
+      dockerfile: apigateway.Dockerfile
+    volumes:
+      - "${PWD}/src/apigateway/OVB.Demos.Ecommerce.Microsservices.ApiGateway.WebApi/volumes.json:/app/appsettings.json"
+    ports: 
+      - 8090:8090
+    networks:
+      - ovb-demos-ecommerce
+        
+
 networks:
   ovb-demos-ecommerce:
     driver: bridge  

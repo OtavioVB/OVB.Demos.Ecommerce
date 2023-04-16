@@ -1,0 +1,26 @@
+﻿{
+  "Application": {
+    "Security": {
+      "JwtToken": "699ni5uxdo7pk60llrurkw7tq4dd6757j1hkagy6pwf1y82a535d6dd0oigfqjrhj1hkagy6pwf1y82a535d6dd0oigfqjrh"
+    },
+    "Connections": {
+      "Microsservices": {
+        "AccountMicrosservice": {
+          "Name": "Microsserviço de Conta",
+          "Description": "Microsserviço para a realização de monitoramento, processamento e relatórios de dados relacionados a autenticação e dados de privacidade dos usuários.",
+          "Version": "0.0.1-alpha",
+          "BaseUri": "http://localhost:5200"
+        }
+      }
+    }
+  },
+  "Services": {
+    "Microsservices": {
+      "AccountManagement": {
+        "Name": "",
+        "Description": "",
+        "Port": ""
+      }
+    }
+  }
+}

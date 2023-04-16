@@ -1,0 +1,28 @@
+﻿{
+  "Infrascructure": {
+    "Messenger": {
+      "RabbitMQ": {
+        "Hostname": "localhost",
+        "Virtualhost": "/",
+        "Username": "guest",
+        "Password": "guest",
+        "Port": "5672",
+        "ClientProviderName": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc",
+        "ServiceName": "RabbitMQ - Principal Network",
+        "ServiceDescription": "Serviço para envio de mensagens de modo assíncrono, como forma de comunicação entre os sistemas da aplicação.",
+        "ServiceVersion": "6.9.1"
+      }
+    },
+    "Databases": {
+      "EntityFrameworkCore": {
+        "PostgreeSQL": {
+          "ConnectionString": "User Id=admin;Password=1234;Server=localhost;Port=5432;Database=ovbdemosecommerceaccountmanagement",
+          "MigrationsAssembly": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure",
+          "ServiceName": "Microsserviço de Conta - PostgreeSQL",
+          "ServiceDescription": "Serviço para acesso e armazenamento de dados.",
+          "ServiceVersion": "15.2.0"
+        }
+      }
+    }
+  }
+}

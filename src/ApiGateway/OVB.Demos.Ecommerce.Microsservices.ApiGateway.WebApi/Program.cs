@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -13,6 +14,18 @@ public class Program
         #region Builder Configuration
 
         var builder = WebApplication.CreateBuilder(args);
+
+        #region Kestrel Configuration
+
+        builder.WebHost.ConfigureKestrel(p =>
+        {
+            p.ListenAnyIP(8090, p =>
+            {
+                p.Protocols = HttpProtocols.Http1;
+            });
+        });
+
+        #endregion
 
         #region Cors Configuration
 

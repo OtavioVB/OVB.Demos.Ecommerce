@@ -1,0 +1,23 @@
+﻿{
+  "Infrascructure": {
+    "Databases": {
+      "PostgreeSQL": {
+        "ConnectionString": "User Id=admin;Password=1234;Server=localhost;Port=5433;Database=ovbdemosecommerce",
+        "MigrationsAssembly": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure",
+        "ServiceName": "Sincronizador do Microsserviço de Conta - PostgreeSQL",
+        "ServiceDescription": "Serviço desnormalizado para acesso e armazenamento de dados.",
+        "ServiceVersion": "15.2.0"
+      }
+    },
+    "Messenger": {
+      "RabbitMQ": {
+        "Hostname": "localhost",
+        "Virtualhost": "/",
+        "Username": "guest",
+        "Password": "guest",
+        "Port": "5672",
+        "ClientProviderName": "OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc"
+      }
+    }
+  }
+}

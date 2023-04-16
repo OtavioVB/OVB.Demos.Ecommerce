@@ -14,6 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{CA004E37-24E8-4CE8-8073-1A91FDC57550}"
 	ProjectSection(SolutionItems) = preProject
+		accountWebGrpc.Dockerfile = accountWebGrpc.Dockerfile
+		accountWorker.Dockerfile = accountWorker.Dockerfile
+		apigateway.Dockerfile = apigateway.Dockerfile
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
 EndProject

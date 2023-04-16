@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.AspNetCore.Server.Kestrel.Https;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Application.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Domain.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.Infrascructure.DependencyInjection;
 using OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc.Services;
-using System.Net;
-using System.Security.Authentication;
 
 namespace OVB.Demos.Ecommerce.Microsservices.AccountManagement.WebGrpc;
 
@@ -14,6 +11,32 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        #region Kestrel Configuration
+
+        builder.WebHost.ConfigureKestrel(p =>
+        {
+            p.ListenAnyIP(5200, p =>
+            {
+                p.Protocols = HttpProtocols.Http2;
+            });
+        });
+
+        #endregion
+
+        #region Cors Configuration
+
+        builder.Services.AddCors(options =>
+            options.AddPolicy(name: "AllowAny", builder =>
+            {
+                builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowCredentials();
+            })
+        );
+
+        #endregion
 
         #region Domain Configuration
 
@@ -106,6 +129,7 @@ public class Program
         var app = builder.Build();
         app.MapGrpcService<AccountService>();
         app.MapGrpcService<HealthCheckService>();
+        app.UseCors("AllowAny");
         app.Run();
     }
 }
