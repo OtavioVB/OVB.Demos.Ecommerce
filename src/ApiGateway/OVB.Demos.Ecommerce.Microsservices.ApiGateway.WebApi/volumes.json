@@ -9,7 +9,7 @@
           "Name": "Microsserviço de Conta",
           "Description": "Microsserviço para a realização de monitoramento, processamento e relatórios de dados relacionados a autenticação e dados de privacidade dos usuários.",
           "Version": "0.0.1-alpha",
-          "BaseUri": "http://localhost:5200"
+          "BaseUri": "http://account-microsservice-webgprc:5200"
         }
       }
     }
